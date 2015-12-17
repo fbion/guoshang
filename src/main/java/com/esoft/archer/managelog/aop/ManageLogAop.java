@@ -7,7 +7,6 @@ import com.esoft.core.annotations.Logger;
 import com.esoft.core.util.IdGenerator;
 import org.apache.commons.logging.Log;
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.Signature;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -35,9 +34,7 @@ public class ManageLogAop {
     HibernateTemplate ht;
 
     @AfterReturning(value = "execution(* com.esoft.archer.user.controller.UserHome.save(..))",returning="rtv")
-    public void insertToLog(JoinPoint jp ,Object rtv) {
-        System.out.println("loginUserInfo.getLoginUserId(): " + loginUserInfo.getLoginUserId());
-
+    public void addUserToLog(JoinPoint jp ,Object rtv) {
         ManageLog manageLog=new ManageLog();
         manageLog.setId(IdGenerator.randomUUID());
         manageLog.setCreateTime(new Date());
@@ -61,6 +58,9 @@ public class ManageLogAop {
 //        System.out.println("Return:" + rtv);
 //        System.out.println("====================================");
     }
+
+
+
 
 
 }

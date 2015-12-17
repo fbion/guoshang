@@ -43,6 +43,10 @@
             <var>menuMsg</var>
         </resource-bundle>
         <resource-bundle>
+            <base-name>com.esoft.archer.managelog.LocalStrings</base-name>
+            <var>manageLogMsg</var>
+        </resource-bundle>
+        <resource-bundle>
             <base-name>com.esoft.archer.term.LocalStrings</base-name>
             <var>termMsg</var>
         </resource-bundle>

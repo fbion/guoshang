@@ -39,14 +39,37 @@
                     <h:outputLabel value="viewId"
                         styleClass="form-input-label"></h:outputLabel>
                     <h:inputText value="#{urlMappingHome.instance.viewId}" styleClass="form-input-long" required="true" label="viewId"></h:inputText>
-                    
-                    <h:outputLabel value="权限"
-						styleClass="form-input-label"></h:outputLabel>
-                    <h:selectManyCheckbox value="#{urlMappingHome.instance.permissions}" 
-                        converter="archer.EntityConverter" collectionType="java.util.ArrayList">
-                        <f:selectItems value="#{permissionList.allResultList}" var="p"
-                            itemValue="#{p}" itemLabel="#{p.name}"/>
-                    </h:selectManyCheckbox>
+
+
+                    <!--<h:outputLabel value="权限"-->
+						<!--styleClass="form-input-label"></h:outputLabel>-->
+                    <!--<h:selectManyCheckbox value="#{urlMappingHome.instance.permissions}" -->
+                        <!--converter="archer.EntityConverter" collectionType="java.util.ArrayList">-->
+                        <!--<f:selectItems value="#{permissionList.allResultList}" var="p"-->
+                            <!--itemValue="#{p}" itemLabel="#{p.name}"/>-->
+                    <!--</h:selectManyCheckbox>-->
+
+                    <h:outputLabel value="权限"></h:outputLabel>
+                    <ui:fragment>
+                        <ui:param name="permissions" value="#{urlMappingHome.instance.permissions}" ></ui:param>
+                        <f:event type="preRenderComponent" listener="#{permissionList.setMenuPermissionList(permissions)}" ></f:event>
+                        <div id="selected">
+                            <ui:repeat var="per" value="#{permissions}" varStatus="status">
+                                <input  value="#{per.id}" class="per#{status.index}"/>
+                            </ui:repeat>
+                        </div>
+                        <p:tree value="#{permissionList.getMenuRoot()}" var="p"
+                                selectionMode="checkbox"
+                                selection="#{permissionList.selectedNodes}">
+                            <p:treeNode>
+                                <h:outputText value="#{p.name}" />
+                            </p:treeNode>
+                            <p:treeNode type="permissionTree" styleClass="#{p.id}">
+                                <h:outputText value="#{p.name}" />
+                            </p:treeNode>
+                        </p:tree>
+                    </ui:fragment>
+
                     
                      <h:outputLabel value="#{commonMsg.descriptionLabel}"></h:outputLabel>
                     <h:inputTextarea value="#{urlMappingHome.instance.description}" style="width:600px;height:60px;"></h:inputTextarea>
