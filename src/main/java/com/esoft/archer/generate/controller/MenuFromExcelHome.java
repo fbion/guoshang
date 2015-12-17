@@ -47,7 +47,7 @@ public class MenuFromExcelHome {
 
 	public static void main(String[] args) throws FileNotFoundException {
 		//由于是中文，模板文件已删除，如后期有用，从源码中拿出文件，需用英文字母重新命名
-		String templateUrl = MenuFromExcelHome.class.getResource("内容填充模板.xlsx")
+		String templateUrl = MenuFromExcelHome.class.getResource("content_modle.xlsx")
 				.getPath();
 		templateUrl = URLDecoder.decode(templateUrl);
 		MenuFromExcelHome test = new MenuFromExcelHome();
