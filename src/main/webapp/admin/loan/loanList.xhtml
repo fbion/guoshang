@@ -85,7 +85,7 @@
                     </p:column>
                     <p:column width="100">
                         <f:facet name="header">
-                            <h:outputText value="借款人/审核"></h:outputText>
+                            <h:outputText value="还款用户/审核"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{loan.user.username}"></h:outputText>
                         <h:link value="[详情]" outcome="/admin/user/verifyLoaner?id=#{loan.user.username}"></h:link>
@@ -93,7 +93,7 @@
 
                     <p:column width="100">
                         <f:facet name="header">
-                            <h:outputText value="超级债权人"></h:outputText>
+                            <h:outputText value="借款用户"></h:outputText>
                         </f:facet>
                         <h:outputText value="#{loan.superUser.username}"></h:outputText>
                         <h:link value="[详情]" outcome="/admin/user/verifyLoaner?id=#{loan.superUser.username}"></h:link>

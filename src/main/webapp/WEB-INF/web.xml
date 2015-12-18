@@ -71,6 +71,7 @@
 		<filter-name>OpenSessionInViewFilter</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	<!-- spring权限管理，需放在spring的filter(DispatcherServlet)之前,本项目使用jsf，不用考虑   -->
 	<filter>
 		<filter-name>springSecurityFilterChain</filter-name>
 		<filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>

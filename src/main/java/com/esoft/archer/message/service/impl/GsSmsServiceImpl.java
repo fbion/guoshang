@@ -9,7 +9,9 @@ import java.util.Properties;
 import com.esoft.archer.message.exception.MessageSendErrorException;
 import com.esoft.archer.message.service.SmsService;
 import com.esoft.core.util.HttpClientUtil;
+import org.springframework.stereotype.Service;
 
+@Service("smsService")
 public class GsSmsServiceImpl extends SmsService {
 
 	private static Properties props = new Properties();

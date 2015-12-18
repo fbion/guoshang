@@ -37,7 +37,7 @@
 						<ui:param name="thumb" value="#{loanHome.instance.customPicture}"></ui:param>
 					</ui:include>
 
-					<h:outputLabel value="借款用户"></h:outputLabel>
+					<h:outputLabel value="还款用户"></h:outputLabel>
 					<ui:fragment>
 					<p:autoComplete value="#{loanHome.instance.user}" 
 						title="输入用户名自动检索用户，请在检索结果中选择用户" emptyMessage="未搜索到用户"
@@ -59,7 +59,7 @@
 						</h:outputLabel>
 					</ui:fragment>
 
-					<h:outputLabel value="超级债权人"></h:outputLabel>
+					<h:outputLabel value="借款用户"></h:outputLabel>
 					<ui:fragment>
 						<p:autoComplete value="#{loanHome.instance.superUser}"
 										title="输入用户名自动检索用户，请在检索结果中选择用户" emptyMessage="未搜索到用户"

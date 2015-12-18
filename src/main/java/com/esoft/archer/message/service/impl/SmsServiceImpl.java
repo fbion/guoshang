@@ -17,7 +17,6 @@ import com.esoft.archer.message.service.SmsService;
  * @author Administrator
  * 
  */
-@Service("smsService")
 public class SmsServiceImpl extends SmsService {
 	
 	private static Properties props = new Properties(); 
@@ -32,6 +31,14 @@ public class SmsServiceImpl extends SmsService {
 	}
 
 	public void send(String content, String mobileNumber) {
+
+
+		System.out.println("SmsServiceImpl");
+		System.out.println("发送短信："+content+"  number: "+mobileNumber);
+
+		if(true){
+			return;
+		}
 		String sn = props.getProperty("sn");
 		String pwd = props.getProperty("password");
 		if (sn == null || pwd == null) {
