@@ -7,6 +7,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.esoft.yeepay.user.service.impl.YeePayPasswordOperation;
 import org.apache.commons.logging.Log;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.context.annotation.Scope;
@@ -74,7 +75,9 @@ public class TrusteeshipHome {
 	
 	@Resource
 	YeePayInvestTransferOperation yeePayInvestTransferOperation;
-	
+
+	@Resource
+	YeePayPasswordOperation yeePayPasswordOperation;
 	
 	@Resource
 	YeePayRecheckOperation yeePayRecheckOperation;
@@ -153,6 +156,10 @@ public class TrusteeshipHome {
 		} else if(YeePayConstants.OperationType.ENTERPRISE_REGISTER
 				.equals(this.operationType)){
 			return this.openCorpAccount();
+		}else if(YeePayConstants.OperationType.RESET_PASSWORD
+				.equals(this.operationType)){
+			this.resetPassword();
+			return null;
 		}
 		// FIXME:跳转到404页面
 		return "404";
@@ -267,6 +274,17 @@ public class TrusteeshipHome {
 			yeePayNormalRepayOperation.receiveOperationPostCallback(FacesUtil
 					.getHttpServletRequest());
 			FacesUtil.addInfoMessage("还款成功！");
+		} catch (TrusteeshipReturnException e) {
+			log.debug(e);
+			FacesUtil.addErrorMessage(e.getMessage());
+		}
+	}
+
+	private void resetPassword() {
+		try {
+			yeePayPasswordOperation.receiveOperationPostCallback(FacesUtil
+					.getHttpServletRequest());
+			FacesUtil.addInfoMessage("修改交易密码成功！");
 		} catch (TrusteeshipReturnException e) {
 			log.debug(e);
 			FacesUtil.addErrorMessage(e.getMessage());

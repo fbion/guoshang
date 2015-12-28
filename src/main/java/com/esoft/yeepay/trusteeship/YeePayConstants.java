@@ -134,6 +134,9 @@ public class YeePayConstants {
 		public static final String AUTHORIZE_AUTO_REPAYMENT = props
 				.getProperty("request.authorizeAutoRepaymentUrl");
 
+		public static final String RESET_PASSWORD_URL = props
+				.getProperty("request.toResetPasswordUrl");
+
 	}
 
 	public static final class ResponseWebUrl {
@@ -230,6 +233,11 @@ public class YeePayConstants {
 		 */
 		public static final String CANCEL_AUTO_REPAY = "cancel_auto_repay";
 
+		/**
+		 *取消自动还款
+		 */
+		public static final String RESET_PASSWORD = "reset_password";
+
 	}
 
 	public static final class RequestNoPre {
@@ -310,7 +318,13 @@ public class YeePayConstants {
 		 * 自动还款
 		 */
 		public static final String AUTO_REPAYMENT = "17";
-		
+
+		/**
+		 * 自动还款
+		 */
+		public static final String RESET_PASSWORD = "18";
+
+
 
 	}
 

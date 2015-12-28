@@ -3,6 +3,7 @@ package com.esoft.yeepay.user.controller;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 
+import com.esoft.yeepay.user.service.impl.YeePayPasswordOperation;
 import org.apache.commons.lang.StringUtils;
 
 import com.esoft.archer.system.controller.LoginUserInfo;
@@ -19,6 +20,8 @@ public class YeePayUserHome extends UserHome  {
     YeePayUserOperation yeePayUserOperation;
 	@Resource
 	YeePayCorpAccountOperation yeePayCorpAccountOperation;
+	@Resource
+	YeePayPasswordOperation yeePayPasswordOperation;
 	@Resource
 	LoginUserInfo loginUserInfo;
 	private YeepayCorpInfo yci;
@@ -39,6 +42,19 @@ public class YeePayUserHome extends UserHome  {
 		}
 		return null;
 	}
+
+
+	public String toResetPassword() {
+		try {
+			yeePayPasswordOperation.createOperation(this.getInstance(),FacesContext.getCurrentInstance());
+		} catch (Exception e) {
+			FacesUtil.addErrorMessage("交易密码修改出错");
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+
 	
 	public String openCorpAccount(){
 		try {

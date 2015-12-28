@@ -1,23 +1,5 @@
 package com.esoft.yeepay.user.service.impl;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.faces.context.FacesContext;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
-import javax.servlet.http.HttpServletRequest;
-
-import org.apache.commons.logging.Log;
-import org.hibernate.LockMode;
-import org.springframework.orm.hibernate3.HibernateTemplate;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
-
 import com.esoft.archer.user.model.User;
 import com.esoft.archer.user.service.UserService;
 import com.esoft.core.annotations.Logger;
@@ -33,9 +15,26 @@ import com.esoft.jdp2p.trusteeship.service.impl.TrusteeshipOperationBO;
 import com.esoft.yeepay.sign.CFCASignUtil;
 import com.esoft.yeepay.trusteeship.YeePayConstants;
 import com.esoft.yeepay.trusteeship.service.impl.YeePayOperationServiceAbs;
+import org.apache.commons.logging.Log;
+import org.hibernate.LockMode;
+import org.springframework.orm.hibernate3.HibernateTemplate;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-@Service("yeePayUserOperation")
-public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
+import javax.annotation.Resource;
+import javax.faces.context.FacesContext;
+import javax.servlet.ServletRequest;
+import javax.servlet.ServletResponse;
+import javax.servlet.http.HttpServletRequest;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
+@Service("yeePayPasswordOperation")
+public class YeePayPasswordOperation extends YeePayOperationServiceAbs<User> {
 	@Resource
 	TrusteeshipOperationBO trusteeshipOperationBO;
 
@@ -60,28 +59,12 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 		// 商户平台会员标识:会员在商户平台唯一标识
 		content.append("<platformUserNo>" + user.getId() + "</platformUserNo>");
 		// 请求流水号
-		content.append("<requestNo>"+YeePayConstants.RequestNoPre.CREATE_ACCOUNT + user.getId() + "</requestNo>");
-		// 会员真实姓名
-		content.append("<realName>" + user.getRealname() + "</realName>");
-		// 身份证类型
-		content.append("<idCardType>G2_IDCARD</idCardType>");
-		// 身份证号
-		content.append("<idCardNo>" + user.getIdCard() + "</idCardNo>");
-		// 手机号
-		content.append("<mobile>" + user.getMobileNumber() + "</mobile>");
-		// 邮箱
-		content.append("<email>" + user.getEmail() + "</email>");
+		content.append("<requestNo>"+YeePayConstants.RequestNoPre.RESET_PASSWORD +"@"+ user.getId() +"@"+ IdGenerator.randomUUID() +"</requestNo>");
 		// 回调通知 URL
-		log.debug("1:"+YeePayConstants.ResponseWebUrl.PRE_RESPONSE_URL);
-		log.debug("2:"+YeePayConstants.OperationType.CREATE_ACCOUNT);
 		content.append("<callbackUrl>"
 				+ YeePayConstants.ResponseWebUrl.PRE_RESPONSE_URL
-				+ YeePayConstants.OperationType.CREATE_ACCOUNT
+				+ YeePayConstants.OperationType.RESET_PASSWORD
 				+ "</callbackUrl>");
-		// 服务器通知 URL
-		content.append("<notifyUrl>"
-				+ YeePayConstants.ResponseS2SUrl.PRE_RESPONSE_URL
-				+ YeePayConstants.OperationType.CREATE_ACCOUNT + "</notifyUrl>");
 		content.append("</request>");
 		log.debug(content.toString());
 		// 包装参数
@@ -94,15 +77,10 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 		to.setId(IdGenerator.randomUUID());
 		to.setMarkId(user.getId());
 		to.setOperator(user.getId());
-		if (FacesUtil.isMobileRequest((HttpServletRequest) fc
-				.getExternalContext().getRequest())) {
-			to.setRequestUrl(YeePayConstants.RequestUrl.MOBILE_CREATE_YEEPAY_ACCT);
-		} else {
-			to.setRequestUrl(YeePayConstants.RequestUrl.CREATE_YEEPAY_ACCT);
-		}
+		to.setRequestUrl(YeePayConstants.RequestUrl.RESET_PASSWORD_URL);
 		to.setRequestData(MapUtil.mapToString(params));
 		to.setStatus(TrusteeshipConstants.Status.UN_SEND);
-		to.setType(YeePayConstants.OperationType.CREATE_ACCOUNT);
+		to.setType(YeePayConstants.OperationType.RESET_PASSWORD);
 		to.setTrusteeship("yeepay");
 		trusteeshipOperationBO.save(to);
 		try {
@@ -125,22 +103,21 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 		// 响应的参数 为xml格式
 		String respXML = request.getParameter("resp");
 		// 签名
-		log.info("开户：respXML："+respXML);
 		String sign = request.getParameter("sign");
 		boolean flag = CFCASignUtil.isVerifySign(respXML, sign);
 		if (flag) {
-			// 处理账户开通成功
-			@SuppressWarnings("unchecked")
 			Map<String, String> resultMap = Dom4jUtil.xmltoMap(respXML);
 			// 请求流水号 注册时传递的userId
-			String requestNo = resultMap.get("requestNo").replaceFirst(YeePayConstants.RequestNoPre.CREATE_ACCOUNT, "");
+			String requestNo = resultMap.get("requestNo").split("@")[1];
 			// 返回码
 			String code = resultMap.get("code");
 			String description = resultMap.get("description");
 			TrusteeshipOperation to = trusteeshipOperationBO.get(
-					YeePayConstants.OperationType.CREATE_ACCOUNT, requestNo,
+					YeePayConstants.OperationType.RESET_PASSWORD, requestNo,
 					requestNo, "yeepay");
 			ht.evict(to);
+			System.out.println("requestNo:"+requestNo);
+			System.out.println(" to.getId()"+ to.getId());
 			to = ht.get(TrusteeshipOperation.class, to.getId(),
 					LockMode.UPGRADE);
 

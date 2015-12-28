@@ -106,3 +106,38 @@ $(function() {
           }
           return true;
       }
+	  
+	 function showInfoLabel(a){
+		 if($(a).val()=='房贷'){
+			 $("#form\\:infoOne").show();
+			 $("#form\\:infoOne").attr('placeholder','建筑面积');
+			 $("#form\\:infoTwo").show();
+			 $("#form\\:infoTwo").attr('placeholder','房龄');
+			 $("#form\\:infoThree").show();
+			 $("#form\\:infoThree").attr('placeholder','评估价格');
+			 $("#form\\:infoFour").show();
+			 $("#form\\:infoFour").attr('placeholder','所处位置');
+			 $("#form\\:infoTime").hide();
+		 }else if($(a).val()=='车贷'){
+			 $("#form\\:infoOne").show();
+			 $("#form\\:infoOne").attr('placeholder','品牌型号');
+			 $("#form\\:infoTwo").show();
+			 $("#form\\:infoTwo").attr('placeholder','车牌号码');
+			 $("#form\\:infoThree").show();
+			 $("#form\\:infoThree").attr('placeholder','里程数');
+			 $("#form\\:infoFour").show();
+			 $("#form\\:infoFour").attr('placeholder','评估价格');
+			 $("#form\\:infoTime").show();
+		 }else{
+			  $("#form\\:infoOne").hide();
+			  $("#form\\:infoTwo").hide();
+			  $("#form\\:infoThree").hide();
+			  $("#form\\:infoFour").hide();
+			  $("#form\\:infoTime").hide();
+			 
+		 }
+
+
+	 }
+
+

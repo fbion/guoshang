@@ -230,6 +230,7 @@ public class YeePayCorpAccountOperation extends YeePayOperationServiceAbs<Yeepay
 			to.setResponseData(notifyxml);
 
 			User user = ht.get(User.class, platformUserNo);
+			log.info("code:"+code);
 			if ("1".equals(code)) {
 				if (user != null) {
 					TrusteeshipAccount ta = ht.get(TrusteeshipAccount.class,

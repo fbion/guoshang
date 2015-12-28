@@ -254,7 +254,6 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 	 * @return
 	 */
 	public String getInvestorPermission() {
-
 		if (StringUtils.equals(
 				HashCrypt.getDigestHash(getInstance().getCashPassword()),
 				getInstance().getPassword())) {

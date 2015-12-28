@@ -158,16 +158,12 @@ public class CFCACertSignUtils {
 			byte signData[] = signMessage.getBytes(DEFAULT_CHARSET);// 再以UTF-8编码方式解码成字节数组
 
 			boolean verify = signUtil.p7VerifySignMessage(signData, session);// 1.验证签名的不可抵赖性
-			System.out.println("161:" + verify);
 			if (verify) {// 签名
 				// 获得签名中的证书
 				X509Cert x509Certs = signUtil.getSigerCert()[0];
-				System.out.println("165:" + x509Certs);
 				// 获得签名数据中的原文
 				byte[] srcData = signUtil.getSignedContent();// 原始hash值的BASE64编码
 				String reverseHashMessage = new String(srcData, DEFAULT_CHARSET);
-				System.out
-						.println("169:" + srcData + "  " + reverseHashMessage);
 				// 证书所有者身份校验
 				identityVerify(customerNo, x509Certs);
 
@@ -188,7 +184,6 @@ public class CFCACertSignUtils {
 	private static void identityVerify(String customerNo, X509Cert x509Certs)
 			throws PKIException {
 		String certDN = x509Certs.getSubject();
-		System.out.println("190:" + certDN);
 		boolean isValidecertDN = false;
 		String certDNItems[] = certDN.split(",");
 		for (String item : certDNItems) {
@@ -196,7 +191,6 @@ public class CFCACertSignUtils {
 				isValidecertDN = true;
 			}
 		}
-		System.out.println("198:" + isValidecertDN);
 		if (!isValidecertDN) {
 			throw new RuntimeException("不是yeepay颁发的CFCA证书");
 		}
@@ -204,12 +198,10 @@ public class CFCACertSignUtils {
 		String extension = null;
 		SelfDefExtension extensionInfo = x509Certs
 				.getSelfDefExtension(CERT_EXT_INFO);
-		System.out.println("206:" + extensionInfo);
 		if (extensionInfo == null) {
 			throw new RuntimeException("证书扩展信息未指定,无法识别客户身份信息");
 		}
 		extension = extensionInfo.getExtensionValue();
-		System.out.println("211:" + extension);
 		if (extension == null) {
 			throw new RuntimeException("证书扩展信息未指定,无法识别客户身份信息");
 		}
