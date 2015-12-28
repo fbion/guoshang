@@ -12,7 +12,7 @@ import com.esoft.core.jsf.util.FacesUtil;
 public class ImageUploadUtil {
 
 //	private final static String UPLOAD_PATH = "/upload";
-	private final static String UPLOAD_PATH = "/data/www/upload";
+	private final static String UPLOAD_PATH = "/data/web/upload";
 	private static SimpleDateFormat formater = new SimpleDateFormat("yyyyMMdd");
 	
 	

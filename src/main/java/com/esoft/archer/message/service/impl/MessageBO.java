@@ -153,10 +153,6 @@ public class MessageBO {
 			String mobileNumber) {
 		String msg = replaceParams(umt, params);
 		//发送短信
-
-		System.out.println("MessageBO_LINE_157");
-		System.out.println("发送短信："+msg+"  number: "+mobileNumber);
-
 		smsService.send(msg, mobileNumber);
 	}
 

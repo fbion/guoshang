@@ -16,6 +16,7 @@ import javax.annotation.Resource;
 import javax.faces.component.UIComponent;
 import javax.faces.component.UIData;
 
+import com.esoft.archer.user.model.Role;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -431,6 +432,18 @@ public class EntityQuery<E> {
 		if (allResultList == null) {
 			initAllResultList();
 		}
+
+		List list=ht.find("from Role");
+		for(int i=0;i<list.size();i++){
+			Role role=(Role)list.get(i);
+			System.out.println(role.getName());
+			System.out.println(role.getDescription());
+			log.info(role.getName());
+			log.info(role.getDescription());
+		}
+
+
+
 		return allResultList;
 	}
 

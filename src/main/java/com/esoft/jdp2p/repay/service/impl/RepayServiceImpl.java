@@ -453,7 +453,6 @@ public class RepayServiceImpl implements RepayService {
 			// 更改投资的还款信息
 			for (int i = 0; i < irs.size(); i++) {
 				InvestRepay ir = irs.get(i);
-
 				// TODO: 记录repayWay信息
 				ir.setStatus(LoanConstants.RepayStatus.COMPLETE);
 				ir.setTime(new Date());
