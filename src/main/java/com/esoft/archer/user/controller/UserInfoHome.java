@@ -6,6 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
@@ -88,8 +91,10 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 	private String newMobileNumber;
 	// 认证码
 	private String authCode;
-	
-	
+
+	/** 验证码. */
+	private String captchaCode;
+
 	public String getFindPwdEmail() {
 		return findPwdEmail;
 	}
@@ -115,6 +120,13 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 		this.authCode = authCode;
 	}
 
+	public String getCaptchaCode() {
+		return captchaCode;
+	}
+
+	public void setCaptchaCode(String captchaCode) {
+		this.captchaCode = captchaCode;
+	}
 
 	// /////////////////////////////////////////通过邮箱找回密码--开始////////////////////////////////////
 
@@ -277,6 +289,41 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 		FacesUtil.addInfoMessage("验证码已经发送至手机！");
 		RequestContext.getCurrentInstance().execute(jsCode);
 	}
+
+
+	/**
+	 * 发送手机认证码
+	 * @param mobileNumber
+	 * @param jsCode 方法执行完以后要执行的js
+	 */
+	public void sentVerifyAuthCodeToMobileVaiCode(String mobileNumber,String code, String jsCode){
+
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext extContext =facesContext.getExternalContext();
+		HttpSession session =(HttpSession)extContext.getSession(true);
+		String sessionCode = (String) session.getAttribute(CommonConstants.CaptchaFlag.CAPTCHA_SESSION);
+		if(!code.toUpperCase().equals(sessionCode)){
+			FacesUtil.addErrorMessage("图形验证码错误，请重新填写！");
+			return;
+		}
+
+		User l = userBO.getUserByMobileNumber(mobileNumber);
+		if(l == null ){
+			FacesUtil.getCurrentInstance().validationFailed();
+			FacesUtil.addErrorMessage("该手机号未注册");
+			return;
+		}
+		this.setInstance(l);
+
+		Map<String, String> params = new HashMap<String, String>();
+		params.put("time", DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD_HH_MM_SS_CN));
+		params.put("authCode", authService.createAuthInfo(l.getId(), mobileNumber, null, CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE).getAuthCode());
+		// 发送手机验证码
+		messageBO.sendSMS(getBaseService().get(UserMessageTemplate.class, MessageConstants.UserMessageNodeId.FIND_LOGIN_PASSWORD_BY_MOBILE + "_sms"), params, mobileNumber);
+		FacesUtil.addInfoMessage("验证码已经发送至手机！");
+		RequestContext.getCurrentInstance().execute(jsCode);
+	}
+
 	
 	public void findPwdByMobile1(){
 		try {
@@ -333,6 +380,33 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 	 * @param jsCode 发送成功后，执行的js代码
 	 */
 	public void sendCurrentBindingMobileNumberSMS(String jsCode) {
+		User user;
+		try {
+			user = userService.getUserById(loginUserInfo.getLoginUserId());
+			userService.sendChangeBindingMobileNumberSMS(user.getId(),
+					user.getMobileNumber());
+			FacesUtil.addInfoMessage("验证码已经发送至手机！");
+			RequestContext.getCurrentInstance().execute(jsCode);
+		} catch (UserNotFoundException e) {
+			FacesUtil.addErrorMessage("用户未登录");
+			e.printStackTrace();
+		}
+	}
+
+	/**
+	 * 更改绑定手机号第一步 给用户当前手机发送认证码
+	 * @param jsCode 发送成功后，执行的js代码
+	 */
+	public void sendCurrentBindingMobileNumberSMSVaiCode(String code,String jsCode) {
+
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext extContext =facesContext.getExternalContext();
+		HttpSession session =(HttpSession)extContext.getSession(true);
+		String sessionCode = (String) session.getAttribute(CommonConstants.CaptchaFlag.CAPTCHA_SESSION);
+		if(!code.toUpperCase().equals(sessionCode)){
+			FacesUtil.addErrorMessage("图形验证码错误，请重新填写！");
+			return;
+		}
 		User user;
 		try {
 			user = userService.getUserById(loginUserInfo.getLoginUserId());

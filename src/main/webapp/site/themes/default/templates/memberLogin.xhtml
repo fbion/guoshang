@@ -110,6 +110,7 @@
 								<p:watermark value="请输入密码" for="password"></p:watermark>
 								<div class="clear"></div>
 							</div>
+
 							<ui:fragment
 								rendered="#{sessionScope.need_validate_code or configHome.getConfigValue('login_fail_max_times') eq '0'}">
 								<div class="login_box">
@@ -126,6 +127,7 @@
 									</div>
 								</div>
 							</ui:fragment>
+
 							<div class="login_box">
 								<div class="login_box_l"></div>
 								<div class="login_box_r">

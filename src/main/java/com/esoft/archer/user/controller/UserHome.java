@@ -7,6 +7,8 @@ import java.util.Date;
 
 import javax.annotation.Resource;
 import javax.faces.application.FacesMessage;
+import javax.faces.context.ExternalContext;
+import javax.faces.context.FacesContext;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.codec.digest.DigestUtils;
@@ -107,6 +109,8 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 			.getManager(UserConstants.Package);
 	/** 认证码. */
 	private String authCode;
+	/** 验证码. */
+	private String captchaCode;
 	/** 实名认证绑定所要手机号. */
 	private String mobileNumber;
 	/** 旧密码. */
@@ -687,6 +691,7 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 	 *            成功后执行的js代码
 	 */
 	public void sendRegisterAuthCodeToMobile(String mobileNumber, String jsCode) {
+
 		boolean isVerify = true;
 		// config中是否开启了短信随机码验证
 		boolean isOpen = false;
@@ -713,6 +718,53 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 			FacesUtil.addErrorMessage("发短信请求非法！");
 		}
 	}
+
+
+	/**
+	 * 用户注册操作，发送手机验证码验证（用户注册时）.
+	 *
+	 * @param mobileNumber
+	 * @param jsCode
+	 *            成功后执行的js代码
+	 */
+	public void sendRegisterAuthCodeToMobileVaiCode(String mobileNumber,String code, String jsCode) {
+
+		FacesContext facesContext = FacesContext.getCurrentInstance();
+		ExternalContext extContext =facesContext.getExternalContext();
+		HttpSession session =(HttpSession)extContext.getSession(true);
+		String sessionCode = (String) session.getAttribute(CommonConstants.CaptchaFlag.CAPTCHA_SESSION);
+		if(!code.toUpperCase().equals(sessionCode)){
+			FacesUtil.addErrorMessage("图形验证码错误，请重新填写！");
+			return;
+		}
+		boolean isVerify = true;
+		// config中是否开启了短信随机码验证
+		boolean isOpen = false;
+		try {
+			isOpen = "1".equals(configService.getConfigValue("register.openSmsVerify")
+					.trim());
+		} catch (Exception e) {
+		}
+		if (isOpen) {
+			// viewId+随机数做md5验证
+			isVerify = StringUtils.equals(
+					vCodeClient,
+					DigestUtils.md5Hex(FacesUtil.getCurrentInstance()
+							.getApplication().getStateManager()
+							.getViewState(FacesUtil.getCurrentInstance())
+							+ randomCode));
+		}
+		if (isVerify) {
+			refreshRandomCode();
+			userService.sendRegisterByMobileNumberSMS(mobileNumber);
+			FacesUtil.addInfoMessage("短信已发送，请注意查收！");
+			RequestContext.getCurrentInstance().execute(jsCode);
+		} else {
+			FacesUtil.addErrorMessage("发短信请求非法！");
+		}
+	}
+
+
 
 	/**
 	 * 用户注册操作，发送语音验证码.
@@ -952,4 +1004,11 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 		this.vCodeClient = vCodeClient;
 	}
 
+	public String getCaptchaCode() {
+		return captchaCode;
+	}
+
+	public void setCaptchaCode(String captchaCode) {
+		this.captchaCode = captchaCode;
+	}
 }

@@ -60,6 +60,20 @@
 							</div>
 							<div class="clear"></div>
 						</div>
+
+						<div class="login_box login_box03">
+							<div class="login_box_l login_box_l_02">图形验证码：</div>
+							<div class="login_box_r login_box_r_02">
+								<h:inputText id="captcha_input"   label="图形验证码"  required="true" value="#{userInfoHome.captchaCode}" maxlength="4"
+											 styleClass="login_txt login_txt03"></h:inputText>
+								<p:watermark value="请输入验证码" for="captcha_input"></p:watermark>
+								<a class="login_yzm" href="javascript:void(0)"><img
+										alt="点击刷新" id="verifyCode" src="#{request.contextPath}/verifyCodeServlet"
+										onclick="this.src='#{request.contextPath}/verifyCodeServlet?'+new Date().getTime()"/></a>
+							</div>
+							<div class="clear"></div>
+						</div>
+
 						<div class="login_box login_box03 login_box04">
 							<div class="login_box_l login_box_l_02">验证码：</div>
 							<div class="login_box_r login_box_r_02">
@@ -69,8 +83,8 @@
 								</h:inputText>
 								<h:commandButton value="获取验证码" id="sendAuthCodeBtn" style="border: none;cursor: pointer;"
 									styleClass="login_yzm login_yzm_01" onclick="$(this).attr('disabled','disabled')">
-									<f:ajax execute="mobileNumber" onevent="enableBtn('form\\\\:sendAuthCodeBtn')"
-									listener="#{userInfoHome.sentVerifyAuthCodeToMobile(userInfoHome.instance.mobileNumber, 'timerCountB(\'form\\\\:sendAuthCodeBtn\')')}"></f:ajax>
+									<f:ajax execute="mobileNumber captcha_input" onevent="enableBtn('form\\\\:sendAuthCodeBtn')"
+									listener="#{userInfoHome.sentVerifyAuthCodeToMobileVaiCode(userInfoHome.instance.mobileNumber,userInfoHome.captchaCode ,'timerCountB(\'form\\\\:sendAuthCodeBtn\')')}"></f:ajax>
 								</h:commandButton>
 							</div>
 							<div class="clear"></div>
