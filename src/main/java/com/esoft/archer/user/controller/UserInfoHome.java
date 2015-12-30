@@ -209,7 +209,6 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 	///////////////////以下两个方法是仿照通过手机找回密码写的//////////////
 	/**
 	 * 发送邮箱认证码
-	 * @param mobileNumber
 	 * @param jsCode 方法执行完以后要执行的js
 	 */
 	public void findPwdByEmail(String jsCode){
@@ -315,11 +314,13 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 		}
 		this.setInstance(l);
 
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("time", DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD_HH_MM_SS_CN));
-		params.put("authCode", authService.createAuthInfo(l.getId(), mobileNumber, null, CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE).getAuthCode());
-		// 发送手机验证码
-		messageBO.sendSMS(getBaseService().get(UserMessageTemplate.class, MessageConstants.UserMessageNodeId.FIND_LOGIN_PASSWORD_BY_MOBILE + "_sms"), params, mobileNumber);
+//		Map<String, String> params = new HashMap<String, String>();
+//		params.put("time", DateUtil.DateToString(new Date(), DateStyle.YYYY_MM_DD_HH_MM_SS_CN));
+//		params.put("authCode", authService.createAuthInfo(l.getId(), mobileNumber, null, CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE).getAuthCode());
+//		// 发送手机验证码
+//		messageBO.sendSMS(getBaseService().get(UserMessageTemplate.class, MessageConstants.UserMessageNodeId.FIND_LOGIN_PASSWORD_BY_MOBILE + "_sms"), params, mobileNumber);
+		//云通讯
+		userService.sendFindPasswordByMobileNumberYtxSMS(mobileNumber);
 		FacesUtil.addInfoMessage("验证码已经发送至手机！");
 		RequestContext.getCurrentInstance().execute(jsCode);
 	}
@@ -398,7 +399,6 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 	 * @param jsCode 发送成功后，执行的js代码
 	 */
 	public void sendCurrentBindingMobileNumberSMSVaiCode(String code,String jsCode) {
-
 		FacesContext facesContext = FacesContext.getCurrentInstance();
 		ExternalContext extContext =facesContext.getExternalContext();
 		HttpSession session =(HttpSession)extContext.getSession(true);
@@ -410,8 +410,9 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 		User user;
 		try {
 			user = userService.getUserById(loginUserInfo.getLoginUserId());
-			userService.sendChangeBindingMobileNumberSMS(user.getId(),
-					user.getMobileNumber());
+			//userService.sendChangeBindingMobileNumberSMS(user.getId(),user.getMobileNumber());
+			//云通讯
+			userService.sendChangeBindingMobileNumberYtxSMS(user.getId(),user.getMobileNumber());
 			FacesUtil.addInfoMessage("验证码已经发送至手机！");
 			RequestContext.getCurrentInstance().execute(jsCode);
 		} catch (UserNotFoundException e) {

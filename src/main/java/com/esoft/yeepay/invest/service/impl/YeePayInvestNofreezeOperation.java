@@ -13,6 +13,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.esoft.archer.system.controller.LoginUserInfo;
+import com.esoft.archer.user.exception.UserNotFoundException;
+import com.esoft.archer.user.service.UserService;
 import org.apache.commons.logging.Log;
 import org.hibernate.LockMode;
 import org.hibernate.ObjectNotFoundException;
@@ -86,6 +89,10 @@ public class YeePayInvestNofreezeOperation extends
 	YeepayCpTransacionOperation yeepayCpTransacionOperation;
 	@Resource
 	ConfigService configService;
+	@Resource
+	UserService userService;
+	@Resource
+	LoginUserInfo loginUserInfo;
 	@Autowired
 	private ApplicationContext applicationContext;
 	@SuppressWarnings("deprecation")
@@ -318,7 +325,6 @@ public class YeePayInvestNofreezeOperation extends
 					}
 				} else if (invest.getStatus().equals(
 						InvestConstants.InvestStatus.CANCEL)) {// 可以投资
-
 					try {
 						invest.setStatus(InvestConstants.InvestStatus.BID_SUCCESS);
 						// 标的是否投满，投满改变状态
@@ -359,6 +365,20 @@ public class YeePayInvestNofreezeOperation extends
 											+ "  投资id:" + invest.getId());
 						}
 						ht.update(invest);
+
+						User user=null;
+						//云通讯
+						try {
+							user = userService.getUserById(loginUserInfo.getLoginUserId());
+						} catch (UserNotFoundException e) {
+							e.printStackTrace();
+						}
+						String username = user.getUsername();
+						String loanName = loan.getName();
+						double money = invest.getMoney();
+						String mobileNumber=user.getMobileNumber();
+						userService.sendSuccessCreateYtxSMS(username, loanName, money, mobileNumber);
+
 					} catch (NoMatchingObjectsException e) {
 						// throw new RuntimeException(e);
 						e.printStackTrace();

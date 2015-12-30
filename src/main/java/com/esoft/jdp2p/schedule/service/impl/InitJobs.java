@@ -57,6 +57,9 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 			// root application context 没有parent，他就是老大
 			// 需要执行的逻辑代码，当spring容器初始化完成后就会执行该方法。 初始化所有的调度。
 
+			log.error("====================================================");
+			log.error("调度初始化");
+			log.error("====================================================");
 			// 第三方资金托管，主动查询，默认不开启
 			String enableRefreshTrusteeship = "0";
 			try {
@@ -74,7 +77,10 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 				onfe.printStackTrace();
 			}
 			try {
+
+				log.error("enableRefreshTrusteeship: "+enableRefreshTrusteeship);
 				if (enableRefreshTrusteeship.equals("1")) {
+
 					if (log.isDebugEnabled()) {
 						log.debug("enable refresh trusteeship schdule job");
 					}
@@ -84,6 +90,9 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 									.triggerKey(
 											ScheduleConstants.TriggerName.REFRESH_TRUSTEESHIP_OPERATION,
 											ScheduleConstants.TriggerGroup.REFRESH_TRUSTEESHIP_OPERATION));
+
+					log.error("trigger2: "+trigger2);
+
 					if (trigger2 == null) {
 						initRefreshTrusteeshipJob();
 					} else {

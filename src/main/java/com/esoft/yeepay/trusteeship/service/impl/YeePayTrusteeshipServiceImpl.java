@@ -96,101 +96,101 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 	@Transactional(readOnly = false, rollbackFor = Exception.class)
 	public void handleSendedOperations() {
 				
-//		String freezeMoney;
-//		try{
-//			freezeMoney = configService.getConfigValue("freeze_money");
-//		}catch (ObjectNotFoundException e){
-//			freezeMoney = "";
-//		}
-//		// 查找请求表里面，等待返回的数据，且请求时间在30分钟以外。
-//		Date date = DateUtils.addMinutes(new Date(), -30);
-//		Date dateRecharge = DateUtils.addDays(new Date(), -1);
-//		Date dateInvest = DateUtils.addMinutes(new Date(), -11);
-//		//除去充值和投资
-//		String hql = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type!=? and to.type!=?";
-//		List<TrusteeshipOperation> tos = ht.find(hql,
-//				TrusteeshipConstants.Status.SENDED, date,
-//				YeePayConstants.OperationType.RECHARGE, YeePayConstants.OperationType.INVEST);
-//		// 单独查询recharge，查询一天以前的，因为充值时间可能很长。
-//		String hqlRecharge = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type=?";
-//		List<TrusteeshipOperation> tosRecharge = ht.find(hqlRecharge,
-//				TrusteeshipConstants.Status.SENDED, dateRecharge,
-//				YeePayConstants.OperationType.RECHARGE);
-//		//单独查询投资，11分钟以前的，因为传给易宝的超时时间是十分钟
-//		String hqlInvest = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type=?";
-//		List<TrusteeshipOperation> tosInvest = ht.find(hqlInvest,
-//				TrusteeshipConstants.Status.SENDED, dateInvest,
-//				YeePayConstants.OperationType.INVEST);
-//		for (TrusteeshipOperation to : tosRecharge) {
-//			// 充值
-//		    rechargeRecord(to);
-//		}
-//		for (TrusteeshipOperation to : tosInvest) {
-//			// 投标
-//			if(!"0".equals(freezeMoney)){
-//				invest(to);
-//			}else{
-//				//to.setStatus(TrusteeshipConstants.Status.PASSED);
-//			}
-//		}
-//
-//		for (TrusteeshipOperation to : tos) {
-//			// 遍历，根据请求类型进行主动查询
-//			// 如果未找到，则对请求进行失败处理。
-//			// 如果找到，则根据返回状态，分别进行处理。
-//			if (log.isDebugEnabled()) {
-//				log.debug("RefreshTrusteeshipOperation type:" + to.getType());
-//			}
-//			if (log.isInfoEnabled()) {
-//				log.info("RefreshTrusteeshipOperation id:" + to.getId());
-//			}
-//			if (to.getType().equals(YeePayConstants.OperationType.INVEST)) {
-//				// 投标
-//				invest(to);
-//			} else if (to.getType().equals(YeePayConstants.OperationType.REPAY)) {
-//				// 还款
-//				repaymentRecord(to);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.WITHDRAW_CASH)) {
-//				// 提现
-//				if(!"0".equals(freezeMoney)){
-//					withdrawRecord(to);
-//				}else{
-//					to.setStatus(TrusteeshipConstants.Status.PASSED);
-//				}
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.GIVE_MOENY_TO_BORROWER)
-//					|| to.getType().equals(
-//							OperationType.AUTHORIZE_AUTO_TRANSFER)
-//					|| to.getType().equals(
-//							OperationType.UNBINDING_YEEPAY_BANKCARD)) {
-//				// 放款、自动投标授权、解绑银行卡
-//				to.setStatus(TrusteeshipConstants.Status.NO_RESPONSE);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.CREATE_ACCOUNT)) {
-//				// 创建帐户
-//				to.setStatus(TrusteeshipConstants.Status.NO_RESPONSE);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.BINDING_YEEPAY_BANKCARD)) {
-//				bindingCard(to);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.ADVANCE_REPAY)) {
-//				// 提前还款
-//				advanceRepaymentRecord(to);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.OVERDUE_REPAY)) {
-//				// 逾期还款
-//				overdueRepaymentRecord(to);
-//			} else if (to.getType().equals(
-//					YeePayConstants.OperationType.TRANSFER)) {
-//				// 债权转让
-//				if(!"0".equals(freezeMoney)){
-//					transfer(to);
-//				}else{
-//					to.setStatus(TrusteeshipConstants.Status.PASSED);
-//				}
-//			}
-//		}
+		String freezeMoney;
+		try{
+			freezeMoney = configService.getConfigValue("freeze_money");
+		}catch (ObjectNotFoundException e){
+			freezeMoney = "";
+		}
+		// 查找请求表里面，等待返回的数据，且请求时间在30分钟以外。
+		Date date = DateUtils.addMinutes(new Date(), -30);
+		Date dateRecharge = DateUtils.addDays(new Date(), -1);
+		Date dateInvest = DateUtils.addMinutes(new Date(), -11);
+		//除去充值和投资
+		String hql = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type!=? and to.type!=?";
+		List<TrusteeshipOperation> tos = ht.find(hql,
+				TrusteeshipConstants.Status.SENDED, date,
+				YeePayConstants.OperationType.RECHARGE, YeePayConstants.OperationType.INVEST);
+		// 单独查询recharge，查询一天以前的，因为充值时间可能很长。
+		String hqlRecharge = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type=?";
+		List<TrusteeshipOperation> tosRecharge = ht.find(hqlRecharge,
+				TrusteeshipConstants.Status.SENDED, dateRecharge,
+				YeePayConstants.OperationType.RECHARGE);
+		//单独查询投资，11分钟以前的，因为传给易宝的超时时间是十分钟
+		String hqlInvest = "from TrusteeshipOperation to where to.status=? and to.requestTime<? and to.type=?";
+		List<TrusteeshipOperation> tosInvest = ht.find(hqlInvest,
+				TrusteeshipConstants.Status.SENDED, dateInvest,
+				YeePayConstants.OperationType.INVEST);
+		for (TrusteeshipOperation to : tosRecharge) {
+			// 充值
+		    rechargeRecord(to);
+		}
+		for (TrusteeshipOperation to : tosInvest) {
+			// 投标
+			if(!"0".equals(freezeMoney)){
+				invest(to);
+			}else{
+				//to.setStatus(TrusteeshipConstants.Status.PASSED);
+			}
+		}
+
+		for (TrusteeshipOperation to : tos) {
+			// 遍历，根据请求类型进行主动查询
+			// 如果未找到，则对请求进行失败处理。
+			// 如果找到，则根据返回状态，分别进行处理。
+			if (log.isDebugEnabled()) {
+				log.debug("RefreshTrusteeshipOperation type:" + to.getType());
+			}
+			if (log.isInfoEnabled()) {
+				log.info("RefreshTrusteeshipOperation id:" + to.getId());
+			}
+			if (to.getType().equals(YeePayConstants.OperationType.INVEST)) {
+				// 投标
+				invest(to);
+			} else if (to.getType().equals(YeePayConstants.OperationType.REPAY)) {
+				// 还款
+				repaymentRecord(to);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.WITHDRAW_CASH)) {
+				// 提现
+				if(!"0".equals(freezeMoney)){
+					withdrawRecord(to);
+				}else{
+					to.setStatus(TrusteeshipConstants.Status.PASSED);
+				}
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.GIVE_MOENY_TO_BORROWER)
+					|| to.getType().equals(
+							OperationType.AUTHORIZE_AUTO_TRANSFER)
+					|| to.getType().equals(
+							OperationType.UNBINDING_YEEPAY_BANKCARD)) {
+				// 放款、自动投标授权、解绑银行卡
+				to.setStatus(TrusteeshipConstants.Status.NO_RESPONSE);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.CREATE_ACCOUNT)) {
+				// 创建帐户
+				to.setStatus(TrusteeshipConstants.Status.NO_RESPONSE);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.BINDING_YEEPAY_BANKCARD)) {
+				bindingCard(to);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.ADVANCE_REPAY)) {
+				// 提前还款
+				advanceRepaymentRecord(to);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.OVERDUE_REPAY)) {
+				// 逾期还款
+				overdueRepaymentRecord(to);
+			} else if (to.getType().equals(
+					YeePayConstants.OperationType.TRANSFER)) {
+				// 债权转让
+				if(!"0".equals(freezeMoney)){
+					transfer(to);
+				}else{
+					to.setStatus(TrusteeshipConstants.Status.PASSED);
+				}
+			}
+		}
 	}
 
 	/**

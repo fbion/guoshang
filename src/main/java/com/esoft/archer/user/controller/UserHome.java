@@ -406,6 +406,8 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 				login(getInstance().getId(), FacesUtil.getHttpSession());
 			}
 			FacesUtil.addInfoMessage("注册成功");
+			//云通讯
+			userService.sendSuccessRegisterMegByYtxSMS(getInstance().getMobileNumber(),getInstance().getUsername());
 			if (FacesUtil.isMobileRequest()) {
 				return "pretty:mobile_user_center";
 			}
@@ -691,7 +693,6 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 	 *            成功后执行的js代码
 	 */
 	public void sendRegisterAuthCodeToMobile(String mobileNumber, String jsCode) {
-
 		boolean isVerify = true;
 		// config中是否开启了短信随机码验证
 		boolean isOpen = false;
@@ -756,7 +757,9 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
 		}
 		if (isVerify) {
 			refreshRandomCode();
-			userService.sendRegisterByMobileNumberSMS(mobileNumber);
+			//userService.sendRegisterByMobileNumberSMS(mobileNumber);
+			//云通讯
+			userService.sendRegisterByMobileNumberYtxSMS(mobileNumber);
 			FacesUtil.addInfoMessage("短信已发送，请注意查收！");
 			RequestContext.getCurrentInstance().execute(jsCode);
 		} else {

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.message.service.YtxSmsService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -49,6 +50,9 @@ public class MessageBO {
 
 	@Resource
 	private SmsService smsService;
+
+	@Resource
+	private YtxSmsService ytxSmsService;
 
 	/**
 	 * 发送消息，会根据接收用户的设定，自动判断是否发站内信、邮件、短信。
@@ -154,6 +158,11 @@ public class MessageBO {
 		String msg = replaceParams(umt, params);
 		//发送短信
 		smsService.send(msg, mobileNumber);
+	}
+
+	public void sendYtxSms(String mobileId,String[] content, String mobileNumber) {
+		//发送短信
+		ytxSmsService.send(mobileId,content,mobileNumber);
 	}
 
 	public void sendStationMsg(UserMessageTemplate umt,

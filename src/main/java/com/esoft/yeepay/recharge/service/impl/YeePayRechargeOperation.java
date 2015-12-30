@@ -13,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.esoft.archer.user.model.UserBill;
 import org.apache.commons.logging.Log;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -113,7 +114,6 @@ public class YeePayRechargeOperation extends
 		params.put("req", content.toString());
 		params.put("sign", sign);
 		log.debug("createRechargeOrder的" + params);
-
 		// 保存到本地数据库中
 		TrusteeshipOperation to = new TrusteeshipOperation();
 		// to表中的主键

@@ -2,6 +2,7 @@ package com.esoft.archer.user.controller;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.user.service.UserService;
 import org.apache.commons.logging.Log;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
@@ -26,132 +27,143 @@ import com.esoft.core.util.StringManager;
 @Scope(ScopeType.VIEW)
 public class WithdrawHome extends EntityHome<WithdrawCash> {
 
-	@Logger
-	static Log log;
-	private static StringManager userSM = StringManager
-			.getManager(UserConstants.Package);
-	@Resource
-	WithdrawCashService wcs;
+    @Logger
+    static Log log;
+    private static StringManager userSM = StringManager
+            .getManager(UserConstants.Package);
+    @Resource
+    WithdrawCashService wcs;
 
-	@Resource
-	LoginUserInfo loginUserInfo;
-	
-	@Resource
-	UserBillService userBillService;
-	
-	@Resource
-	NoticePool noticePool;
+    @Resource
+    LoginUserInfo loginUserInfo;
 
-	/** 交易密码 */
-	private String cashPassword;
+    @Resource
+    UserBillService userBillService;
 
-	public WithdrawHome() {
-		setUpdateView(FacesUtil.redirect("/admin/withdraw/withdrawList"));
-	}
+    @Resource
+    NoticePool noticePool;
 
-	@Override
-	protected WithdrawCash createInstance() {
-		WithdrawCash withdraw = new WithdrawCash();
-		withdraw.setAccount("借款账户");
-		withdraw.setFee(0D);
-		withdraw.setCashFine(0D);
-		withdraw.setUser(new User(loginUserInfo.getLoginUserId()));
-		return withdraw;
-	}
+    @Resource
+    UserService userService;
 
-	/**
-	 * 计算手续费和罚金
-	 */
-	public boolean calculateFee() {
-		double fee = wcs.calculateFee(this.getInstance().getMoney());
-		if (userBillService.getBalance(loginUserInfo.getLoginUserId())<fee+this.getInstance().getMoney()) {
-			FacesUtil.addErrorMessage("余额不足！");
-			FacesUtil.getCurrentInstance().validationFailed();
-			this.getInstance().setMoney(0D);
-			return false;
-		} else {
-			this.getInstance().setFee(
-				wcs.calculateFee(this.getInstance().getMoney()));
-			return true;
-		}
-	}
+    /**
+     * 交易密码
+     */
+    private String cashPassword;
 
-	/**
-	 * 提现
-	 */
-	public String withdraw() {
-		try {
-			if(cashPassword != null && !"".equals(cashPassword)){
-				User user = getBaseService().get(User.class, this.getInstance().getUser().getId());
-				if (!HashCrypt.getDigestHash(cashPassword).equals(user.getCashPassword())) {
-					FacesUtil.addErrorMessage("交易密码错误！");
-					return null;
-				}
-			}
-			if (!calculateFee()) {
-				return null;
-			}
-			wcs.applyWithdrawCash(this.getInstance());
-			FacesUtil.addInfoMessage("您的提现申请已经提交成功，请等待审核！");
-			return "pretty:myCashFlow";
-		} catch (InsufficientBalance e) {
-			FacesUtil.addErrorMessage("余额不足！");
-			return null;
-		}
-	}
+    public WithdrawHome() {
+        setUpdateView(FacesUtil.redirect("/admin/withdraw/withdrawList"));
+    }
 
-	/**
-	 * 提现审核初审通过
-	 */
-	public String verifyPass() {
-		getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
-		wcs.passWithdrawCashApply(this.getInstance());
-		FacesUtil.addInfoMessage("审核通过，请等待系统复核");
-		noticePool.add(new Notice("提现："+getInstance().getId()+"初审通过"));
-		return getUpdateView();
-	}
+    @Override
+    protected WithdrawCash createInstance() {
+        WithdrawCash withdraw = new WithdrawCash();
+        withdraw.setAccount("借款账户");
+        withdraw.setFee(0D);
+        withdraw.setCashFine(0D);
+        withdraw.setUser(new User(loginUserInfo.getLoginUserId()));
+        return withdraw;
+    }
 
-	/**
-	 * 提现审核复核通过
-	 */
-	public String recheckPass() {
-		getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
-		wcs.passWithdrawCashRecheck(this.getInstance());
-		FacesUtil.addInfoMessage("复核通过，用户账户资金会自动解冻并扣除");
-		noticePool.add(new Notice("提现："+getInstance().getId()+"复审通过"));
-		return getUpdateView();
-	}
+    /**
+     * 计算手续费和罚金
+     */
+    public boolean calculateFee() {
+        double fee = wcs.calculateFee(this.getInstance().getMoney());
+        if (userBillService.getBalance(loginUserInfo.getLoginUserId()) < fee + this.getInstance().getMoney()) {
+            FacesUtil.addErrorMessage("余额不足！");
+            FacesUtil.getCurrentInstance().validationFailed();
+            this.getInstance().setMoney(0D);
+            return false;
+        } else {
+            this.getInstance().setFee(
+                    wcs.calculateFee(this.getInstance().getMoney()));
+            return true;
+        }
+    }
 
-	/**
-	 * 提现审核初审不通过
-	 */
-	public String verifyFail() {
-		getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
-		getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
-		wcs.refuseWithdrawCashApply(this.getInstance());
-		FacesUtil.addInfoMessage("初审未通过，用户账户的资金会自动解冻");
-		noticePool.add(new Notice("提现："+getInstance().getId()+"初审未通过"));
-		return getUpdateView();
-	}
+    /**
+     * 提现
+     */
+    public String withdraw() {
+        try {
+            String username = null;
+            String mobileNumber = null;
+            if (cashPassword != null && !"".equals(cashPassword)) {
+                User user = getBaseService().get(User.class, this.getInstance().getUser().getId());
+                username =user.getUsername();
+                mobileNumber=user.getMobileNumber();
+                if (!HashCrypt.getDigestHash(cashPassword).equals(user.getCashPassword())) {
+                    FacesUtil.addErrorMessage("交易密码错误！");
+                    return null;
+                }
+            }
+            if (!calculateFee()) {
+                return null;
+            }
+            wcs.applyWithdrawCash(this.getInstance());
+            FacesUtil.addInfoMessage("您的提现申请已经提交成功，请等待审核！");
+            //云通讯
+            userService.sendSuccessWithdrawYtxSMS(username,getInstance().getMoney(),mobileNumber);
+            return "pretty:myCashFlow";
+        } catch (InsufficientBalance e) {
+            FacesUtil.addErrorMessage("余额不足！");
+            return null;
+        }
+    }
 
-	/**
-	 * 提现审核复核不通过
-	 */
-	public String recheckFail() {
-		getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
-		getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
-		wcs.refuseWithdrawCashApply(this.getInstance());
-		FacesUtil.addInfoMessage("复核未通过，用户账户的资金会自动解冻");
-		noticePool.add(new Notice("提现："+getInstance().getId()+"复审未通过"));
-		return getUpdateView();
-	}
+    /**
+     * 提现审核初审通过
+     */
+    public String verifyPass() {
+        getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
+        wcs.passWithdrawCashApply(this.getInstance());
+        FacesUtil.addInfoMessage("审核通过，请等待系统复核");
+        noticePool.add(new Notice("提现：" + getInstance().getId() + "初审通过"));
+        return getUpdateView();
+    }
 
-	public String getCashPassword() {
-		return cashPassword;
-	}
+    /**
+     * 提现审核复核通过
+     */
+    public String recheckPass() {
+        getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
+        wcs.passWithdrawCashRecheck(this.getInstance());
+        FacesUtil.addInfoMessage("复核通过，用户账户资金会自动解冻并扣除");
+        noticePool.add(new Notice("提现：" + getInstance().getId() + "复审通过"));
+        return getUpdateView();
+    }
 
-	public void setCashPassword(String cashPassword) {
-		this.cashPassword = cashPassword;
-	}
+    /**
+     * 提现审核初审不通过
+     */
+    public String verifyFail() {
+        getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
+        getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
+        wcs.refuseWithdrawCashApply(this.getInstance());
+        FacesUtil.addInfoMessage("初审未通过，用户账户的资金会自动解冻");
+        noticePool.add(new Notice("提现：" + getInstance().getId() + "初审未通过"));
+        return getUpdateView();
+    }
+
+    /**
+     * 提现审核复核不通过
+     */
+    public String recheckFail() {
+        getInstance().setVerifyUser(new User(loginUserInfo.getLoginUserId()));
+        getInstance().setRecheckUser(new User(loginUserInfo.getLoginUserId()));
+        wcs.refuseWithdrawCashApply(this.getInstance());
+        FacesUtil.addInfoMessage("复核未通过，用户账户的资金会自动解冻");
+        noticePool.add(new Notice("提现：" + getInstance().getId() + "复审未通过"));
+        return getUpdateView();
+    }
+
+    public String getCashPassword() {
+        return cashPassword;
+    }
+
+    public void setCashPassword(String cashPassword) {
+        this.cashPassword = cashPassword;
+    }
 
 }

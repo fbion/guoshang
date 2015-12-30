@@ -45,6 +45,7 @@
 		<property name="timeBetweenEvictionRunsMillis" value="3600000" />
 		<property name="minEvictableIdleTimeMillis" value="3600000" />
 	</bean>
+
 	<!-- <bean id="sessionFactory" class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean"> 
 		<property name="configLocation" value="classpath:hibernate.cfg.xml"> </property> 
 		</bean> -->

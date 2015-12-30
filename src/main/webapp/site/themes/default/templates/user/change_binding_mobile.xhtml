@@ -61,7 +61,7 @@
 						</h:inputText>
 						<h:commandButton value="获取验证码" id="sendAuthCodeBtn"
 										 styleClass="send-btn bdsj_btn pointer"
-										 onclick="$(this).attr('disabled','disabled')">
+										 onclick="$(this).attr('disabled','true')">
 							<f:ajax execute="captcha_input" onevent="enableBtn('form\\\\:sendAuthCodeBtn')"
 									listener="#{userInfoHome.sendCurrentBindingMobileNumberSMSVaiCode(userInfoHome.captchaCode,'timerCountB(\'form\\\\:sendAuthCodeBtn\')')}"></f:ajax>
 						</h:commandButton>

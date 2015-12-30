@@ -75,6 +75,22 @@ public class MessageConstants {
 		
 		
 	}
+
+
+	/**
+	 * YtxMessageTemplate Id
+	 * @author Administrator
+	 *
+	 */
+	public final static class YtxMessageTemplateId{
+		public final static String USER_REGISTER_CODE = "58587";
+		public final static String USER_REGISTER_SUCCESS = "58588";
+		public final static String USER_CHANGE_MOBILE = "58589";
+		public final static String USER_RECHARGE_SUCCESS = "58591";
+		public final static String USER_FIND_PASSWORD = "59120";
+		public final static String LOAN_CREATE_SUCCESS = "58592";
+		public final static String WITHDRAW_CREATE_SUCCESS = "58596";
+	}
 	
 	
 	/**

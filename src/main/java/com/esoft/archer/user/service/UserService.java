@@ -346,6 +346,22 @@ public interface UserService {
 	public void sendChangeBindingMobileNumberSMS(String userId,
 			String oriMobileNumber) throws UserNotFoundException;
 
+
+	public void sendChangeBindingMobileNumberYtxSMS(String userId,
+												 String mobileNumber) throws UserNotFoundException;
+
+
+
+	/**
+	 * 发送充值成功短信
+	 *
+	 * @param username
+	 *            原来的手机号
+	 * @throws UserNotFoundException
+	 */
+	public void sendSuccessRechargeByYtxSMS(String username,
+												 String mobileNumber,double money,double banlance);
+
 	/**
 	 * 发送更换绑定邮箱的邮件
 	 * 
@@ -394,6 +410,43 @@ public interface UserService {
 	 * @param mobileNumber
 	 */
 	public void sendRegisterByMobileNumberSMS(String mobileNumber);
+
+	/**
+	 * 云通讯发送“通过手机号注册”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendRegisterByMobileNumberYtxSMS(String mobileNumber);
+
+
+	/**
+	 * 云通讯发送“忘记密码找回”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendFindPasswordByMobileNumberYtxSMS(String mobileNumber);
+
+	/**
+	 * 云通讯发送“注册成功”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendSuccessRegisterMegByYtxSMS(String mobileNumber,String username);
+
+	/**
+	 * 云通讯发送“投资成功”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendSuccessCreateYtxSMS(String username,String loanName,double money,String mobileNumber);
+
+	/**
+	 * 云通讯发送“提醒成功”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendSuccessWithdrawYtxSMS(String username,double money,String mobileNumber);
+
 
 	/**
 	 * 管理员创建借款者

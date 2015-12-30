@@ -742,7 +742,7 @@ public class RepayServiceImpl implements RepayService {
 		// 是否担保方自动代偿，默认关闭
 		String autoRepayGuarantee = "0";
 		try {
-			autoRepayLoaner = configService
+			autoRepayGuarantee = configService
 					.getConfigValue(ConfigConstants.Schedule.ENABLE_AUTO_REPAY_GT);
 		} catch (ObjectNotFoundException onfe) {
 			onfe.printStackTrace();
