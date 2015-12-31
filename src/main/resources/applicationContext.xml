@@ -102,7 +102,7 @@
 		<property name="schedulerName" value="Mscheduler" />
 		<property name="configLocation" value="classpath:quartz.properties" />
 		<property name="applicationContextSchedulerContextKey" value="applicationContextKey" />
-		<property name="autoStartup" value="true" />
+		<property name="autoStartup" value="false" />
 	</bean>
 
 	<aop:aspectj-autoproxy />

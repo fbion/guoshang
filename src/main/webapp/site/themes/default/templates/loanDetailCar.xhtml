@@ -1,0 +1,362 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+				template="page.xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pm="http://primefaces.org/mobile"
+				xmlns:archer="http://java.sun.com/jsf/archer"
+				xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+				xmlns:o="http://omnifaces.org/ui"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags"
+				xmlns:c="http://java.sun.com/jsp/jstl/core">
+	<f:metadata>
+		<f:viewParam name="id" value="#{loanHome.id}"></f:viewParam>
+		<f:viewParam name="investMoney" value="#{investHome.instance.money}"></f:viewParam>
+	</f:metadata>
+	<ui:define name="content">
+		<ui:param name="loan" value="#{loanHome.instance}"></ui:param>
+		<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/chedai_details.css" />
+		<script type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/chedai_details.css" />
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/chedai_details.js"></script>
+		<div class="content">
+			<!-- 面包屑头部开始 -->
+			<div class="bread_top">
+				<a href="" style="margin-left:0px;">首页</a>
+				<span>></span>
+				<a href="">我要理财</a>
+				<span>></span>
+				<a href="" style="color:#EB4647">房贷</a>
+			</div>
+			<!-- 面包屑头部结束 -->
+
+			<!-- 产品介绍上部开始 -->
+			<div class="product_up">
+				<!-- 左 -->
+				<div class="product_up_l">
+					<div class="product_name">
+						<span>产品名称</span>
+					</div>
+
+					<div class="product_details">
+						<div class="product_details_l">
+							<img src="#{tplVars.themeImagePath}/version_two/houselogo.jpg" alt="" />
+							<div></div>
+							<img src="#{tplVars.themeImagePath}/version_two/shouyigg.jpg" alt="" />
+							<p>
+								收益高高，收益高高，
+							</p>
+							<p>收益高高，收益高高。</p>
+						</div>
+
+						<div class="product_details_r">
+							<ul class="d_r_ul1">
+								<li>
+									<div class="d_r_title">
+										<img src="#{tplVars.themeImagePath}/version_two/lilvico.jpg" alt="" width="20" height="20" />
+
+									<span class="d_r_titlez">
+										年化利率
+									</span>
+									</div>
+
+									<div class="d_r_num">
+										<span>20</span>
+										<span style="font-size:12px;">%</span>
+									</div>
+								</li>
+								<li>
+									<div class="d_r_title">
+										<img src="#{tplVars.themeImagePath}/version_two/qixianico.jpg" alt="" width="20" height="20" />
+
+									<span class="d_r_titlez">
+										项目期限
+									</span>
+									</div>
+
+									<div class="d_r_num">
+										<span>2</span>
+										<span style="font-size:12px;">天</span>
+									</div>
+								</li>
+								<li>
+									<div class="d_r_title">
+										<img src="#{tplVars.themeImagePath}/version_two/jineico.jpg" alt="" width="20" height="20" />
+
+									<span class="d_r_titlez">
+										融资金额
+									</span>
+									</div>
+
+									<div class="d_r_num">
+										<span>200</span>
+										<span style="font-size:12px;">万</span>
+									</div>
+								</li>
+							</ul>
+
+							<ul class="d_r_ul2">
+								<li>
+									<div class="d_r_ul2_point"></div>
+									<div class="point_r">
+										<span>还款方式：</span>
+										<span style="color:black;">当日计息</span>
+									</div>
+									<div class="point_wen">
+										<img src="#{tplVars.themeImagePath}/version_two/wenhao.jpg" alt=""/>
+										<div class="wenhaosm">
+											问号问号问号问号问号问号
+										</div>
+									</div>
+								</li>
+
+								<li>
+									<div class="d_r_ul2_point"></div>
+									<div class="point_r">
+										<span>项目特点：</span>
+										<span style="color:black;">时间短，收益高</span>
+									</div>
+									<div class="point_wen">
+										<img src="#{tplVars.themeImagePath}/version_two/wenhao.jpg" alt="" />
+										<div class="wenhaosm">
+											问号问号问号问号问号问号
+										</div>
+									</div>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<!-- 左 -->
+
+				<!-- 右 -->
+				<div class="product_up_r">
+					<div class="pro_up_r_up">
+						<ul class="r_up_pro">
+							<li>
+								<span style="color:#666666">2015-12-24</span>
+								<span>项目发布</span>
+							</li>
+							<li>
+								<span style="color:#666666"></span>
+								<span>投资满额</span>
+							</li>
+							<li>
+								<span style="color:#666666"></span>
+								<span>计息</span>
+							</li>
+							<li>
+								<span style="color:#666666"></span>
+								<span>还款完成</span>
+							</li>
+						</ul>
+
+						<!-- 隐藏域存放数据库值，显示进度 -->
+						<input id="jinduvalue" type="hidden" name="jindu" value="3" />
+						<!-- 隐藏域存放数据库值，显示进度 -->
+						<ul class="r_up_pro_line">
+							<li class="pro_line1"></li>
+							<li class="pro_line2" id="pro_l1"></li>
+							<li class="pro_line1"></li>
+							<li class="pro_line2" id="pro_l2"></li>
+							<li class="pro_line1"></li>
+							<li class="pro_line2" id="pro_l3"></li>
+							<li class="pro_line1"></li>
+						</ul>
+
+						<ul class="pro_line_down">
+							<li>
+								<span>投资起点：</span>
+								<span style="color:#333333">100元</span>
+							</li>
+							<li>
+								<span>剩余可投：</span>
+								<span style="color:#333333">2000元</span>
+							</li>
+							<li>
+								<span>递增金额：</span>
+								<span style="color:#333333">100元</span>
+							</li>
+							<li>
+								<span>账户余额：</span>
+								<span style="color:#333333;display:none;">100元</span>
+							<span style="color:#EA4748;">
+							<a href="" style="text-decoration:none;color:#EA4748">登录后查看</a></span>
+							</li>
+						</ul>
+					</div>
+
+					<div class="pro_up_r_down">
+						<form action="" method="post">
+							<div class="num_change">
+								<a href="javascript:;" class="num" id="jian">
+									<img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt="" />
+								</a>
+								<input type="text" value="100" name="numChange" id="numChange" />
+								<a href="javascript:;" class="num" id="jia">
+									<img src="#{tplVars.themeImagePath}/version_two/jia.jpg" alt="" />
+								</a>
+							</div>
+
+							<div class="expect">
+								<span>预期收益</span>
+								<span>19.6</span>
+								<span>元</span>
+							</div>
+
+							<input type="submit" value="立即投资" class="investmentbtn" />
+						</form>
+					</div>
+				</div>
+				<!-- 右 -->
+			</div>
+			<!-- 产品介绍上部结束 -->
+
+			<!-- 产品介绍下部开始 -->
+			<div class="product_down">
+				<ul class="intro_tab">
+					<li class="intro_tab1">
+						<span>项目简介</span>
+						<span class="intro_tab_line1" style="display:block;"></span>
+						<span class="intro_tab_line2" style="display:block;"></span>
+					</li>
+					<li class="intro_tab2">
+						<span>抵押物信息</span>
+						<span class="intro_tab_line1"></span>
+						<span class="intro_tab_line2"></span>
+					</li>
+					<li class="intro_tab3" style="border-right:1px solid #DCDCDC;">
+						<span>投资记录</span>
+						<span class="intro_tab_line1"></span>
+						<span class="intro_tab_line2"></span>
+					</li>
+				</ul>
+
+				<div class="intro_tab_down">
+					<div class="intro_tab_down_c">
+						<ul class="i_t_d_c1">
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">品牌型号：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+							</li>
+						</ul>
+						<ul style="display:none;" class="i_t_d_c2">
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+							<li>
+								<span class="i_t_d_cspan">车牌号码：</span>
+								<span class="i_t_d_cspan" style="color:#333333;width:370px;">京N1****</span>
+							</li>
+						</ul>
+						<div style="display:none;" class="i_t_d_c3">
+							<table cellpadding="0" cellspacing="0">
+								<tr>
+									<td width="25%" class="c3_td1">序号</td>
+									<td width="20%" class="c3_td1">用户名</td>
+									<td width="20%" class="c3_td1">投资金额</td>
+									<td class="c3_td1">投资时间</td>
+								</tr>
+								<tr>
+									<td width="25%" class="c3_td2">1</td>
+									<td width="20%" class="c3_td2">abc</td>
+									<td width="20%" class="c3_td2">100元</td>
+									<td class="c3_td2">2015-12-21 17:07</td>
+								</tr>
+								<tr>
+									<td width="25%" class="c3_td2">1</td>
+									<td width="20%" class="c3_td2">abc</td>
+									<td width="20%" class="c3_td2">100元</td>
+									<td class="c3_td2">2015-12-21 17:07</td>
+								</tr>
+								<tr>
+									<td width="25%" class="c3_td2">1</td>
+									<td width="20%" class="c3_td2">abc</td>
+									<td width="20%" class="c3_td2">100元</td>
+									<td class="c3_td2">2015-12-21 17:07</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+
+					<div class="intro_tab_down_lunbo">
+						<!-- 图片部分 -->
+						<img class="lunbo_big_img" style="display:block;" src="#{tplVars.themeImagePath}/version_two/lunbobig1.jpg" alt="" />
+						<img class="lunbo_big_img" src="#{tplVars.themeImagePath}/version_two/lunbobig2.jpg" alt="" />
+						<img class="lunbo_big_img" src="#{tplVars.themeImagePath}/version_two/lunbobig3.jpg" alt="" />
+						<img class="lunbo_big_img" src="#{tplVars.themeImagePath}/version_two/lunbobig4.jpg" alt="" />
+						<img class="lunbo_big_img" src="#{tplVars.themeImagePath}/version_two/lunbobig5.jpg" alt="" />
+						<!-- 列表区域 -->
+						<ul>
+							<li style="border:3px solid #666666;">
+								<img src="#{tplVars.themeImagePath}/version_two/lunbosmall1.jpg" alt="" />
+							</li>
+							<li>
+								<img src="#{tplVars.themeImagePath}/version_two/lunbosmall2.jpg" alt="" />
+							</li>
+							<li>
+								<img src="#{tplVars.themeImagePath}/version_two/lunbosmall3.jpg" alt="" />
+							</li>
+							<li>
+								<img src="#{tplVars.themeImagePath}/version_two/lunbosmall4.jpg" alt="" />
+							</li>
+							<li>
+								<img src="#{tplVars.themeImagePath}/version_two/lunbosmall5.jpg" alt="" />
+							</li>
+						</ul>
+						<!-- 左右两侧 -->
+						<a href="javascript:;" class="left" style="left:46px;">
+							<div class="cover"></div>
+							<div class="cont">&lt;</div>
+						</a>
+						<a href="javascript:;" class="right" style="right:46px;">
+							<div class="cover"></div>
+							<div class="cont">&gt;</div>
+						</a>
+					</div>
+				</div>
+			</div>
+			<!-- 产品介绍下部结束 -->
+
+
+		</div>
+
+	</ui:define>
+</ui:composition>

@@ -39,7 +39,8 @@ import com.esoft.jdp2p.schedule.job.RepayAlert;
  *           2014-4-10 wangzhi 1.0
  */
 @Component
-public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
+public class InitJobs {
+//implements ApplicationListener<ContextRefreshedEvent>
 
 	@Resource
 	StdScheduler scheduler;
@@ -51,8 +52,14 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 	ConfigService configService;
 
 	// 开启哪些调度，能手动控制
-	@Override
+	//@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
+
+		//todo 不执行
+		if(true){
+			return;
+		}
+
 		if (event.getApplicationContext().getParent() == null) {
 			// root application context 没有parent，他就是老大
 			// 需要执行的逻辑代码，当spring容器初始化完成后就会执行该方法。 初始化所有的调度。
@@ -80,7 +87,6 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 
 				log.error("enableRefreshTrusteeship: "+enableRefreshTrusteeship);
 				if (enableRefreshTrusteeship.equals("1")) {
-
 					if (log.isDebugEnabled()) {
 						log.debug("enable refresh trusteeship schdule job");
 					}
@@ -225,7 +231,7 @@ public class InitJobs implements ApplicationListener<ContextRefreshedEvent> {
 						ScheduleConstants.TriggerGroup.REFRESH_TRUSTEESHIP_OPERATION)
 				.forJob(jobDetail2).withSchedule(
 				// 每十分钟执行一次
-						CronScheduleBuilder.cronSchedule("0 0/2 * * * ? *"))
+						CronScheduleBuilder.cronSchedule("0 0/1 * * * ? *"))
 				.build();
 
 		scheduler.scheduleJob(jobDetail2, trigger2);

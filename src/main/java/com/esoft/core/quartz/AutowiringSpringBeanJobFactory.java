@@ -33,6 +33,7 @@ public final class AutowiringSpringBeanJobFactory extends SpringBeanJobFactory
 	protected Object createJobInstance(final TriggerFiredBundle bundle)
 			throws Exception {
 		final Object job = super.createJobInstance(bundle);
+
 		beanFactory.autowireBean(job);
 		return job;
 	}

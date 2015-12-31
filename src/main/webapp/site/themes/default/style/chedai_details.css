@@ -1,0 +1,565 @@
+/*全局reset*/
+*{
+  margin:0;
+  padding: 0;
+}
+/*针对IE自动加上图像边框*/
+img{
+  border:none;
+}
+/*全局统一字体*/
+body{
+  font-family: "微软雅黑";
+}
+
+/*中部总内容居中*/
+.content{
+  width: 1100px;
+  height: 783px;
+  margin:0 auto;
+  /*border:1px solid black;*/
+}
+/*面包屑头部样式*/
+.bread_top{
+  width: 1100px;
+  height: 14px;
+  line-height: 14px;
+  padding: 8px;
+}
+/*面包屑头部a*/
+.bread_top a{
+  color:#333333;
+  font-size: 14px;
+  font-family: "微软雅黑";
+  font-weight: 700;
+  text-decoration: none;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/*面包屑头部span*/
+.bread_top span{
+  font-weight: 700;
+  color:#333333;
+}
+/*产品介绍上部大区*/
+.product_up{
+  width: 1098px;
+  height: 303px;
+  border:1px solid #DCDCDC;
+}
+/*产品介绍上部左*/
+.product_up_l{
+  width: 749px;
+  height: 303px;
+  border-right: 1px solid #DCDCDC;
+  float: left;
+}
+/*产品名称*/
+.product_name{
+  width: 679px;
+  height: 20px;
+  border-bottom: 1px solid #DCDCDC;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 70px;
+  color:#333333;
+  font-size: 20px;
+  line-height: 20px;
+  font-weight: 700;
+  font-family: "微软雅黑";
+  background: url(../images/tyb.jpg) no-repeat 0px 13px;
+}
+
+/*产品名称下产品详情总框*/
+.product_details{
+  width: 699px;
+  height: 225px;
+  padding-left: 50px;
+  padding-top: 25px;
+}
+/*产品详情左*/
+.product_details_l{
+  width:140px;
+  height: 225px;
+  float: left;
+}
+/*第一幅图片*/
+.product_details_l img:nth-child(1){
+  display: block;
+  width: 140px;
+  height: 140px;
+}
+/*两幅图间隔div*/
+.product_details_l div{
+  width:140px;
+  height: 15px;
+}
+/*第二幅图片*/
+.product_details_l img:nth-child(2){
+  display: block;
+  width: 140px;
+  height: 22px;
+}
+/*产品详情左文字*/
+.product_details_l p{
+  width:140px;
+  height: 20px;
+  line-height: 20px;
+  text-align: center; 
+  font-size: 12px;
+  color:black;
+  font-family: "微软雅黑";
+  font-weight: 700;
+}
+
+/*商品详情右*/
+.product_details_r{
+  width:550px;
+  height: 220px;
+  padding-top: 5px;
+  float: left;
+}
+/*商品详情右列表图*/
+.d_r_ul1{
+  width: 550px;
+  list-style: none;
+  height: 80px;
+}
+.d_r_ul1 li{
+  width: 95px;
+  height: 80px;
+  padding-left: 40px;
+  padding-right: 45px;
+  float: left;
+}
+/*商品详情ul li标题*/
+.d_r_title{
+  width: 95px;
+  height: 20px;
+}
+.d_r_title img{
+  display: block;
+  width: 20px;
+  height: 20px;
+  float: left;
+}
+.d_r_titlez{
+  display: block;
+  width: 68px;
+  height: 20px;
+  padding-left: 7px;
+  color:#333333;
+  font-family: '微软雅黑';
+  font-size:14px;
+  line-height: 20px;
+  font-weight: 700;
+  float: left;
+}
+
+/*产品详情右标题下数字*/
+.d_r_num{
+  width: 95px;
+  height: 52px;
+  text-align: center;
+  padding-top: 8px;
+}
+.d_r_num span{
+  font-size: 38px;
+  font-family: '微软雅黑';
+  color:#EB4748;  
+}
+/*产品详情右第二个列表*/
+.d_r_ul2{
+  width: 550px;
+  height: 12px;
+  list-style: none;
+  padding-top: 30px;
+}
+.d_r_ul2 li{
+  /*width: 140px;*/
+  height: 12px;
+  padding-left: 40px;
+  padding-right: 60px;
+  float: left;
+  line-height: 12px;
+}
+/*小圆点*/
+.d_r_ul2_point{
+  width: 8px;
+  height: 8px;
+  border:2px solid white;
+  border-radius: 50%;
+  background:#EB4647;
+  float: left;
+  behavior: url(css/PIE/PIE.htc);
+}
+/*小圆点右边汉字*/
+.point_r{
+  width: auto;
+  line-height: 12px;
+  height: 12px;
+  font-family: '微软雅黑';
+  font-size: 12px;
+  color:#666666;
+  float: left;
+}
+/*小圆点右边问号*/
+.point_wen{
+  width: 12px;
+  height: 12px;
+  padding-left: 5px;
+  float: left;
+  position: relative;
+  cursor: pointer;
+}
+.point_wen img{
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+/*问号说明*/
+.wenhaosm{
+  width: 115px;
+  height: auto;
+  padding: 5px;
+  border:1px solid #BDBDBD;
+  position: absolute;
+  top:25px;
+  left:-51.5px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  color:#EB4748;
+  display: none;
+  behavior: url(css/PIE/PIE.htc);
+}
+/*经过问号，问号说明显现*/
+.point_wen:hover .wenhaosm{
+  display: block;
+}
+/*问好说明上面的三角*/
+/*.wenhaosmup{
+  width: 13px;
+  height: 7px;
+  position: absolute;
+  top:30px;
+  left: 20px;
+  background: url(images/jt.jpg) no-repeat;
+  display: none;
+}*/
+/*经过问号，问号说明箭头显现*/
+/*.point_wen:hover .wenhaosmup{
+  display: block;
+}*/
+
+/*产品介绍上部右*/
+.product_up_r{
+  width: 348px;
+  height: 303px;
+  float: left;
+}
+/*产品介绍上部右，上部*/
+.pro_up_r_up{
+  width: 348px;
+  height: 133px;
+  padding-top: 26px;
+  border-bottom: 1px solid #DCDCDC;
+}
+/*产品流程指示*/
+.r_up_pro{
+  width: 344px;
+  height: 40px;
+  list-style: none;
+  margin: 0 auto;
+  text-align: center;
+}
+.r_up_pro li{
+  width: 70px;
+  padding-left: 8px;
+  padding-right: 8px;
+  height: 40px;
+  float: left;
+}
+.r_up_pro li span{
+  width: 70px;
+  display: block;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  color:#333333;
+  height: 20px;
+  line-height: 20px;
+  text-align: center;
+}
+/*产品流程指示条*/
+.r_up_pro_line{
+  width: 267px;
+  height: 10px;
+  list-style: none;
+  padding-top: 3px;
+  margin: 0 auto;
+}
+.r_up_pro_line li{
+  float: left;
+}
+/*进度节点*/
+.pro_line1{
+  width: 9px;
+  height: 9px;
+  background: #EA4547;
+  border-radius: 40%;
+  behavior: url(css/PIE/PIE.htc);
+}
+/*进度各个条*/
+.pro_line2{
+  width: 77px;
+  height: 2px;
+  background: #EA4547;
+  border-top: 4px solid white;
+  border-bottom: 4px solid white;
+}
+/*进度条下方文字*/
+.pro_line_down{
+  width: 260px;
+  height: 40px;
+  list-style: none;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+.pro_line_down li{
+  width: 130px;
+  height: 20px;
+  line-height: 20px;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  color:#666666;
+  float: left;
+}
+
+/*数量变化总框*/
+.num_change{
+  width: 169px;
+  height: 26px;
+  margin: 0 auto;
+  padding-top: 30px;
+  text-align: center;
+}
+.num_change a{
+  display: block;
+  width: 28px;
+  height: 26px;
+  float: left;
+}
+.num_change input{
+  display: block;
+  width: 113px;
+  height: 24px;
+  line-height: 24px;
+  font-size: 14px;
+  font-family: '微软雅黑';
+  color:#05B5FF;
+  border:none;
+  border-top: 1px solid #EB4647;
+  border-bottom: 1px solid #EB4647;
+  float: left;
+  text-indent: 47px;
+}
+/*预期收益*/
+.expect{
+  width: 169px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  color:#83A5F4;
+  text-align: center;
+  margin: 0 auto;
+}
+/*投资按钮*/
+.investmentbtn{
+  display: block;
+  width: 228px;
+  height: 33px;
+  background: #EB4647;
+  color:white;
+  text-align: center;
+  line-height: 33px;
+  font-size: 16px;
+  font-family: '微软雅黑';
+  font-weight: 700;
+  border:none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin: 0 auto;
+  behavior: url(css/PIE/PIE.htc);
+}
+
+/*产品介绍下部总框*/
+.product_down{
+  width: 1100px;
+  height: 410px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+/*产品介绍tab标题*/
+.intro_tab{
+  width: 475px;
+  height: 30px;
+  line-height: 30px;
+  list-style: none;
+}
+.intro_tab li{
+  width: 125px;
+  height: 30px;
+  line-height: 30px;
+  font-size: 14px;
+  font-family: '微软雅黑';
+  font-weight: 700;
+  cursor: pointer;
+  text-align: center;
+  border-left: 1px solid #DDDDDD;
+  border-top:1px solid #DDDDDD;
+  float: left;
+  position: relative;
+}
+/*经过产品介绍tab时小三角*/
+.intro_tab_line1{
+  border: 4px solid #EB4748;
+  position: absolute;
+  border-left: 4px solid white;
+  border-right: 4px solid white;
+  border-top: 4px solid white;
+  top:20px;
+  left:57px;
+  display: none;
+}
+/*经过产品介绍时tab横线*/
+.intro_tab_line2{
+  width: 125px;
+  height: 2px;
+  background: #EB4748;
+  position: absolute;
+  top:28px;
+  left: 0px;
+  display: none;
+}
+/*产品介绍tab下方总区域*/
+.intro_tab_down{
+  width: 1098px;
+  height: 375px;
+  border:1px solid #DCDCDC;
+}
+/*产品介绍tab下方内容区域*/
+.intro_tab_down_c{
+  width: 590px;
+  height: 375px;
+  float: left;
+  border-right: 1px solid #DCDCDC;
+}
+/*产品介绍tab下方具体内容表123*/
+.i_t_d_c1,.i_t_d_c2{
+  width: 460px;
+  height: 330px;
+  list-style: none;
+  padding: 20px;
+}
+.i_t_d_c1,.i_t_d_c2 li{
+  width: 450px;
+  height: 35px;
+  line-height: 35px;
+  font-size: 12px;
+  font-family: '微软雅黑';
+  color:#666666;
+}
+.i_t_d_cspan{
+  display: block;
+  width: 70px;
+  height: 35px;
+  float: left;
+}
+.i_t_d_c3{
+  width: 590px;
+  height: 350px;
+
+}
+.i_t_d_c3 table{
+  width: 590px;
+}
+.c3_td1{
+  /*width: 90px;*/
+  height: 25px;
+  line-height: 50px;
+  font-size: 12px;
+  color:#666666;
+  text-align: center;
+}
+.c3_td2{
+  /*width: 90px;*/
+  height: 25px;
+  line-height: 35px;
+  font-size: 12px;
+  text-align: center;
+  color:#343434;
+}
+
+/*轮播图区域*/
+.intro_tab_down_lunbo{
+  width: 507px;height: 375px;
+  position: relative;
+  /*border: 5px solid blue;*/
+  float: left;
+}
+/*图片部分---------------------------*/
+.lunbo_big_img{
+    position: absolute;
+    left: 69.5px;top: 30px;
+    display: none;
+    width: 361px;
+    height: 233px;
+}
+/*列表区域*/
+.intro_tab_down_lunbo ul{
+  width: 500px;
+  height: 70px;
+    /*border: 1px solid black;*/
+    position: absolute;
+    left: 67px;bottom: 20px;
+}
+.intro_tab_down_lunbo ul li{
+  list-style: none;
+  width: 65px;height: 67px;
+  float: left;
+  margin-right: 5px;
+  cursor: pointer;
+  border:3px solid white;
+}
+.intro_tab_down_lunbo ul li img{
+  width: 65px;
+  height: 67px;
+}
+/*左右按键*/
+.intro_tab_down_lunbo .left,.intro_tab_down_lunbo .right{
+    width: 15px;height: 70px;
+    position: absolute;
+    top: 287px;
+    display: block;
+}
+.intro_tab_down_lunbo .cover{
+  width: 15px;height: 70px;
+  position: absolute;
+  left: 0px;top: 0px;
+}
+.intro_tab_down_lunbo .cont{
+  width: 15px;height: 70px;
+  line-height: 70px;
+  text-align: center;
+  position: absolute;
+  left: 0px;top: 0px;
+  font-size:30px;
+  font-family: "微软雅黑";
+  font-weight: 700;
+  color:#A5A5A5;
+}
+
+.intro_tab_down_lunbo .left{left: 0px;}
+.intro_tab_down_lunbo .right{right: 0px;}
+
