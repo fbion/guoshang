@@ -267,13 +267,14 @@
 					<div class="bd img-list">
 						<p:lightBox>
 							<ui:repeat var="infoPic" value="#{loan.loanInfoPics}">
-								<h:outputLink value="#{request.contextPath}#{infoPic.picture}">
+								
+							<h:outputLink value="#{request.contextPath}#{infoPic.picture}">
 								<span>
 									<img src="#{request.contextPath}#{infoPic.picture}" width="207"
-										height="122"></img>
+										 height="122"></img>
 								</span>
-								</h:outputLink>
-							</ui:repeat>
+							</h:outputLink>
+						</ui:repeat>
 						</p:lightBox>
 					</div>
 				</div>

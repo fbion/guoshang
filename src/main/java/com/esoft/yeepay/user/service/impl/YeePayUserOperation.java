@@ -147,7 +147,7 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 			to.setResponseTime(new Date());
 			to.setResponseData(respXML);
 			// 以服务器通知为准 服务器通知会再次做处理
-			if ("1".equals(code)) {
+			if ("1".equals(code) ||"101".equals(code)) {
 				User user = ht.get(User.class, requestNo);
 				if (user != null) {
 					TrusteeshipAccount ta = ht.get(TrusteeshipAccount.class,
@@ -210,8 +210,9 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 					LockMode.UPGRADE);
 			to.setResponseTime(new Date());
 			to.setResponseData(notifyxml);
+			log.info("code: "+code);
 
-			if ("1".equals(code)) {
+			if ("1".equals(code)||"101".equals(code)) {
 				User user = ht.get(User.class, platformUserNo);
 				if (user != null) {
 					// 往用户托管账户表里面插入信息
@@ -224,7 +225,6 @@ public class YeePayUserOperation extends YeePayOperationServiceAbs<User> {
 					}
 					ta.setAccountId(resultMap.get("platformUserNo"));
 					ta.setCreateTime(new Date());
-					ta.setAccountId(resultMap.get("platformUserNo"));
 					ta.setStatus(TrusteeshipConstants.Status.PASSED);
 					ta.setTrusteeship("yeepay");
 					ht.saveOrUpdate(ta);

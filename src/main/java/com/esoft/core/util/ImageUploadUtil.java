@@ -12,13 +12,14 @@ import com.esoft.core.jsf.util.FacesUtil;
 public class ImageUploadUtil {
 
 //	private final static String UPLOAD_PATH = "/upload";
-	private final static String UPLOAD_PATH = "/data/web/upload";
+	private final static String UPLOAD_PATH = "/data/www/upload";
 	private static SimpleDateFormat formater = new SimpleDateFormat("yyyyMMdd");
 	
 	
 	public static String upload(InputStream is,String fileName){
 		try {
-			final String path = UPLOAD_PATH + "/" + formater.format(new Date());
+			String datePackge=formater.format(new Date());
+			final String path = UPLOAD_PATH + "/" + datePackge;
 			mkdir(path);
 			//final String absPath = FacesUtil.getRealPath(path) ;
 			fileName = getName(fileName);
@@ -31,7 +32,7 @@ public class ImageUploadUtil {
 			}
 			is.close();
 			out.close();
-			return ( "/upload" +"/"+ fileName) ;
+			return ( "/upload/" + datePackge+"/"+ fileName) ;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

@@ -173,9 +173,9 @@
 									<td align="left" style="width: 152px;"><em><b style="width: #{cr}%"></b></em>#{cr}%</td>
 									<td align="center"><ui:fragment
 											rendered="#{loan.status ==LoanStatus.RAISING}">
-											<a href="#{path}/loan/#{loan.id}" class="tzbtn">立即投标</a>
+											<a href="#{path}/loanDetailHouse/#{loan.id}" class="tzbtn">立即投标</a>
 										</ui:fragment> <ui:fragment rendered="#{loan.status !=LoanStatus.RAISING}">
-											<a href="#{path}/loan/#{loan.id}" class="tzbtn02">查看详情</a>
+											<a href="#{path}/loanDetailHouse/#{loan.id}" class="tzbtn02">查看详情</a>
 										</ui:fragment></td>
 								</tr>
 							</ui:repeat>

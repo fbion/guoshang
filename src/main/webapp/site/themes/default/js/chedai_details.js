@@ -119,12 +119,16 @@ $(function(){
 	// 设置变量
     var n = 0;
     var c = 0;
+
+    var l=$('.intro_tab_down_lunbo ul').children('li').length;
+    // alert(l);
 	// 自动轮播部分---------------------------------------
     // 函数体
     function run(){
+
        n++;
        // 临界点判断
-       if(n==5){
+       if(n==l){
        	 n=0;
        }
        // 当前图片显示，其他的隐藏
@@ -170,28 +174,73 @@ $(function(){
       //   	// 停止
       //   	return;
       //   }
-
+      	var px;
      	  n--;
      	  // 最小界点判断
      	  if(n==-1){
-     	  	 n=4;
+     	  	 n=l-1;
+     	  	 // alert(n);
      	  }
      	 // 当前图片显示，其他的隐藏
          $(".intro_tab_down_lunbo  img").eq(n).fadeIn(800).siblings("img").stop().fadeOut(800);
 	     // 当前边框变色
 	     $(".intro_tab_down_lunbo  ul li").eq(n).css({border:'3px solid #666666'}).siblings("li").css({border:"3px solid white"});
+	     //当n=0时，回到原位置
+	     if(n==0)
+	     {
+	     	$(".intro_tab_down_lunbo  ul").css({left:'0px'});
+	     }
+	     //当点击大于等于六个时，ul左移，
+	     if(n==4)
+	     {
+	     	$(".intro_tab_down_lunbo  ul").css({left:'0px'});
+	     }
+	     if(n>4)
+	     {
+	     	px=px-76*(n-4);
+	     	$(".intro_tab_down_lunbo  ul").css({left:px+'px'});
+	     }
+	     //当点击到第一个点，返回最后一个位置，分图片总数大于5和小于等于5的情况
+	     if(l<=5)
+	     {
+	     	if(n==l-1)
+		     {
+		     	px=-(n-l+1)*76;
+		     	$(".intro_tab_down_lunbo  ul").css({left:px+'px'});
+		     }
+	     }
+	     if(l>5)
+	     {
+	     	if(n==l-1)
+		     {
+		     	px=-(n-4)*76;
+		     	$(".intro_tab_down_lunbo  ul").css({left:px+'px'});
+		     }
+	     }
+	     
      })
 
      // 右点击--------------------------------------------
      $(".intro_tab_down_lunbo .right").click(function(){
      	  n++;
      	  // 最小界点判断
-     	  if(n==5){
+     	  if(n==l){
      	  	 n=0;
      	  }
      	 // 当前图片显示，其他的隐藏
          $(".intro_tab_down_lunbo  img").eq(n).fadeIn(800).siblings("img").stop().fadeOut(800);
 	     // 当前边框变色
 	     $(".intro_tab_down_lunbo  ul li").eq(n).css({border:'3px solid #666666'}).siblings("li").css({border:'3px solid white'});
+	     //当点击到第六个以外的时候，ul左移，大于等于六个时
+	     if(n>=5)
+	     {
+	     	var px=-(n-4)*76;
+	     	$(".intro_tab_down_lunbo  ul").css({left:px+'px'});
+	     }
+	     //当点击到最后一个再往后点，返回第一个位置
+	     if(n==0)
+	     {
+	     	$(".intro_tab_down_lunbo  ul").css({left:'0px'});
+	     }
      })
 })
