@@ -7,15 +7,309 @@
 		<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/index.css" />
 		<script type="text/javascript" src="#{tplVars.themeJSPath}/raphael-min.js"></script>		
 		<script type="text/javascript" src="#{tplVars.themeJSPath}/slides.jquery.js"></script>
-
+		
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/circles.js"></script>
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/gonggao.js"></script>
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/index.js"></script>
+		
 		<ui:include src="banner.xhtml"></ui:include>
 		
-		<ui:include src="indexNode.xhtml"></ui:include>
+		<div class="main">
+		 <!--滚动公告开始-->
+		 <div class="part1">
+			<div class="part1-1"><img src="#{tplVars.themeImagePath}/smalllb.png" />最新公告：</div>
+			<div class="part1-2" id="notice">
+				<ul>
+					<li>
+						<a title="" target="_blank" href="">1111111111111111111111</a>
+						<span>2015-12-30 10:28</span>
+					</li>
+					<li>
+						<a title="" target="_blank" href="">2222222222222222222222</a>
+						<span>2015-12-30 10:28</span>
+					</li>
+					<li>
+						<a title="" target="_blank" href="">3333333333333333333333</a>
+						<span>2015-12-30 10:28</span>
+					</li>
+				</ul>
+			</div>
+			<div class="notive-more">
+				<a href="">更多公告</a>
+			</div>
+		 </div>
+		 <!--滚动公告结束-->
+
+		 <!--服务保障开始-->
+		 <div class="part2">  
+			<div class="part2-1">
+				<div class="part2-1-1">
+					服务保障
+				</div>
+			</div>
+			<div class="part2-2">
+				<div class="part2-2-1">
+					<img src="#{tplVars.themeImagePath}/fkbz.png" />
+					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+				</div>
+				<div class="part2-2-1">
+					<img src="#{tplVars.themeImagePath}/zjaq.png" />
+					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+				</div>
+				<div class="part2-2-1">
+					<img src="#{tplVars.themeImagePath}/ylbz.png" />
+					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+				</div>
+				<div class="part2-2-1">
+					<img src="#{tplVars.themeImagePath}/cxbz.png" />
+					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
+				</div>
+			</div>
+		 </div>
+		 <!--服务保障结束-->
+
 		
-		<ui:include src="indexLoan.xhtml"></ui:include>			
+		 <!--投资项目开始-->
+		  <div class="part3">  
+			<div class="part2-1"  style="border-bottom:none">
+				<div class="part2-1-1">
+					投资项目
+				</div>
+			</div>
+			<div class="part3-2">
+				<div class="part3-2-1"  style="position:relative;">
+						<img class="categoryicon" src="#{tplVars.themeImagePath}/category1.png"     />
+						<div class="category"  >
+								<div class="categoryname"><span>车贷</span></div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">年化利率</div>
+									<div class="catdetail1-1">12.88%</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目期限</div>
+									<div class="catdetail1-1">12个月</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目规模</div>
+									<div class="catdetail1-1">300万</div>
+								</div>
+								<div class="categorydetailpart2">
+									<div class="catdetail2">投资人数：30</div>
+									<div class="catdetail2">可投金额：100万</div>
+									<div class="catdetail2">已投金额：20万</div>
+								</div>
+								<div  id="canvas" style="width:35%;height:80px;float:left;">
+									<div class="circle" id="circles-1"></div>
+								</div>
+						</div>
+						<div class="part3btn">
+							<img src="#{tplVars.themeImagePath}/part3btn1.png" />
+						</div>
+				</div>
+
+
+				<div class="part3-2-2"  style="position:relative;">
+						<img class="categoryicon2" src="#{tplVars.themeImagePath}/category2.png"     />
+						<div class="category"  >
+								<div class="categoryname"><span>房贷</span></div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">年化利率</div>
+									<div class="catdetail1-1">8%</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目期限</div>
+									<div class="catdetail1-1">24个月</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目规模</div>
+									<div class="catdetail1-1">1000万</div>
+								</div>
+								<div class="categorydetailpart2">
+									<div class="catdetail2">投资人数：10</div>
+									<div class="catdetail2">可投金额：600万</div>
+									<div class="catdetail2">已投金额：20万</div>
+								</div>
+								<div  id="canvas" style="width:35%;height:80px;float:left;">
+									<div class="circle" id="circles-2"></div>
+								</div>
+						</div>
+						<div class="part3btn">
+							<img src="#{tplVars.themeImagePath}/part3btn2.png" />
+						</div>
+				</div>
+
+
+				<div class="part3-2-3" style="position:relative;">
+						<img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
+						<div class="category"  >
+								<div class="categoryname"><span>新手</span></div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">年化利率</div>
+									<div class="catdetail1-1">5%</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目期限</div>
+									<div class="catdetail1-1">6个月</div>
+								</div>
+								<div class="categorydetailpart">
+									<div class="catdetail1">项目规模</div>
+									<div class="catdetail1-1">10万</div>
+								</div>
+								<div class="categorydetailpart2">
+									<div class="catdetail2">投资人数：110</div>
+									<div class="catdetail2">可投金额：70万</div>
+									<div class="catdetail2">已投金额：10万</div>
+								</div>
+								<div  id="canvas" style="width:35%;height:80px;float:left;">
+									<div class="circle" id="circles-3"></div>
+								</div>
+						</div>
+						<div class="part3btn">
+							<img src="#{tplVars.themeImagePath}/part3btn3.png" />
+						</div>
+				</div>
+
+
+				<div class="part3-2-4" style="position:relative;">
+					<div class="part3btn">
+							<img src="#{tplVars.themeImagePath}/part3btn4.png" />
+						</div>
+				</div>
+			</div>
+
+		  </div>
+
+		 <!--投资项目结束-->
+			
+
+		 <!--行业动态开始-->
+
+
+<!--行业动态结束-->
+	 <div class="part4">
+			<div class="part2-1" style="position:relative;" >
+				<div class="part2-1-1">行业动态</div>
+				<img src="#{tplVars.themeImagePath}/more.png"  style="position: absolute;right:15px;top:10px"/>
+			</div>
+			<div class="part4-2">
+			    <div id="slides_news" class="visual_news">
+					<ul class="slides_container_news" >
+						<li style="height:400px; display: block;" >
+							<div class="slidescontent" style="left:95px">
+								<div style="float:left;height:100%;width:50%;">
+									<div class="gsnewstitle" >
+									《国商金融》测试头条11111111111111111111
+									</div>
+									<br/>
+									<div class="gsnewsdescription" >
+										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+									</div>
+									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
+								</div>
+								<div class="newsimgdiv">
+									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+								</div>
+							</div>
+						</li>
+						<li style="height:400px;" >
+							<div class="slidescontent" style="left:95px">
+								<div style="float:left;height:100%;width:50%;">
+									<div class="gsnewstitle" >
+									《国商金融》测试头条2222222222222222
+									</div>
+									<br/>
+									<div class="gsnewsdescription" >
+										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+									</div>
+									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
+								</div>
+								<div class="newsimgdiv">
+									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+								</div>
+							</div>
+						</li>
+						<li style="height:400px;" >
+							<div class="slidescontent" style="left:95px">
+								<div style="float:left;height:100%;width:50%;">
+									<div class="gsnewstitle" >
+									《国商金融》测试头条33333333333333333333333
+									</div>
+									<br/>
+									<div class="gsnewsdescription" >
+										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+									</div>
+									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
+								</div>
+								<div class="newsimgdiv">
+									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+								</div>
+							</div>
+						</li>
+						<li style="height:400px;" >
+							<div class="slidescontent" style="left:95px">
+								<div style="float:left;height:100%;width:50%;">
+									<div class="gsnewstitle" >
+									《国商金融》测试头条44444444444444444444444444444
+									</div>
+									<br/>
+									<div class="gsnewsdescription" >
+										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
+									</div>
+									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
+								</div>
+								<div class="newsimgdiv">
+									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+								</div>
+							</div>
+						</li>
+				    </ul>
+		            <div class="slideControl" >
+			             <p class="slide_news_rBt">
+				             <a href="#" class="next"></a>
+			             </p>
+					<div class ="slides_news" style="width: 100%;position: absolute;">
+						<div   id="statusbar1"  class="statusbar">
+							<img src="#{tplVars.themeImagePath}/newsstatus1.png" />
+						</div>
+						<div   id="statusbar2"  class="statusbar">
+							<img src="#{tplVars.themeImagePath}/newsstatus0.png" />
+						</div>
+						<div   id="statusbar3"  class="statusbar">
+							<img src="#{tplVars.themeImagePath}/newsstatus0.png"/>
+						</div>
+						<div   id="statusbar4"  class="statusbar">
+							<img src="#{tplVars.themeImagePath}/newsstatus0.png" />
+						</div>
+					</div>
+
+			             <p class="slide_news_lBt">
+				             <a href="#" class="prev"></a>
+			             </p>
+		            </div>
+	            </div>
+			</div>
+</div>
+
+</div>
+
+	<div class="main2" >
+		<div class="main2-1" style="position:relative;">
+			<div class="part2-1-1">
+						合作机构
+			</div>
+			<ul   style="list-style:none;padding-left:0;float:left;">
+				<li style="float:left;"><img src="#{tplVars.themeImagePath}/friends1.png" /></li>
+				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends2.png" /></li>
+				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends3.png" /></li>
+				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends4.png" /></li>
+				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends5.png" /></li>
+				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends6.png" /></li>
+			</ul>
+		</div>
+	</div>
+
 		
-		<ui:include src="indexNews.xhtml"></ui:include>
 		
-		<ui:include src="indexLink.xhtml"></ui:include>
+	
 	</ui:define>
 </ui:composition>

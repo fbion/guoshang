@@ -233,6 +233,7 @@ www.sucaijiayuan.com
 			// animate slides
 			function animate(direction, effect, clicked) {
 				width = control.children().outerWidth();
+				var clickTag=direction;
 				if (!active && loaded) {
 					active = true;
 					switch(direction) {
@@ -282,7 +283,6 @@ www.sucaijiayuan.com
 							current = next;
 						break;
 					}
-					
 					// fade animation
 					if (effect === 'fade') {
 						// fade animation with crossfade
@@ -337,6 +337,7 @@ www.sucaijiayuan.com
 							left: position,
 							display: 'block'
 						});
+						
 						// animate to new height
 						if (option.autoHeight) {
 							control.animate({
@@ -391,6 +392,27 @@ www.sucaijiayuan.com
 						$('.'+ option.paginationClass +' li.current', elem).removeClass('current');
 						// add current class to next
 						$('.'+ option.paginationClass +' li a:eq('+ next +')', elem).parent().addClass('current');
+						if(option.paginationClass=='slides_news'){
+		
+							if(clickTag=='next'){
+								var nowTag=next;
+							    var nextTag=next+1;
+							    if(next==0){
+								    nowTag=4;
+						     	}
+							    $('.'+ option.paginationClass).children('#statusbar'+nowTag).find('img').attr("src","site/themes/default/images/newsstatus0.png");
+							    $('.'+ option.paginationClass).children('#statusbar'+nextTag).find('img').attr('src','site/themes/default/images/newsstatus'+nextTag+'.png');
+							}else if(clickTag=='prev'){
+								var nowTag=prev+1;
+							    var nextTag=prev;
+							    if(prev==0){
+								    nextTag=4;
+						     	}
+							    $('.'+ option.paginationClass).children('#statusbar'+nowTag).find('img').attr("src","site/themes/default/images/newsstatus0.png");
+							    $('.'+ option.paginationClass).children('#statusbar'+nextTag).find('img').attr('src','site/themes/default/images/newsstatus'+nextTag+'.png');
+							}
+							
+						}
 					}
 				}
 			}; // end animate function

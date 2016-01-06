@@ -1,73 +1,162 @@
-@charset "utf-8";
-/* CSS Document */
+/*全局reset*/
+*{
+	margin:0;
+	padding:0;
+}
 
-/*img{vertical-align:top;}*/
-.footer{width:100%; background-color:#1B1B1B;}
-.ft-l{padding:44px 80px 0 0;}
-.ft-l p{
-	padding-top:15px;
-	line-height:30px;
-	font-size:16px;
-	color:#848484;
-	width:196px;
-	text-align:center;
+/*全局微软雅黑*/
+body{
+	font-family: '微软雅黑';
 }
-.ft-l p span{font-size:24px;}
-.ft-c{
-	padding:33px 0 26px 0;
-}
-.ft-c ul{
-	float:left;
-	width:180px;
-}
-.ft-c ul li a{
-	display:block;
-	color:#B6B1A4;
-	font-weight:bold;
-	font-size:14px;
-	line-height:34px;
-}
-.ft-c ul li+li a{
-	font-weight:normal;
-}
-.ft-r{padding-top:33px;}
 
-.ft-r ul{
-	float:left;
-	margin-right:30px;
+/*img边框取消*/
+img{
+	border:0;
 }
-.ft-r1{padding-top:10px;}
-.ft-r1 li{margin-top:10px;}
-.ft-r1 i{
-	width:20px;
-	height:20px;
-	background-position:0 -120px;
+
+/*底部顶上颜色边框*/
+.footer_top{
+	width: 100%;
+	height: 26px;
+	background: #F6F6F6;
 }
-.ft-r1 li a:hover{color:#008cbb;}
-.ft-r1 li+li i{background-position:0 -150px;}
-.ft-r1 li a{
-	display:block;
-	width:118px;
-	height:30px;
-	border:1px solid #C8C8C8;
-	line-height:30px;
-	text-align:center;
-	color:#b6b1a4;
+
+/*底部中背景*/
+.footer_bg{
+	width: 100%;
+	height: 305px;
+	background: #1D1B1B;
 }
-.ft-r2 li a{
-	line-height:34px;
-	display:block;
-	color:#b6b1a4;
-	font-weight:bold;
+
+/*底部黑色区域居中总框*/
+.footer_main{
+	width: 1100px;
+	height: 305px;
+	margin: 0 auto;
+	list-style: none;
+	position: relative;
 }
-.ft-r2 li img{margin-left:5px;}
-.copy{ 
-	padding:15px 0 20px;
-	line-height:28px; 
-	margin:0 auto; 
-	text-align:center; 
-	color:#848484;
-	border-top:1px solid #848484;
-	margin-top:3px;
+.footer_main li{
+	width: 161px;
+	height: 297px;
+	float: left;
+	padding-top: 8px;
 }
-.foot-pic{padding-top:10px;}
+/*底部导航标题字*/
+.footer_span{
+	display: block;
+	width: 161px;
+	height: 62px;
+	line-height: 62px;
+	font-size: 16px;
+	color:#999999;
+}
+/*底部导航具体字*/
+.footer_main li a{
+	display: inline-block;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #999999;
+	text-decoration: none;
+}
+.footer_main li a:hover{
+	text-decoration: underline;
+}
+/*底部联系方式*/
+.footer_contact{
+	display: block;
+	width: 161px;
+	height: 30px;
+	line-height: 30px;
+	font-size: 14px;
+	color: #999999;
+}
+
+/*二维码区域*/
+.qrc{
+	width: 100px;
+	height: 138px;
+	position: absolute;
+	bottom:16px;
+	right: 0px;
+}
+.qrc img{
+	display: block;
+	width: 94px;
+	height: 94px;
+	margin: 0 auto;
+}
+.qrc span{
+	display: block;
+	width: 100px;
+	height: 44px;
+	line-height: 44px;
+	font-size: 14px;
+	color: #999999;
+	text-align: center;
+}
+
+/*友情链接样式*/
+.friendly_link{
+	width: 100%;
+	height: 44px;
+	background: #BC1125;
+}
+.friendly_l_c{
+	width: 1100px;
+	height: 44px;
+	line-height: 44px;
+	font-size: 12px;
+	color:white;
+	margin: 0 auto;
+}
+.friendly_l_c span{
+	height: 44px;
+	line-height: 44px;
+	font-size: 12px;
+	color:white;
+}
+.friendly_l_c a{
+	padding-left: 10px;
+	padding-right: 10px;
+	height: 44px;
+	line-height: 44px;
+	font-size: 12px;
+	color:white;
+	text-decoration: none;
+}
+.friendly_l_c a:hover{
+	text-decoration: underline;
+}
+
+/*底部认证、备案大背景*/
+.footer_rzba{
+	width: 100%;
+	height: 200px;
+	background: #F6F6F6;
+}
+/*底部认证总块*/
+.footer_rz{
+	width: 750px;
+	height: 72px;
+	margin: 0 auto;
+	line-height: 87px;
+	padding-top: 15px;
+}
+.footer_rz img{
+	height: 34px;
+	line-height: 34px;
+	padding-right:20px;
+}
+
+/*底部备案总框*/
+.footer_ba{
+	width: 750px;
+	height: 12px;
+	line-height: 12px;
+	margin: 0 auto;
+	font-size: 12px;
+	color:#999999;
+	text-align: center;
+}

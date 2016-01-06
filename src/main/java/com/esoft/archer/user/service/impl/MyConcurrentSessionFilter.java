@@ -63,6 +63,8 @@ public class MyConcurrentSessionFilter extends GenericFilterBean {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 
+		System.out.println("1111111111");
+
 		for (int i = 0; i < handlers.length; i++) {
 			handlers[i].logout(request, response, auth);
 		}

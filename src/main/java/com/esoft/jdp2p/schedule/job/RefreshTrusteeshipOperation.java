@@ -27,7 +27,6 @@ public class RefreshTrusteeshipOperation implements Job {
 	@Override
 	public void execute(JobExecutionContext context)
 			throws JobExecutionException {
-		System.out.println(new SimpleDateFormat("YYYY-MM-DD HH:mm:ss").format(new Date())+"1111111111+RefreshTrusteeshipOperation");
-	//	trusteeshipService.handleSendedOperations();
+		trusteeshipService.handleSendedOperations();
 	}
 }

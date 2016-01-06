@@ -39,8 +39,8 @@ import com.esoft.jdp2p.schedule.job.RepayAlert;
  *           2014-4-10 wangzhi 1.0
  */
 @Component
-public class InitJobs {
-//implements ApplicationListener<ContextRefreshedEvent>
+public class InitJobs implements ApplicationListener<ContextRefreshedEvent>{
+
 
 	@Resource
 	StdScheduler scheduler;
@@ -54,11 +54,6 @@ public class InitJobs {
 	// 开启哪些调度，能手动控制
 	//@Override
 	public void onApplicationEvent(ContextRefreshedEvent event) {
-
-		//todo 不执行
-		if(true){
-			return;
-		}
 
 		if (event.getApplicationContext().getParent() == null) {
 			// root application context 没有parent，他就是老大
