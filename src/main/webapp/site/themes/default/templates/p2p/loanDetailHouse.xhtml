@@ -20,7 +20,7 @@
 		<script type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/chedai_details.css" />
 		<script type="text/javascript" src="#{tplVars.themeJSPath}/chedai_details.js"></script>
 		<div class="content">
-			<!-- 面包屑头部开始 -->
+			<!-- 头部开始 -->
 			<div class="bread_top">
 				<a href="" style="margin-left:0px;">首页</a>
 				<span>></span>
@@ -28,7 +28,7 @@
 				<span>></span>
 				<a href="" style="color:#EB4647">房贷</a>
 			</div>
-			<!-- 面包屑头部结束 -->
+			<!-- 头部结束 -->
 
 			<!-- 产品介绍上部开始 -->
 			<div class="product_up">
@@ -206,25 +206,40 @@
 							元</span>
 							</li>
 							<li>
-								<span>账户余额：</span>
-								<span style="color:#333333;display:none;"><h:outputLabel
-										value="#{userBillHome.getBalanceByUserId(loginUserInfo.loginUserId)}">
-									<f:convertNumber />
-								</h:outputLabel>元</span>
-							<span style="color:#EA4748;">
-							<a href="" style="text-decoration:none;color:#EA4748">登录后查看</a></span>
+								<ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
+						         <span style="color:#EA4748;">
+							         <a href="#{request.contextPath}/memberLogin" style="text-decoration:none;color:#EA4748">登录后查看</a>
+							     </span>
+								</ui:fragment>
+								<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
+									<span>账户余额：</span>
+								       <span style="color:#333333;"><h:outputLabel
+											   value="#{userBillHome.getBalanceByUserId(loginUserInfo.loginUserId)}">
+										   <f:convertNumber/>
+									   </h:outputLabel>元</span>
+								</ui:fragment>
 							</li>
 						</ul>
 					</div>
 					<div class="pro_up_r_down">
-						<form action="" method="post">
+						<h:form>
 							<div class="num_change">
 								<a href="javascript:;" class="num" id="jian">
-									<img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt="" />
+									<img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt=""/>
 								</a>
-								<input type="text" value="100" name="numChange" id="numChange" />
+								<h:inputText label="投资金额" value="#{investHome.instance.money}"
+											 styleClass="txtinput" required="true"
+											 requiredMessage="投资金额不能为空！">
+									<f:ajax event="blur" render="@this"></f:ajax>
+									<o:validator validatorId="javax.faces.DoubleRange"
+												 minimum="#{loan.minInvestMoney}"
+												 maximum="#{loanCalculator.calculateMoneyMaxInvested(loan.id)}"></o:validator>
+									<o:validator
+											validatorId="com.esoft.core.validator.NumberValidator"
+											cardinalNumber="#{loan.cardinalNumber}"></o:validator>
+								</h:inputText>
 								<a href="javascript:;" class="num" id="jia">
-									<img src="#{tplVars.themeImagePath}/version_two/jia.jpg" alt="" />
+									<img src="#{tplVars.themeImagePath}/version_two/jia.jpg" alt=""/>
 								</a>
 							</div>
 
@@ -233,9 +248,35 @@
 								<span>19.6</span>
 								<span>元</span>
 							</div>
+							<ui:fragment rendered="#{loan.status ==LoanStatus.RAISING}">
+								<p>
+									<ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
+										<h:link outcome="pretty:memberLogin" styleClass="investmentbtn">
+											<f:param name="spring-security-redirect"
+													 value="/loanDetailCar/#{loan.id}"/>
+											<h:outputText value="立即投资"></h:outputText>
+										</h:link>
+									</ui:fragment>
+									<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
+										<sec:ifNotGranted roles="INVESTOR">
+											<a class="investmentbtn" href="javascript:void(0)"
+											   onclick="getInvestorPer();">立即投资</a>
+										</sec:ifNotGranted>
 
-							<input type="submit" value="立即投资" class="investmentbtn" />
-						</form>
+										<sec:ifAllGranted roles="INVESTOR">
+											<h:commandLink styleClass="investmentbtn"
+														   action="#{investHome.save}" value="立即投资"
+														   onclick="return confirm('您确定要投资吗？');">
+												<f:setPropertyActionListener
+														target="#{investHome.instance.loan}"
+														value="#{loan}"></f:setPropertyActionListener>
+											</h:commandLink>
+										</sec:ifAllGranted>
+									</ui:fragment>
+
+								</p>
+							</ui:fragment>
+						</h:form>
 					</div>
 				</div>
 				<!-- 右 -->
@@ -389,9 +430,20 @@
 				</div>
 			</div>
 			<!-- 产品介绍下部结束 -->
-
-
 		</div>
+		<script>
+			  //如果登录用户没有投资权限，则提示，并跳转页面。
+		    function getInvestorPer() {
+				$.dialog
+						.confirm(
+								'您尚未进行实名认证无法投资，是否要实名认证？',
+								function() {
+									window.location.href = "#{request.contextPath}/user/get_investor_permission";
+									$.dialog.tips('正在为您跳转到页面');
+								});
+				return false;
+			}
+		</script>
 
 	</ui:define>
 </ui:composition>

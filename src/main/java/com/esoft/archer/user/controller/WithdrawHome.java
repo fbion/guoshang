@@ -69,17 +69,22 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
      * 计算手续费和罚金
      */
     public boolean calculateFee() {
-        double fee = wcs.calculateFee(this.getInstance().getMoney());
-        if (userBillService.getBalance(loginUserInfo.getLoginUserId()) < fee + this.getInstance().getMoney()) {
-            FacesUtil.addErrorMessage("余额不足！");
-            FacesUtil.getCurrentInstance().validationFailed();
-            this.getInstance().setMoney(0D);
-            return false;
-        } else {
-            this.getInstance().setFee(
-                    wcs.calculateFee(this.getInstance().getMoney()));
-            return true;
-        }
+        //add by shiqm   更改固定2元手续费
+        this.getInstance().setFee(2D);
+        this.getInstance().setMoney(this.getInstance().getMoney()-2D);
+        return true;
+        //end
+//        double fee = wcs.calculateFee(this.getInstance().getMoney());
+//        if (userBillService.getBalance(loginUserInfo.getLoginUserId()) < fee + this.getInstance().getMoney()) {
+//            FacesUtil.addErrorMessage("余额不足！");
+//            FacesUtil.getCurrentInstance().validationFailed();
+//            this.getInstance().setMoney(0D);
+//            return false;
+//        } else {
+//            this.getInstance().setFee(
+//                    wcs.calculateFee(this.getInstance().getMoney()));
+//            return true;
+//        }
     }
 
     /**
@@ -103,8 +108,6 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
             }
             wcs.applyWithdrawCash(this.getInstance());
             FacesUtil.addInfoMessage("您的提现申请已经提交成功，请等待审核！");
-            //云通讯
-            userService.sendSuccessWithdrawYtxSMS(username,getInstance().getMoney(),mobileNumber);
             return "pretty:myCashFlow";
         } catch (InsufficientBalance e) {
             FacesUtil.addErrorMessage("余额不足！");

@@ -1,315 +1,350 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui" xmlns:archer="http://java.sun.com/jsf/archer" xmlns:pm="http://primefaces.org/mobile" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
-	xmlns:sec="http://www.springframework.org/security/facelets/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:o="http://omnifaces.org/ui" template="page.xhtml">
+                xmlns:p="http://primefaces.org/ui" xmlns:archer="http://java.sun.com/jsf/archer" xmlns:pm="http://primefaces.org/mobile" xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+                xmlns:sec="http://www.springframework.org/security/facelets/tags" xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns:o="http://omnifaces.org/ui" template="page.xhtml">
 
-	<ui:define name="content">
+    <ui:define name="content">
 
-		<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/index.css" />
-		<script type="text/javascript" src="#{tplVars.themeJSPath}/raphael-min.js"></script>		
-		<script type="text/javascript" src="#{tplVars.themeJSPath}/slides.jquery.js"></script>
-		
-		<script type="text/javascript" src="#{tplVars.themeJSPath}/circles.js"></script>
-		<script type="text/javascript" src="#{tplVars.themeJSPath}/gonggao.js"></script>
-		<script type="text/javascript" src="#{tplVars.themeJSPath}/index.js"></script>
-		
-		<ui:include src="banner.xhtml"></ui:include>
-		
-		<div class="main">
-		 <!--滚动公告开始-->
-		 <div class="part1">
-			<div class="part1-1"><img src="#{tplVars.themeImagePath}/smalllb.png" />最新公告：</div>
-			<div class="part1-2" id="notice">
-				<ul>
-					<li>
-						<a title="" target="_blank" href="">1111111111111111111111</a>
-						<span>2015-12-30 10:28</span>
-					</li>
-					<li>
-						<a title="" target="_blank" href="">2222222222222222222222</a>
-						<span>2015-12-30 10:28</span>
-					</li>
-					<li>
-						<a title="" target="_blank" href="">3333333333333333333333</a>
-						<span>2015-12-30 10:28</span>
-					</li>
-				</ul>
-			</div>
-			<div class="notive-more">
-				<a href="">更多公告</a>
-			</div>
-		 </div>
-		 <!--滚动公告结束-->
+        <link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/index.css" />
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/raphael-min.js"></script>
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/slides.jquery.js"></script>
 
-		 <!--服务保障开始-->
-		 <div class="part2">  
-			<div class="part2-1">
-				<div class="part2-1-1">
-					服务保障
-				</div>
-			</div>
-			<div class="part2-2">
-				<div class="part2-2-1">
-					<img src="#{tplVars.themeImagePath}/fkbz.png" />
-					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-				</div>
-				<div class="part2-2-1">
-					<img src="#{tplVars.themeImagePath}/zjaq.png" />
-					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-				</div>
-				<div class="part2-2-1">
-					<img src="#{tplVars.themeImagePath}/ylbz.png" />
-					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-				</div>
-				<div class="part2-2-1">
-					<img src="#{tplVars.themeImagePath}/cxbz.png" />
-					<div>测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试</div>
-				</div>
-			</div>
-		 </div>
-		 <!--服务保障结束-->
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/circles.js"></script>
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/gonggao.js"></script>
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/index.js"></script>
 
-		
-		 <!--投资项目开始-->
-		  <div class="part3">  
-			<div class="part2-1"  style="border-bottom:none">
-				<div class="part2-1-1">
-					投资项目
-				</div>
-			</div>
-			<div class="part3-2">
-				<div class="part3-2-1"  style="position:relative;">
-						<img class="categoryicon" src="#{tplVars.themeImagePath}/category1.png"     />
-						<div class="category"  >
-								<div class="categoryname"><span>车贷</span></div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">年化利率</div>
-									<div class="catdetail1-1">12.88%</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目期限</div>
-									<div class="catdetail1-1">12个月</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目规模</div>
-									<div class="catdetail1-1">300万</div>
-								</div>
-								<div class="categorydetailpart2">
-									<div class="catdetail2">投资人数：30</div>
-									<div class="catdetail2">可投金额：100万</div>
-									<div class="catdetail2">已投金额：20万</div>
-								</div>
-								<div  id="canvas" style="width:35%;height:80px;float:left;">
-									<div class="circle" id="circles-1"></div>
-								</div>
-						</div>
-						<div class="part3btn">
-							<img src="#{tplVars.themeImagePath}/part3btn1.png" />
-						</div>
-				</div>
+        <style type="text/css">
+            /*无缝轮播总框*/
+            #seamless_frame{
+            width: 1098px;
+            height: 62px;
+            /*border: 1px solid black;*/
+            position: relative;
+            overflow: hidden;
+            margin:0 auto;
+            }
+            /*无缝轮播*/
+            #seamless{
+            width: 3294px;
+            height: 62px;
+            list-style: none;
+            }
+            #seamless li{
+            width: 158px;
+            height: 62px;
+            float: left;
+            padding-right: 25px;
+            }
+        </style>
+
+        <ui:include src="banner.xhtml"></ui:include>
+
+        <div class="main">
+            <!--滚动公告开始-->
+            <div class="part1">
+                <div class="part1-1"><img src="#{tplVars.themeImagePath}/smalllb.png" />最新公告：</div>
+                <div class="part1-2" id="notice">
+                    <ul>
+                        <ui:repeat var="item" value="#{nodeList.getNodes('ZXDT').data}" varStatus='i'>
+                            <li>
+                                <a  href="#{request.contextPath}/node/ZXDT/#{item.id}">#{fn:substring(item.title,0,20)}</a>
+							<span><h:outputText value="#{item.createTime}">
+                                <f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+8" />
+                            </h:outputText></span>
+                            </li>
+                        </ui:repeat>
+                    </ul>
+                </div>
+                <div class="notive-more">
+                    <a href="#{path}/term/ZXDT">更多公告</a>
+                </div>
+            </div>
+            <!--滚动公告结束-->
+
+            <!--服务保障开始-->
+            <div class="part2">
+                <div class="part2-1">
+                    <div class="part2-1-1">
+                        服务保障
+                    </div>
+                </div>
+                <div class="part2-2">
+                    <div class="part2-2-1">
+                        <a href="#{request.contextPath}/node/index/index_banner_1" >
+                            <img src="#{tplVars.themeImagePath}/fkbz.png" />
+                            <ui:param name="nodeHome1" value="#{nodeList.getNodeById('index_banner_1')}" />
+                            <div>#{stringHome.ellipsis(nodeHome1.description,50)}</div>
+                        </a>
+                    </div>
+                    <div class="part2-2-1">
+                        <a href="#{request.contextPath}/node/index/index_banner_2" >
+                            <img src="#{tplVars.themeImagePath}/zjaq.png" />
+                            <ui:param name="nodeHome2" value="#{nodeList.getNodeById('index_banner_2')}" />
+                            <div>#{stringHome.ellipsis(nodeHome2.description,50)}</div>
+                        </a>
+                    </div>
+                    <div class="part2-2-1">
+                        <a href="#{request.contextPath}/node/index/index_banner_3" >
+                            <img src="#{tplVars.themeImagePath}/ylbz.png" />
+                            <ui:param name="nodeHome3" value="#{nodeList.getNodeById('index_banner_3')}" />
+                            <div>#{stringHome.ellipsis(nodeHome3.description,50)}</div>
+                        </a>
+                    </div>
+                    <div class="part2-2-1">
+                        <a href="#{request.contextPath}/node/index/index_banner_3" >
+                            <img src="#{tplVars.themeImagePath}/cxbz.png" />
+                            <ui:param name="nodeHome4" value="#{nodeList.getNodeById('index_banner_4')}" />
+                            <div>#{stringHome.ellipsis(nodeHome4.description,50)}</div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!--服务保障结束-->
 
 
-				<div class="part3-2-2"  style="position:relative;">
-						<img class="categoryicon2" src="#{tplVars.themeImagePath}/category2.png"     />
-						<div class="category"  >
-								<div class="categoryname"><span>房贷</span></div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">年化利率</div>
-									<div class="catdetail1-1">8%</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目期限</div>
-									<div class="catdetail1-1">24个月</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目规模</div>
-									<div class="catdetail1-1">1000万</div>
-								</div>
-								<div class="categorydetailpart2">
-									<div class="catdetail2">投资人数：10</div>
-									<div class="catdetail2">可投金额：600万</div>
-									<div class="catdetail2">已投金额：20万</div>
-								</div>
-								<div  id="canvas" style="width:35%;height:80px;float:left;">
-									<div class="circle" id="circles-2"></div>
-								</div>
-						</div>
-						<div class="part3btn">
-							<img src="#{tplVars.themeImagePath}/part3btn2.png" />
-						</div>
-				</div>
+            <!--投资项目开始-->
+            <div class="part3">
+                <div class="part2-1"  style="border-bottom:none">
+                    <div class="part2-1-1">
+                        投资项目
+                    </div>
+                </div>
+                <div class="part3-2">
+                    <div class="part3-2-1"  style="position:relative;">
+                        <ui:param name="loanCar" value="#{loanList.getNewLoanByType('车贷')}" />
+                        <ui:fragment rendered="#{not empty loanCar}">
+                            <ui:param name="crCar" value="#{loanCalculator.calculateRaiseCompletedRate(loanCar.id)}" />
+                            <img class="categoryicon" src="#{tplVars.themeImagePath}/category1.png"     />
+                            <div class="category"  >
+                                <div class="categoryname"><span>#{loanCar.name}</span></div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">年化利率</div>
+                                    <div class="catdetail1-1"><h:outputText value="#{loanCar.rate*100}">
+                                        <f:convertNumber minFractionDigits="1" />
+                                    </h:outputText>%</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目期限</div>
+                                    <div class="catdetail1-1">#{loanCar.deadline}#{dictUtil.getValue('repay_unit',loanCar.type.repayTimeUnit)}</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目规模</div>
+                                    <div class="catdetail1-1"><h:outputText value="#{loanCar.loanMoney/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                </div>
+                                <div class="categorydetailpart2">
+                                    <div class="catdetail2">投资人数：30</div>
+                                    <div class="catdetail2">可投金额：<h:outputText value="#{(loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)))/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                    <div class="catdetail2">已投金额：<h:outputText value="#{loanCar.loanMoney*(crCar/100)/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                </div>
+                                <div  id="canvas" style="width:35%;height:80px;float:left;">
+                                    <div class="circle" id="circles-1">crCar</div>
+                                </div>
+                            </div>
+                            <div class="part3btn">
+                              <a href="#{path}/loanDetailCar/#{loanCar.id}"> <img src="#{tplVars.themeImagePath}/part3btn1.png" /> </a>
+                            </div>
+                        </ui:fragment>
+                    </div>
+
+                    <div class="part3-2-2"  style="position:relative;">
+                        <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('房贷')}" />
+                        <ui:fragment rendered="#{not empty loanHouse}">
+                            <ui:param name="crHouse" value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}" />
+                            <img class="categoryicon2" src="#{tplVars.themeImagePath}/category2.png"     />
+                            <div class="category"  >
+                                <div class="categoryname"><span>#{loanHouse.name}</span></div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">年化利率</div>
+                                    <div class="catdetail1-1"><h:outputText value="#{loanHouse.rate*100}">
+                                        <f:convertNumber minFractionDigits="1" />
+                                    </h:outputText>%</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目期限</div>
+                                    <div class="catdetail1-1">#{loanHouse.deadline}#{dictUtil.getValue('repay_unit',loanHouse.type.repayTimeUnit)}</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目规模</div>
+                                    <div class="catdetail1-1"><h:outputText value="#{loanHouse.loanMoney/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                </div>
+                                <div class="categorydetailpart2">
+                                    <div class="catdetail2">投资人数：10</div>
+                                    <div class="catdetail2">可投金额：<h:outputText value="#{(loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)))/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                    <div class="catdetail2">已投金额：<h:outputText value="#{loanHouse.loanMoney*(crHouse/100)/10000}">
+                                        <f:convertNumber minFractionDigits="2" />
+                                    </h:outputText>万</div>
+                                </div>
+                                <div  id="canvas" style="width:35%;height:80px;float:left;">
+                                    <div class="circle" id="circles-2">crHouse</div>
+                                </div>
+                            </div>
+                            <div class="part3btn">
+                                <a href="#{path}/loanDetailCar/#{loanHouse.id}"> <img src="#{tplVars.themeImagePath}/part3btn2.png" /></a>
+                            </div>
+                         </ui:fragment>
+
+                    </div>
 
 
-				<div class="part3-2-3" style="position:relative;">
-						<img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
-						<div class="category"  >
-								<div class="categoryname"><span>新手</span></div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">年化利率</div>
-									<div class="catdetail1-1">5%</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目期限</div>
-									<div class="catdetail1-1">6个月</div>
-								</div>
-								<div class="categorydetailpart">
-									<div class="catdetail1">项目规模</div>
-									<div class="catdetail1-1">10万</div>
-								</div>
-								<div class="categorydetailpart2">
-									<div class="catdetail2">投资人数：110</div>
-									<div class="catdetail2">可投金额：70万</div>
-									<div class="catdetail2">已投金额：10万</div>
-								</div>
-								<div  id="canvas" style="width:35%;height:80px;float:left;">
-									<div class="circle" id="circles-3"></div>
-								</div>
-						</div>
-						<div class="part3btn">
-							<img src="#{tplVars.themeImagePath}/part3btn3.png" />
-						</div>
-				</div>
+                    <div class="part3-2-3" style="position:relative;">
+                        <img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
+                        <div class="category"  >
+                            <div class="categoryname"><span>新手</span></div>
+                            <div class="categorydetailpart">
+                                <div class="catdetail1">年化利率</div>
+                                <div class="catdetail1-1">5%</div>
+                            </div>
+                            <div class="categorydetailpart">
+                                <div class="catdetail1">项目期限</div>
+                                <div class="catdetail1-1">6个月</div>
+                            </div>
+                            <div class="categorydetailpart">
+                                <div class="catdetail1">项目规模</div>
+                                <div class="catdetail1-1">10万</div>
+                            </div>
+                            <div class="categorydetailpart2">
+                                <div class="catdetail2">投资人数：110</div>
+                                <div class="catdetail2">可投金额：70万</div>
+                                <div class="catdetail2">已投金额：10万</div>
+                            </div>
+                            <div  id="canvas" style="width:35%;height:80px;float:left;">
+                                <div class="circle" id="circles-3"></div>
+                            </div>
+                        </div>
+                        <div class="part3btn">
+                            <img src="#{tplVars.themeImagePath}/part3btn3.png" />
+                        </div>
+                    </div>
 
 
-				<div class="part3-2-4" style="position:relative;">
-					<div class="part3btn">
-							<img src="#{tplVars.themeImagePath}/part3btn4.png" />
-						</div>
-				</div>
-			</div>
+                    <div class="part3-2-4" style="position:relative;">
+                        <div class="part3btn">
+                            <img src="#{tplVars.themeImagePath}/part3btn4.png" />
+                        </div>
+                    </div>
+                </div>
 
-		  </div>
+            </div>
 
-		 <!--投资项目结束-->
-			
-
-		 <!--行业动态开始-->
+            <!--投资项目结束-->
 
 
-<!--行业动态结束-->
-	 <div class="part4">
-			<div class="part2-1" style="position:relative;" >
-				<div class="part2-1-1">行业动态</div>
-				<img src="#{tplVars.themeImagePath}/more.png"  style="position: absolute;right:15px;top:10px"/>
-			</div>
-			<div class="part4-2">
-			    <div id="slides_news" class="visual_news">
-					<ul class="slides_container_news" >
-						<li style="height:400px; display: block;" >
-							<div class="slidescontent" style="left:95px">
-								<div style="float:left;height:100%;width:50%;">
-									<div class="gsnewstitle" >
-									《国商金融》测试头条11111111111111111111
-									</div>
-									<br/>
-									<div class="gsnewsdescription" >
-										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
-									</div>
-									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
-								</div>
-								<div class="newsimgdiv">
-									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
-								</div>
-							</div>
-						</li>
-						<li style="height:400px;" >
-							<div class="slidescontent" style="left:95px">
-								<div style="float:left;height:100%;width:50%;">
-									<div class="gsnewstitle" >
-									《国商金融》测试头条2222222222222222
-									</div>
-									<br/>
-									<div class="gsnewsdescription" >
-										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
-									</div>
-									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
-								</div>
-								<div class="newsimgdiv">
-									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
-								</div>
-							</div>
-						</li>
-						<li style="height:400px;" >
-							<div class="slidescontent" style="left:95px">
-								<div style="float:left;height:100%;width:50%;">
-									<div class="gsnewstitle" >
-									《国商金融》测试头条33333333333333333333333
-									</div>
-									<br/>
-									<div class="gsnewsdescription" >
-										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
-									</div>
-									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
-								</div>
-								<div class="newsimgdiv">
-									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
-								</div>
-							</div>
-						</li>
-						<li style="height:400px;" >
-							<div class="slidescontent" style="left:95px">
-								<div style="float:left;height:100%;width:50%;">
-									<div class="gsnewstitle" >
-									《国商金融》测试头条44444444444444444444444444444
-									</div>
-									<br/>
-									<div class="gsnewsdescription" >
-										11111111111111测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试测试
-									</div>
-									<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" />
-								</div>
-								<div class="newsimgdiv">
-									<img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
-								</div>
-							</div>
-						</li>
-				    </ul>
-		            <div class="slideControl" >
-			             <p class="slide_news_rBt">
-				             <a href="#" class="next"></a>
-			             </p>
-					<div class ="slides_news" style="width: 100%;position: absolute;">
-						<div   id="statusbar1"  class="statusbar">
-							<img src="#{tplVars.themeImagePath}/newsstatus1.png" />
-						</div>
-						<div   id="statusbar2"  class="statusbar">
-							<img src="#{tplVars.themeImagePath}/newsstatus0.png" />
-						</div>
-						<div   id="statusbar3"  class="statusbar">
-							<img src="#{tplVars.themeImagePath}/newsstatus0.png"/>
-						</div>
-						<div   id="statusbar4"  class="statusbar">
-							<img src="#{tplVars.themeImagePath}/newsstatus0.png" />
-						</div>
-					</div>
+            <!--行业动态开始-->
 
-			             <p class="slide_news_lBt">
-				             <a href="#" class="prev"></a>
-			             </p>
-		            </div>
-	            </div>
-			</div>
-</div>
+            <div class="part4">
+                <div class="part2-1" style="position:relative;" >
+                    <div class="part2-1-1">行业动态</div>
+                    <a href="#{path}/term/PTGG" ><img src="#{tplVars.themeImagePath}/more.png"  style="position: absolute;right:15px;top:10px"/></a>
+                </div>
+                <div class="part4-2">
+                    <div id="slides_news" class="visual_news">
+                        <div class ="slides_news" style="width: 1100px;position: absolute;">
+                            <div   id="statusbar1"  class="statusbar">
+                                <img src="#{tplVars.themeImagePath}/newsstatus1.png" />
+                            </div>
+                            <div   id="statusbar2"  class="statusbar">
+                                <img src="#{tplVars.themeImagePath}/newsstatus0.png" />
+                            </div>
+                            <div   id="statusbar3"  class="statusbar">
+                                <img src="#{tplVars.themeImagePath}/newsstatus0.png"/>
+                            </div>
+                            <div   id="statusbar4"  class="statusbar">
+                                <img src="#{tplVars.themeImagePath}/newsstatus0.png" />
+                            </div>
+                        </div>
 
-</div>
+                        <ul class="slides_container_news" >
+                            <ui:repeat var="item" value="#{nodeList.getNodes('PTGG',4).data}" varStatus='i'>
+                                <ui:fragment rendered="#{i.first}">
+                                    <li style="height:400px; display: block;" >
+                                        <div class="slidescontent" style="left:95px">
+                                            <div style="float:left;height:100%;width:50%;">
+                                                <div class="gsnewstitle" >
+                                                    #{item.title}
+                                                </div>
+                                                <br/>
+                                                <div class="gsnewsdescription" >
+                                                    #{stringHome.ellipsis(item.description,100)}
+                                                </div>
 
-	<div class="main2" >
-		<div class="main2-1" style="position:relative;">
-			<div class="part2-1-1">
-						合作机构
-			</div>
-			<ul   style="list-style:none;padding-left:0;float:left;">
-				<li style="float:left;"><img src="#{tplVars.themeImagePath}/friends1.png" /></li>
-				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends2.png" /></li>
-				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends3.png" /></li>
-				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends4.png" /></li>
-				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends5.png" /></li>
-				<li style="float:left;margin-left:25px;"><img src="#{tplVars.themeImagePath}/friends6.png" /></li>
-			</ul>
-		</div>
-	</div>
 
-		
-		
-	
-	</ui:define>
+                                                <a href="#{request.contextPath}/node/PTGG/#{item.id}">	<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" /> </a>
+
+                                            </div>
+                                            <div class="newsimgdiv">
+                                                <img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ui:fragment>
+                                <ui:fragment rendered="#{not i.first}">
+                                    <li style="height:400px;" >
+                                        <div class="slidescontent" style="left:95px">
+                                            <div style="float:left;height:100%;width:50%;">
+                                                <div class="gsnewstitle" >
+                                                    #{item.title}
+                                                </div>
+                                                <br/>
+                                                <div class="gsnewsdescription" >
+                                                    #{stringHome.ellipsis(item.description,100)}
+                                                </div>
+                                                <a href="#{request.contextPath}/node/PTGG/#{item.id}">	<img src="#{tplVars.themeImagePath}/detail.png" style="width:104px;height:29px;" class="showdetailnews" /> </a>
+                                            </div>
+                                            <div class="newsimgdiv">
+                                                <img  style="width:430px;height:232px;" src="#{tplVars.themeImagePath}/news.png"/>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ui:fragment>
+                            </ui:repeat>
+                        </ul>
+                        <p style="position: absolute;margin-top: -200px;margin-left: 20px; z-index:99">
+                            <a class="prev" href="#"  style="background: rgba(0, 0, 0, 0) url('#{tplVars.themeImagePath}/left1.png') no-repeat scroll center bottom;display: block;height: 80px;width: 30px;"></a>
+                        </p>
+                        <p style="position: absolute;margin-top: -200px;margin-left: 1050px;z-index:99">
+                            <a class="next" href="#"  style="background: rgba(0, 0, 0, 0) url('#{tplVars.themeImagePath}/right1.png') no-repeat scroll center bottom;display: block;height:80px;width: 30px;"></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!--行业动态结束-->
+
+        </div>
+
+        <div class="main2" >
+            <div class="main2-1" style="position:relative;">
+                <div class="part2-1-1">
+                    合作机构
+                </div>
+
+                <div id="seamless_frame">
+                    <ul id="seamless" style="position:absolute;left:0px;top:0px;">
+                        <li><img src="#{tplVars.themeImagePath}/friends1.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends2.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends3.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends4.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends5.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends6.png" alt="" /></li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+
+
+
+
+    </ui:define>
 </ui:composition>

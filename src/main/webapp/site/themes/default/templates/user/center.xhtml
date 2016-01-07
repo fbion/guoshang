@@ -38,12 +38,13 @@
 						<ul id="C1_3" style="display:none">
 							<li><h:link outcome="pretty:user_invest_repaying"
 									value="我的投资"></h:link></li>
-							<li><a href="#{request.contextPath}/user/transfer/purchased">债权转让</a></li>
+							<!--<li><a href="#{request.contextPath}/user/transfer/purchased">债权转让</a></li>-->
 							<!-- 							<li><a href="个人中心-理财管理-理财统计.html">理财统计</a></li> -->
 							<!-- <sec:ifAllGranted roles="AUTO_INVEST">
 								<li><a href="#{request.contextPath}/user/auto_invest">自动投标</a></li>
 							</sec:ifAllGranted> -->
-							<li><a href="#{request.contextPath}/user/auto_invest">自动投标</a></li>
+							<!--
+							<li><a href="#{request.contextPath}/user/auto_invest">自动投标</a></li>-->
 						</ul></li>
 					<li><a class="li04" href="javascript:void(0)" id="CC1_4"
 						onclick="OpenClose1('C1_4')">借款管理</a>
@@ -71,12 +72,14 @@
 							<li><a href="#{request.contextPath}/user/message">站内信</a></li>
 							<!-- <li><a href="#{request.contextPath}/user/messageTypeSet">通知设置</a></li> -->
 						</ul></li>
-					<li><a class="li07" href="javascript:void(0)" id="CC1_7"
-						onclick="OpenClose1('C1_7')">积分和推荐</a>
-						<ul id="C1_7" style="display:none">
-							<li><a href="#{request.contextPath}/user/my-point-history">积分</a></li>
-							<li><a href="#{request.contextPath}/user/my-presentee">推荐管理</a></li>							
-						</ul></li>
+					<!--<li><a class="li07" href="javascript:void(0)" id="CC1_7"-->
+						<!--onclick="OpenClose1('C1_7')">积分和推荐</a>-->
+						<!--<ul id="C1_7" style="display:none">-->
+							<!--&lt;!&ndash; <li><a href="#{request.contextPath}/user/my-point-history">积分</a></li>&ndash;&gt;-->
+							<!--<li><a href="#{request.contextPath}/user/my-presentee">推荐管理</a></li>							-->
+						<!--</ul></li>-->
+					<li class="hover"><a class="li01" href="#{request.contextPath}/user/my-presentee"
+										 id="li07">推荐管理</a></li>
 				</ul>
 			</div>
 			<ui:insert name="center_right">

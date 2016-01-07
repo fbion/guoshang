@@ -143,21 +143,6 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
         }
         FacesUtil.addInfoMessage("投资成功！");
 
-        User user=null;
-        //云通讯
-        try {
-            user = userService.getUserById(loginUserInfo.getLoginUserId());
-        } catch (UserNotFoundException e) {
-            FacesUtil.addInfoMessage("请您登录之后操作！");
-            return null;
-        }
-        String username = user.getUsername();
-        String loanName = this.getInstance().getLoan().getName();
-        double money = this.getInstance().getMoney();
-        String mobileNumber=user.getMobileNumber();
-        userService.sendSuccessCreateYtxSMS(username, loanName, money, mobileNumber);
-
-
         if (FacesUtil.isMobileRequest()) {
             return "pretty:mobile_user_invests";
         }

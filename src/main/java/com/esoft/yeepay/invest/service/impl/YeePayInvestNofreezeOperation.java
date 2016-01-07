@@ -107,7 +107,7 @@ public class YeePayInvestNofreezeOperation extends
 			ht.evict(loan);// 防止并发出现
 			loan = ht.get(Loan.class, loanId, LockMode.UPGRADE);
 			if (!loan.getStatus().equals(LoanStatus.RAISING)) {
-				throw new IllegalLoanStatusException("标的【" + loan.getId() + "】状态(" + loan.getStatus() + ")不合法");
+				throw new IllegalLoanStatusException("借款项目【" + loan.getId() + "】状态(" + loan.getStatus() + ")不允许投资");
 			}
 
 			double remainMoney = loanCalculator.calculateMoneyNeedRaised(loan.getId());// 尚未认购金额
@@ -369,7 +369,7 @@ public class YeePayInvestNofreezeOperation extends
 						User user=null;
 						//云通讯
 						try {
-							user = userService.getUserById(loginUserInfo.getLoginUserId());
+							user = userService.getUserById(invest.getUser().getId());
 						} catch (UserNotFoundException e) {
 							e.printStackTrace();
 						}
@@ -492,8 +492,19 @@ public class YeePayInvestNofreezeOperation extends
 											+ "  投资id:" + invest.getId());
 						}
 						ht.update(invest);
-						
 
+						User user=null;
+						//云通讯
+						try {
+							user = userService.getUserById(invest.getUser().getId());
+						} catch (UserNotFoundException e) {
+							e.printStackTrace();
+						}
+						String username = user.getUsername();
+						String loanName = loan.getName();
+						double money = invest.getMoney();
+						String mobileNumber=user.getMobileNumber();
+						userService.sendSuccessCreateYtxSMS(username, loanName, money, mobileNumber);
 					} catch (NoMatchingObjectsException e) {
 						throw new RuntimeException(e);
 					} catch (InsufficientBalance e) {

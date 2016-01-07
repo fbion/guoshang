@@ -210,7 +210,7 @@ public class MyAuthenticationManager extends DaoAuthenticationProvider {
 	 * @param request
 	 */
 	public void handleLoginFail(User user, HttpServletRequest request) {
-		System.out.println("222222");
+		System.out.println("MyAuthenticationManager:handleLoginFail:"+"222222");
 		if (user == null) {
 			// 连续登录失败，达到一定次数，就出验证码
 			int loginFailLimit = Integer.parseInt(getHt().get(Config.class,

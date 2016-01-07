@@ -783,7 +783,7 @@ public class Loan implements java.io.Serializable, Cloneable {
 	}
 
 	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "super_user_id", nullable = false)
+	@JoinColumn(name = "super_user_id")
 	public User getSuperUser() {
 		return superUser;
 	}

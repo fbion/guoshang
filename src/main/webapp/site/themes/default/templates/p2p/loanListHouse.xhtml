@@ -159,7 +159,7 @@
 								listener="#{loanList.addOrder('loan.commitTime','desc')}"></f:event>
 							<ui:repeat var="loan" value="#{loanList.lazyModelData}">
 								<tr>
-									<td><a class="pname" href="#{path}/p2p_loan/#{loan.id}" title="#{loan.name}">#{stringHome.ellipsis(loan.name, 15)}</a></td>
+									<td><a class="pname" href="#{path}/loanDetailHouse/#{loan.id}" title="#{loan.name}">#{stringHome.ellipsis(loan.name, 15)}</a></td>
 									<!--<td align="center"><span class="level">#{loan.riskLevel}</span></td>-->
 									<td><h:outputText value="#{loan.ratePercent}">
 											<f:convertNumber minFractionDigits="2" />

@@ -21,8 +21,8 @@
 						<ul class="slidings">
 							<li id="four1" class="hover"><h:link outcome="pretty:user_loan_applying-p2p"
 									value="个人借款申请列表"></h:link></li>
-							<li id="four3"><h:link
-									outcome="pretty:user_loan_applying-p2c" value="企业借款申请列表"></h:link></li>
+							<!--<li id="four3"><h:link-->
+									<!--outcome="pretty:user_loan_applying-p2c" value="企业借款申请列表"></h:link></li>-->
 						</ul>
 						<div id="con_four_1" class="slidnr">
 							<ui:param name="restriction"
@@ -46,9 +46,12 @@
 								<ui:repeat var="loan" value="#{loanList.lazyModelData}"
 									varStatus="status">
 									<tr class="#{status.index%2==0?'tab02':''} bg">
-										<td class="tab02 tab04 tab06" style="width: 200px;"><a
+										<td class="tab02 tab04 tab06" style="width: 200px;">
+											<!--<a
 											href="#{path}/loan/#{loan.id}" target="_blank"
-											title="#{loan.name}(#{loan.id})">#{stringHome.ellipsis(loan.name,13)}</a>
+											title="#{loan.name}(#{loan.id})">#{stringHome.ellipsis(loan.name,13)}</a>  -->
+											<h:outputText value="#{stringHome.ellipsis(loan.name,13)}">
+											</h:outputText>
 											<br />利率：<h:outputText value="#{loan.rate}">
 												<f:convertNumber type="percent" minFractionDigits="2" />
 											</h:outputText>

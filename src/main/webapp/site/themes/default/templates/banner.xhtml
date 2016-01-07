@@ -27,33 +27,7 @@
 				<a href="#" class="prev"></a>
 			</p>
 		</div>
-		<div class="land2">
-			<div class="land">
-				<h4>年化收益率</h4>
-				<p class="sy">12% - 15%</p>
-				<ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
-					<a href="#{request.contextPath}/register" class="zc">立即注册</a>
-				</ui:fragment>
-				<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
-					<a href="#{request.contextPath}/user/center" class="zc">个人中心</a>
-				</ui:fragment>
-				<p class="p1">
-					<span>50</span>倍活期收益
-				</p>
-				
-				<p class="p1 p2">				
-					<ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
-					已有账号？<a href="#{request.contextPath}/memberLoginPage">立即登录</a>
-					</ui:fragment>
-				</p>
-				<div class="lan-bot">
-					<h5>低投资 高回报</h5>
-					<p>
-						带您体验新的互联网金<br />融理财生活
-					</p>
-				</div>
-			</div>
-		</div>
+
 	</div>
 	<script type="text/javascript">
 		$(function() {

@@ -13,6 +13,25 @@ $('#slides_news').slides({
 });
 
 
+//µ×²ãÂÖ²¥
+var  seamless = document.getElementById("seamless");
+			var  timer=0;
+	        function run(){
+	            var old_l =parseInt(seamless.style.left);
+	            var new_l = old_l - 1;
+	            seamless.style.left = new_l + "px";
+	            if(new_l<-1647){
+	           	    seamless.style.left="0px"; 
+	           }
+	        }
+		    timer = setInterval(run,15);
+		   	$('#seamless').hover(function() {
+		   		clearInterval(timer);
+		   	}, function() {
+		   		timer=setInterval(run,15);
+});
+
+
 //¹«¸æ¹ö¶¯
 
 $("#notice").jCarouselLite({auto:1000,speed:700,visible:1,vertical:true,stop:$("#notice"),btnGoOver:true});
@@ -58,12 +77,8 @@ var canvas = document.getElementById('canvas'),
 				],
 				circles = [];
 				var child1 = document.getElementById('circles-1');
-				var child2 = document.getElementById('circles-2');
-				var child3 = document.getElementById('circles-3');
-				var percentage1 = 31.4 ;
-				var percentage2 = 72.7 ;
-				var percentage3 = 12.3 ;
-
+				if(child1!=null){
+					var percentage1 = child1.innerHTML ;
 					circle1 = Circles.create({
 						id:         child1.id,
 						value:      percentage1,
@@ -71,7 +86,11 @@ var canvas = document.getElementById('canvas'),
 						width:      6,
 						colors:     colors[0]
 					});
-
+						circles.push(circle1);
+				}
+				var child2 = document.getElementById('circles-2');
+				if(child2!=null){
+					var percentage2 = child2.innerHTML ;
 					circle2 = Circles.create({
 						id:         child2.id,
 						value:      percentage2,
@@ -79,7 +98,12 @@ var canvas = document.getElementById('canvas'),
 						width:      6,
 						colors:     colors[0]
 					});
-					
+						circles.push(circle2);
+				}
+				
+				var child3 = document.getElementById('circles-3');
+				if(child3!=null){
+					var percentage3 = child3.innerHTML ;
 					circle3 = Circles.create({
 						id:         child3.id,
 						value:      percentage3,
@@ -87,10 +111,9 @@ var canvas = document.getElementById('canvas'),
 						width:      6,
 						colors:     colors[0]
 					});
-
-				circles.push(circle1);
-				circles.push(circle2);
-				circles.push(circle3);
+						circles.push(circle3);
+				}
+				
 			
 		}
 

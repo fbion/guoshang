@@ -401,9 +401,20 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 		this.addRestriction("loan.completeTime >= '"+dateToStr(date)+"' and loan.completeTime < '"+dateToStr(tomrrow)+"'");
 		this.completeDate = completeDate;
 	}
+
+
+	public Loan getNewLoanByType(String type){
+		String hql="from Loan loan where loan.businessType=? and loan.status=? order by loan.commitTime desc limit 0,1";
+		List<Loan> list= getHt().find(hql, new String[]{type, LoanConstants.LoanStatus.RAISING});
+		if(list.size()==0){
+			return null;
+		}
+		return list.get(0);
+
+	}
+
 	/**转化为 yyyy-MM-dd HH:mm:ss格式*/
 	private String dateToStr(Date date){
 		return DateUtil.DateToString(date, DateStyle.YYYY_MM_DD_HH_MM_SS);
 	}
-	
 }

@@ -14,19 +14,7 @@
 	</f:metadata>
 	<ui:define name="content">
 		<ui:param name="loan" value="#{loanHome.instance}"></ui:param>
-		<script>
-			//如果登录用户没有投资权限，则提示，并跳转页面。
-			function getInvestorPer() {
-				$.dialog
-						.confirm(
-								'您尚未进行实名认证无法投资，是否要实名认证？',
-								function() {
-									window.location.href = "#{request.contextPath}/user/get_investor_permission";
-									$.dialog.tips('正在为您跳转到页面');
-								});
-				return false;
-			}
-		</script>
+
 		<link type="text/css" rel="stylesheet"
 			href="#{tplVars.themeStylePath}/p2c.css" />
 
@@ -399,4 +387,20 @@
 			</div>
 		</div>
 	</ui:define>
+
+
+	   <script>
+			  //如果登录用户没有投资权限，则提示，并跳转页面。
+		    function getInvestorPer() {
+				$.dialog
+						.confirm(
+								'您尚未进行实名认证无法投资，是否要实名认证？',
+								function() {
+									window.location.href = "#{request.contextPath}/user/get_investor_permission";
+									$.dialog.tips('正在为您跳转到页面');
+								});
+				return false;
+			}
+		</script>
+
 </ui:composition>

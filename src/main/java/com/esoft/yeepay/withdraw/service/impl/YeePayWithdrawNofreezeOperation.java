@@ -12,6 +12,9 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 
+import com.esoft.archer.user.exception.UserNotFoundException;
+import com.esoft.archer.user.model.User;
+import com.esoft.archer.user.service.UserService;
 import org.apache.commons.logging.Log;
 import org.hibernate.LockMode;
 import org.hibernate.ObjectNotFoundException;
@@ -55,6 +58,9 @@ public class YeePayWithdrawNofreezeOperation extends
 
 	@Resource
 	ConfigService configService;
+
+	@Resource
+	UserService userService;
 
 	@Logger
 	static Log log;
@@ -307,6 +313,17 @@ public class YeePayWithdrawNofreezeOperation extends
 		to.setStatus(TrusteeshipConstants.Status.PASSED);
 		ht.update(wc);
 		ht.update(to);
+		//云通讯
+		try {
+			User user=userService.getUserById(wc.getUser().getId());
+			String username=user.getUsername();
+			String mobileNumber=user.getMobileNumber();
+			double money=wc.getMoney();
+			userService.sendSuccessWithdrawYtxSMS(username, money, mobileNumber);
+		} catch (UserNotFoundException e) {
+			e.printStackTrace();
+		}
+
 	}
 
 }
