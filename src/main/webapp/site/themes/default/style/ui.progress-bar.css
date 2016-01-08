@@ -1,0 +1,64 @@
+/* Bar which is placed behind the progress */
+.ui-progress-bar {
+
+  position: relative;
+  height: 5px;
+
+  padding-right: 2px;
+  /*background-color: #abb2bc;*/
+
+  border-radius: 3px;
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+
+  /* Webkit background gradient */
+  background: -webkit-gradient(linear, left bottom, left top, color-stop(0, white), color-stop(1, white));
+  /* Mozilla background gradient */
+  background: -moz-linear-gradient(white 0%, white 100%);
+  border:1px solid #999999;
+}
+
+.ui-progress {
+
+  position: absolute;
+  display: block;
+  overflow: hidden;
+  
+  width: auto;
+  height: 5px;
+  
+
+  -moz-border-radius: 3px;
+  -webkit-border-radius: 3px;
+  border-radius: 3px;
+  
+
+  
+  /* Webkit background stripes and gradient */
+  background: -webkit-gradient(linear, 0 0, 44 44,
+    color-stop(0.00, rgba(255,255,255,0.17)),
+    color-stop(0.25, rgba(255,255,255,0.17)),
+    color-stop(0.26, rgba(255,255,255,0)),
+    color-stop(0.50, rgba(255,255,255,0)),
+    color-stop(0.51, rgba(255,255,255,0.17)),
+    color-stop(0.75, rgba(255,255,255,0.17)),
+    color-stop(0.76, rgba(255,255,255,0)),
+    color-stop(1.00, rgba(255,255,255,0))
+  ), -webkit-gradient(linear, left bottom, left top, color-stop(0, #EB4748), color-stop(1, #EB4748));
+  
+  /* Mozilla (Firefox etc) background stripes */
+  /* Note: Mozilla's support for gradients is more true to the original design, allowing gradients at 30 degrees, as apposed to 45 degress in webkit. */
+  background: -moz-repeating-linear-gradient(top left -30deg, 
+    rgba(255,255,255,0.17), 
+    rgba(255,255,255,0.17) 15px, 
+    rgba(255,255,255,0) 15px, 
+    rgba(255,255,255,0) 30px
+  ), -moz-linear-gradient(#EB4748 0%, #EB4748 100%);
+  
+  
+  /* Webkit magic */
+  -webkit-animation: animate-stripes 2s linear infinite;
+
+}
+
+

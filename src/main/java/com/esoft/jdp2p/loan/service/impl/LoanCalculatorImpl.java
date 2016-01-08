@@ -87,8 +87,25 @@ public class LoanCalculatorImpl implements LoanCalculator {
 		if (minutes < 1) {
 			minutes = 1L;
 		}
-
 		return days + "天" + hours + "时" + minutes + "分";
+	}
+
+	@Override
+	public String calculateLoanCould(String loanId) throws NoMatchingObjectsException {
+		Loan loan = ht.get(Loan.class, loanId);
+		// FIXME:loan 为空验证
+		if (loan == null) {
+			throw new NoMatchingObjectsException(Loan.class, "loanId:" + loanId);
+		}
+		if (loan.getExpectTime() == null) {
+			return "未开始";
+		}
+		Long time = (loan.getExpectTime().getTime() - System.currentTimeMillis()) / 1000;
+
+		if (time < 0 || !loan.getStatus().equals(LoanStatus.RAISING)) {
+			return "已到期";
+		}
+		return "RUNNING";
 	}
 
 	@Override

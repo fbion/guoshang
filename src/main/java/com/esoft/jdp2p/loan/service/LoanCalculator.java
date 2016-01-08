@@ -54,6 +54,22 @@ public interface LoanCalculator {
 	public String calculateRemainTime(String loanId)
 			throws NoMatchingObjectsException;
 
+
+
+
+	/**
+	 * 判断项目是否可以投资
+	 *
+	 * @param loanId
+	 *            借款id
+	 * @return
+	 * @throws NoMatchingObjectsException
+	 *             找不到loan
+	 */
+	public String calculateLoanCould(String loanId)
+			throws NoMatchingObjectsException;
+
+
 	/**
 	 * 查询某一借款正在还款+等待还款的期数
 	 */

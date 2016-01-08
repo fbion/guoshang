@@ -45,8 +45,8 @@ body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"Microsoft
 .circles-integer{color:#FEFEFE;font-size:20px;}	
 .circles-text{color:#FEFEFE;}
 .category{width:100%;height:220px;position:absolute;top:150px;}
-.categoryicon{position:absolute;right:0;top:62px;}
-.categoryicon2{position:absolute;right:0;top:32px;}
+.categoryicon{position:absolute;right:0;top:30px;}
+.categoryicon2{position:absolute;right:0;top:45px;}
 .categoryname{width:100%;height:40px;text-align:center;line-height:40px;font-size:24px;color:#fff;}
 .categorydetailpart{width:33.33%;height:80px;text-align:center;line-height:80px;float:left;padding-top:25px;}
 .catdetail1{width:100%;height:31px;text-align:center;line-height:31px;font-size:14px;color:#fff;}

@@ -39,7 +39,7 @@
 }
 
 .login {
-	width: 1000px;
+	width: 1200px;
 	min-height: 100px;
 	background: #fbfbfb;
 	margin: 0 auto;
@@ -61,6 +61,7 @@
 
 .login_box {
 	width: 430px;
+	margin-top: 15px;
 }
 
 .login_box_l {
@@ -134,14 +135,14 @@
 }
 
 .forget a {
-	color: #F18F68;
+	color: #E84848;
 }
 
 .login_btn {
 	display: block;
-	width: 185px;
+	width: 315px;
 	height: 47px;
-	background: #F18F68;
+	background: #E84848;
 	line-height: 47px;
 	text-align: center;
 	font-size: 16px;
@@ -166,8 +167,50 @@
 }
 
 .dl img {
-	margin: 0 5px -5px 0;
+   margin: 0 5px -5px 0;
 }
+
+/*add*/
+.top {
+	width: 100%;
+	height: 80px;
+	background-color: #FFF;
+	border-bottom: 1px solid #DBDBDB;
+	}
+.top_main{
+	width: 1100px;
+	margin: 0 auto;
+	}
+.top_main_left div{
+	float: left;
+	padding-left:30px;
+	margin-top:10px;
+	}
+.top_logo img{
+	height:60px;
+    }
+.top_line img{
+	height:30px;
+	margin-top:15px;
+	}
+.top_wel p{
+	font-size:20px;
+	color:#A09F9F;
+	margin-top:15px;
+    }
+.top_main_right{
+	margin-right:80px;
+	}
+.top_main_right div{
+	padding-right:5px;
+	margin-top:30px;
+	float:right;
+	}
+.top_zi{
+	font-size:14px;
+	}
+
+
 
 /*注册*/
 .login_l01 {
@@ -186,7 +229,7 @@
 
 .hqyzm {
 	color: #fff;
-	background: #F18F68;
+	background: #E84848;
 	font-size: 14px;
 	font-weight: bold;
 	padding: 10px 15px;
@@ -198,7 +241,7 @@
 }
 
 .yhm a {
-	color: #F18F68;
+	color: #E84848;
 }
 
 .login_box01 {
@@ -217,7 +260,7 @@
 }
 
 .log a {
-	color: #F18F68;
+	color: #E84848;
 }
 
 .login_r02 {

@@ -14,24 +14,111 @@ $('#slides_news').slides({
 
 
 //底层轮播
-var  seamless = document.getElementById("seamless");
+	var  seamless = document.getElementById("seamless");
 			var  timer=0;
+			var  count0=$('#seamless').children('li').length;
+			// alert(count0);
+			//根据li的数量判断轮播样式，都要满12格
+			if(count0==2)
+			{
+				//一组li添加5次
+				for(var j=0;j<5;j++)
+				{
+					for(var i=0;i<2;i++)
+					{
+						var c=$('#seamless li:eq('+i+')').find('img').attr('src');
+						// alert(c);
+						$('#seamless').append('<li><img src="'+c+'" alt="" /></li>')
+					}
+				}
+			}
+			if(count0==4)
+			{
+				//一组li添加4次
+				for(var j=0;j<4;j++)
+				{
+					for(var i=0;i<2;i++)
+					{
+						var c=$('#seamless li').eq(i).find('img').attr('src');
+						// alert(c);
+						$('#seamless').append('<li><img src="'+c+'" alt="" /></li>')
+					}
+				}
+			}
+			if(count0==6)
+			{
+				//一组li添加2次
+				for(var j=0;j<2;j++)
+				{
+					for(var i=0;i<3;i++)
+					{
+						var c=$('#seamless li').eq(i).find('img').attr('src');
+						// alert(c);
+						$('#seamless').append('<li><img src="'+c+'" alt="" /></li>')
+					}
+				}
+			}
+			if(count0==8)
+			{
+				//一组li添加1次
+
+				for(var i=0;i<4;i++)
+				{
+					var c=$('#seamless li').eq(i).find('img').attr('src');
+					// alert(c);
+					$('#seamless').append('<li><img src="'+c+'" alt="" /></li>')
+				}
+			}
+			if(count0==10)
+			{
+				//一组li，前两个添加1次
+
+				for(var i=0;i<2;i++)
+				{
+					var c=$('#seamless li').eq(i).find('img').attr('src');
+					// alert(c);
+					$('#seamless').append('<li><img src="'+c+'" alt="" /></li>')
+				}
+
+			}
+			//计算添加li后的数量
+			count1=$('#seamless').children('li').length;
+			// alert(count1);
+			var  ul_width=count1*183;
+			var  ul_width2=ul_width/2;
+			$("#seamless").css({width:ul_width});
 	        function run(){
 	            var old_l =parseInt(seamless.style.left);
 	            var new_l = old_l - 1;
 	            seamless.style.left = new_l + "px";
-	            if(new_l<-1647){
-	           	    seamless.style.left="0px"; 
-	           }
-	        }
+        		if(count0==8)
+        		{
+        			if(new_l<-732)
+        			{
+        				seamless.style.left="0px";
+        			}
+        		}
+        		else if(count0==10)
+        		{
+        			if(new_l<-915)
+        			{
+        				seamless.style.left="0px";
+        			}
+        		}
+        		else
+        		{
+        			if(new_l<-ul_width2)
+        			{
+        				seamless.style.left="0px";
+        			}
+        		}
+          	}
 		    timer = setInterval(run,15);
 		   	$('#seamless').hover(function() {
 		   		clearInterval(timer);
 		   	}, function() {
 		   		timer=setInterval(run,15);
-});
-
-
+		   	});
 //公告滚动
 
 $("#notice").jCarouselLite({auto:1000,speed:700,visible:1,vertical:true,stop:$("#notice"),btnGoOver:true});

@@ -17,14 +17,12 @@
             #seamless_frame{
             width: 1098px;
             height: 62px;
-            /*border: 1px solid black;*/
             position: relative;
             overflow: hidden;
             margin:0 auto;
             }
             /*无缝轮播*/
             #seamless{
-            width: 3294px;
             height: 62px;
             list-style: none;
             }
@@ -110,12 +108,12 @@
                 </div>
                 <div class="part3-2">
                     <div class="part3-2-1"  style="position:relative;">
-                        <ui:param name="loanCar" value="#{loanList.getNewLoanByType('车贷')}" />
+                        <ui:param name="loanCar" value="#{loanList.getNewLoanByType('房贷')}" />
                         <ui:fragment rendered="#{not empty loanCar}">
                             <ui:param name="crCar" value="#{loanCalculator.calculateRaiseCompletedRate(loanCar.id)}" />
                             <img class="categoryicon" src="#{tplVars.themeImagePath}/category1.png"     />
                             <div class="category"  >
-                                <div class="categoryname"><span>#{loanCar.name}</span></div>
+                                <div class="categoryname"><span>易盈家</span></div>
                                 <div class="categorydetailpart">
                                     <div class="catdetail1">年化利率</div>
                                     <div class="catdetail1-1"><h:outputText value="#{loanCar.rate*100}">
@@ -184,13 +182,13 @@
                     </div>
 
                     <div class="part3-2-2"  style="position:relative;">
-                        <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('房贷')}" />
+                        <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('车贷')}" />
                         <ui:fragment rendered="#{not empty loanHouse}">
                             <ui:param name="crHouse"
                                       value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}"/>
                             <img class="categoryicon2" src="#{tplVars.themeImagePath}/category2.png"     />
                             <div class="category"  >
-                                <div class="categoryname"><span>#{loanHouse.name}</span></div>
+                                <div class="categoryname"><span>易福车</span></div>
                                 <div class="categorydetailpart">
                                     <div class="catdetail1">年化利率</div>
                                     <div class="catdetail1-1"><h:outputText value="#{loanHouse.rate*100}">
@@ -263,37 +261,73 @@
 
 
                     <div class="part3-2-3" style="position:relative;">
-                        <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('信贷')}" />
-                        <ui:fragment rendered="#{not empty loanHouse}">
-                        <ui:param name="crHouse" value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}" />
-                        <img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
-                        <div class="category"  >
-                            <div class="categoryname"><span>新手</span></div>
-                            <div class="categorydetailpart">
-                                <div class="catdetail1">年化利率</div>
-                                <div class="catdetail1-1">5%</div>
-                            </div>
-                            <div class="categorydetailpart">
-                                <div class="catdetail1">项目期限</div>
-                                <div class="catdetail1-1">6个月</div>
-                            </div>
-                            <div class="categorydetailpart">
-                                <div class="catdetail1">项目规模</div>
-                                <div class="catdetail1-1">10万</div>
-                            </div>
-                            <div class="categorydetailpart2">
-                                <div class="catdetail2">投资人数：110</div>
-                                <div class="catdetail2">可投金额：70万</div>
-                                <div class="catdetail2">已投金额：10万</div>
-                            </div>
-                            <div  id="canvas" style="width:35%;height:80px;float:left;">
-                                <div class="circle" id="circles-3"></div>
-                            </div>
-                        </div>
+                        <ui:param name="loanCredit" value="#{loanList.getNewLoanByType('信贷')}" />
+                        <ui:fragment rendered="#{not empty loanCredit}">
+                            <ui:param name="crCredit" value="#{loanCalculator.calculateRaiseCompletedRate(loanCredit.id)}" />
+                            <img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
+                            <div class="category"  >
+                                <div class="categoryname"><span>易诺信</span></div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">年化利率</div>
+                                    <div class="catdetail1-1"><h:outputText value="#{loanCredit.rate*100}">
+                                        <f:convertNumber minFractionDigits="1" />
+                                    </h:outputText>%</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目期限</div>
+                                    <div class="catdetail1-1">#{loanCredit.deadline}#{dictUtil.getValue('repay_unit',loanCredit.type.repayTimeUnit)}</div>
+                                </div>
+                                <div class="categorydetailpart">
+                                    <div class="catdetail1">项目规模</div>
+                                    <div class="catdetail1-1">
+                                        <ui:fragment rendered="#{loanCredit.loanMoney ge 100}">
+                                            <h:outputText value="#{loanCredit.loanMoney/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{loanCredit.loanMoney lt 100}">
+                                            <h:outputText value="#{loanCredit.loanMoney}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+                                    </div>
+                                </div>
+                                <div class="categorydetailpart2">
+                                    <div class="catdetail2">投资人数：&#160;#{loanCalculator.countSuccessInvest(loanCredit.id)}人</div>
+                                    <div class="catdetail2">可投金额：
+                                        <ui:fragment rendered="#{loanCredit.loanMoney-(loanCredit.loanMoney*(crCredit/100)) ge 100}">
+                                            <h:outputText value="#{(loanCredit.loanMoney-(loanCredit.loanMoney*(crCredit/100)))/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{loanCredit.loanMoney-(loanCredit.loanMoney*(crCredit/100)) lt 100}">
+                                            <h:outputText value="#{(loanCredit.loanMoney-(loanCredit.loanMoney*(crCredit/100)))}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+                                    </div>
+                                    <div class="catdetail2">已投金额：
+                                        <ui:fragment rendered="#{loanCredit.loanMoney*(crCredit/100) ge 100}">
+                                            <h:outputText value="#{loanCredit.loanMoney*(crCredit/100)/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
 
-                        <div class="part3btn">
-                            <img src="#{tplVars.themeImagePath}/part3btn3.png" />
-                        </div>
+                                        <ui:fragment rendered="#{loanCredit.loanMoney*(crCredit/100) lt 100}">
+                                            <h:outputText value="#{loanCredit.loanMoney*(crCredit/100)}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+                                    </div>
+                                </div>
+                                <div  id="canvas" style="width:35%;height:80px;float:left;">
+                                    <div class="circle" id="circles-3">#{crCredit}</div>
+                                </div>
+                            </div>
+
+                            <div class="part3btn">
+                                <a href="#{path}/loanDetailCredit/#{loanCredit.id}"> <img src="#{tplVars.themeImagePath}/part3btn3.png" /></a>
+                            </div>
 
 
                         </ui:fragment>
@@ -402,7 +436,6 @@
                 <div class="part2-1-1">
                     合作机构
                 </div>
-
                 <div id="seamless_frame">
                     <ul id="seamless" style="position:absolute;left:0px;top:0px;">
                         <li><img src="#{tplVars.themeImagePath}/friends1.png" alt="" /></li>
@@ -411,6 +444,18 @@
                         <li><img src="#{tplVars.themeImagePath}/friends4.png" alt="" /></li>
                         <li><img src="#{tplVars.themeImagePath}/friends5.png" alt="" /></li>
                         <li><img src="#{tplVars.themeImagePath}/friends6.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends7.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends8.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends9.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends1.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends2.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends3.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends4.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends5.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends6.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends7.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends8.png" alt="" /></li>
+                        <li><img src="#{tplVars.themeImagePath}/friends9.png" alt="" /></li>
                     </ul>
                 </div>
 

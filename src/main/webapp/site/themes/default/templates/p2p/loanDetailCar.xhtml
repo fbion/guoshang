@@ -17,8 +17,9 @@
     <ui:define name="content">
         <ui:param name="loan" value="#{loanHome.instance}"></ui:param>
         <link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/chedai_details.css"/>
-        <script type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/chedai_details.css"/>
+        <link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/ui.progress-bar.css"/>
         <script type="text/javascript" src="#{tplVars.themeJSPath}/chedai_details.js"></script>
+        <script type="text/javascript" src="#{tplVars.themeJSPath}/progress.js"></script>
         <div class="content">
             <!-- 头部开始 -->
             <div class="bread_top">
@@ -62,11 +63,9 @@
 										年化利率
 									</span>
                                     </div>
-
                                     <div class="d_r_num">
 										<span><h:outputText
                                                 value="#{loan.ratePercent}">
-                                            <f:convertNumber minFractionDigits="2"/>
                                         </h:outputText></span>
                                         <span style="font-size:12px;">%</span>
                                     </div>
@@ -96,12 +95,17 @@
 										融资金额
 									</span>
                                     </div>
-
                                     <div class="d_r_num">
-										<span><h:outputText value="#{loan.loanMoney}">
-                                            <f:convertNumber type="number"/>
-                                        </h:outputText></span>
-                                        <span style="font-size:12px;">元</span>
+                                        <ui:fragment rendered="#{loan.loanMoney ge 100}">
+                                            <span><h:outputText value="#{loan.loanMoney/10000}">
+                                            </h:outputText></span>
+                                            <span style="font-size:12px;">万</span>
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{loan.loanMoney lt 100}">
+                                            <span><h:outputText value="#{loan.loanMoney}">
+                                            </h:outputText></span>
+                                            <span style="font-size:12px;">元</span>
+                                        </ui:fragment>
                                     </div>
                                 </li>
                             </ul>
@@ -134,6 +138,91 @@
                                             问号问号问号问号问号问号
                                         </div>
                                     </div>
+                                </li>
+
+
+                                <li>
+                                    <ui:fragment rendered="#{loanCalculator.calculateLoanCould(loan.id)=='未开始'}">
+                                        <div id="muji" class="point_r" >
+                                            <span>募集未开始</span>
+                                        </div>
+                                    </ui:fragment>
+                                    <ui:fragment rendered="#{loanCalculator.calculateLoanCould(loan.id)=='RUNNING'}">
+
+                                        <div id="shengyu" class="point_r">
+                                            <span>剩余时间：</span>
+                                            <span id="t_d" style="color:#EC4849;"></span>
+                                            <span>天</span>
+                                            <span id="t_h" style="color:#EC4849;"></span>
+                                            <span>时</span>
+                                            <span id="t_m" style="color:#EC4849;"></span>
+                                            <span>分</span>
+                                            <span id="t_s" style="color:#EC4849;"></span>
+                                            <span>秒</span>
+                                        </div>
+                                        <!-- 隐藏域value存放数据库中剩余时间值，可能需要格式化时间，比如2017/05/1 10:00:00 -->
+                                        <input id="surplus_time" type="hidden" value="#{loan.expectTime}"/>
+                                        <script type="text/javascript">
+								    function getRTime(){
+								    	var surplus_time=$('#surplus_time').val();
+								        var EndTime= new Date(surplus_time);
+								        var NowTime = new Date();
+								        var t =EndTime.getTime() - NowTime.getTime();
+								        /*var d=Math.floor(t/1000/60/60/24);
+								        t-=d*(1000*60*60*24);
+								        var h=Math.floor(t/1000/60/60);
+								        t-=h*60*60*1000;
+								        var m=Math.floor(t/1000/60);
+								        t-=m*60*1000;
+								        var s=Math.floor(t/1000);*/
+
+								        var d=Math.floor(t/1000/60/60/24);
+								        var h=Math.floor(t/1000/60/60%24);
+								        var m=Math.floor(t/1000/60%60);
+								        var s=Math.floor(t/1000%60);
+
+								        document.getElementById("t_d").innerHTML = d ;
+								        document.getElementById("t_h").innerHTML = h ;
+								        document.getElementById("t_m").innerHTML = m ;
+								        document.getElementById("t_s").innerHTML = s ;
+								    }
+								    setInterval(getRTime,1000);
+
+                                    </script>
+                                    </ui:fragment>
+
+                                    <ui:fragment rendered="#{loanCalculator.calculateLoanCould(loan.id)=='已到期'}">
+                                        <div id="muji" class="point_r">
+                                            <span>募集已结束</span>
+                                        </div>
+                                    </ui:fragment>
+                                </li>
+                                <li>
+
+                                    <div class="point_r">
+                                        <span>项目进度：</span>
+                                    </div>
+
+                                    <div class="pro_bar_z">
+                                        <div id="progress_bar" class="ui-progress-bar ui-container">
+                                            <!-- ie小于等于9，添加ui-progress2样式,ie11，添加ui-progress3样式，ie1-0，添加ui-progress4样式 -->
+                                            <div class="ui-progress ui-progress3 ui-progress4" style=""></div>
+
+                                            <!--[if lte IE 9]>
+                                            <script type="text/javascript">
+													$('.ui-progress').addClass('ui-progress2');
+                                            </script>
+                                            <![endif]-->
+                                        </div>
+                                    </div>
+                                    <!-- 隐藏域存放现在数据库中，进度百分数，比如65 -->
+                                    <ui:param name="cr"
+                                              value="#{loanCalculator.calculateRaiseCompletedRate(loan.id)}"></ui:param>
+                                    <input type="hidden" name="" id="now_pro" value="#{cr}"/>
+                                    <!-- span内放百分比，比如65 -->
+								<span class="ui-label" style="">
+								<span>#{cr}</span><span>%</span>
+								</span>
                                 </li>
                             </ul>
                         </div>
@@ -213,7 +302,8 @@
                             <li>
                                 <ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
 						         <span style="color:#EA4748;">
-							         <a href="#{request.contextPath}/memberLogin" style="text-decoration:none;color:#EA4748">登录后查看</a>
+							         <a href="#{request.contextPath}/memberLogin"
+                                        style="text-decoration:none;color:#EA4748">登录后查看</a>
 							     </span>
                                 </ui:fragment>
                                 <ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
@@ -470,7 +560,8 @@
 								});
 				return false;
 			}
-		</script>
+
+        </script>
 
     </ui:define>
 </ui:composition>

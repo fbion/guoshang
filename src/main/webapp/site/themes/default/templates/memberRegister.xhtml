@@ -39,23 +39,39 @@
     <h:body style="background:#f3f3f3;">
         <archer:archerMessages focus="false" showGlobalMessages="true"
                                severity="0,2"></archer:archerMessages>
-        <div class="login_header">
-            <div class="login_logo">
-                <a href="#{path}/"><img src="#{tplVars.themeImagePath}/logo.png"/></a>
+        <div class="top">
+            <div class="top_main">
+                <div class="top_main_left">
+                    <div class="top_logo">
+                        <a href="#{path}/"><img src="#{tplVars.themeImagePath}/logo.png" /></a>
+                    </div>
+                    <div class="top_line">
+                        <img src="#{tplVars.themeImagePath}/line04.png" />
+                    </div>
+                    <div class="top_wel"><p>免费注册</p></div>
+                </div>
+
+                <div class="top_main_right">
+                    <div class="top_zi">
+                        <a href="#">关于易贷</a>
+                    </div>
+                    <div class="top_zi">
+                        <p>|</p>
+                    </div>
+                    <div class="top_zi">
+                        <a href="#{path}/">首页</a>
+                    </div>
+                </div>
             </div>
-            <div class="login_line">
-                <img src="#{tplVars.themeImagePath}/line04.png"/>
-            </div>
-            <p>欢迎注册</p>
         </div>
 
-        <div class="login">
+        <div class="login" style="margin-top: 30px;">
             <div class="login_l login_l01">
                 <h:form id="form">
                     <archer:validateEqual id="rePasswordValidator" components="pass repass"
                                           showMessageFor="@all" message="两次输入密码不一致"></archer:validateEqual>
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">用户名：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>用户名：</div>
                         <div class="login_box_r">
                             <h:inputText id="username" label="用户名" required="true"
                                          styleClass="login_txt" maxlength="16"
@@ -69,7 +85,7 @@
                         <div class="clear"></div>
                     </div>
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">登录密码：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>登录密码：</div>
                         <div class="login_box_r">
                             <h:inputSecret id="pass" label="密码" required="true"
                                            styleClass="login_txt login_txt02" maxlength="16"
@@ -82,7 +98,7 @@
                         <div class="clear"></div>
                     </div>
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">确认密码：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>确认密码：</div>
                         <div class="login_box_r">
                             <h:inputSecret id="repass" required="true" maxlength="16"
                                            styleClass="login_txt login_txt02" label="确认密码">
@@ -115,7 +131,7 @@
                     <!--<div class="clear"></div>-->
                     <!--</div>-->
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">手机号码：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>手机号码：</div>
                         <div class="login_box_r">
                             <h:inputText id="mobileNumber" maxlength="11" label="手机号"
                                          value="#{userHome.instance.mobileNumber}"
@@ -131,7 +147,7 @@
 
 
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">图形验证码：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>图形验证码：</div>
                         <div class="login_box_r">
                             <h:inputText id="captcha_input"   label="图形验证码"  required="true" value="#{userHome.captchaCode}" maxlength="4"
                                          styleClass="login_txt login_txt03"></h:inputText>
@@ -146,7 +162,7 @@
 
 
                     <div class="login_box login_box01">
-                        <div class="login_box_l login_box_l01">手机验证码：</div>
+                        <div class="login_box_l login_box_l01"><font color="red">*&#160;</font>手机验证码：</div>
                         <div class="login_box_r">
                             <h:inputText id="captcha" label="验证码" maxlength="6"
                                          required="true" styleClass="login_txt login_txt03"
@@ -203,20 +219,20 @@
                         <div class="clear"></div>
                     </div>
                 </h:form>
-                <div class="login_box login_box01">
-                    <div class="login_box_l login_box_l01"></div>
-                    <div class="login_box_r">
-                        <p class="dl">
-                            使用合作网站账户登录：<br/> <a href="#"><img
-                                src="#{tplVars.themeImagePath}/img54.png"/></a>腾讯QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a
-                                href="#"><img src="#{tplVars.themeImagePath}/img55.png"/></a>新浪微博
-                        </p>
-                    </div>
-                    <div class="clear"></div>
-                </div>
+                <!--<div class="login_box login_box01">-->
+                    <!--<div class="login_box_l login_box_l01"></div>-->
+                    <!--<div class="login_box_r">-->
+                        <!--<p class="dl">-->
+                            <!--使用合作网站账户登录：<br/> <a href="#"><img-->
+                                <!--src="#{tplVars.themeImagePath}/img54.png"/></a>腾讯QQ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a-->
+                                <!--href="#"><img src="#{tplVars.themeImagePath}/img55.png"/></a>新浪微博-->
+                        <!--</p>-->
+                    <!--</div>-->
+                    <!--<div class="clear"></div>-->
+                <!--</div>-->
             </div>
-            <div class="login_r login_r02">
-                <p class="log">
+            <div class="login_r login_r02" style="width: 600px;">
+                <p class="log" style="float: right;">
                     已有账号？| <a href="#{path}/memberLoginPage">立即登录</a>
                 </p>
                 <img src="#{tplVars.themeImagePath}/img56.png"/>

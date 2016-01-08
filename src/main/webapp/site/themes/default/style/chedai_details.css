@@ -126,10 +126,10 @@ body{
   height: 80px;
 }
 .d_r_ul1 li{
-  width: 95px;
+  width: 105px;
   height: 80px;
-  padding-left: 40px;
-  padding-right: 45px;
+  padding-left: 35px;
+  padding-right: 40px;
   float: left;
 }
 /*商品详情ul li标题*/
@@ -158,28 +158,28 @@ body{
 
 /*产品详情右标题下数字*/
 .d_r_num{
-  width: 95px;
+  width: 115px;
   height: 52px;
   text-align: center;
   padding-top: 8px;
 }
 .d_r_num span{
-  font-size: 38px;
+  font-size: 50px;
   font-family: '微软雅黑';
   color:#EB4748;  
 }
 /*产品详情右第二个列表*/
 .d_r_ul2{
-  width: 550px;
+  width: 560px;
   height: 12px;
   list-style: none;
   padding-top: 30px;
 }
 .d_r_ul2 li{
-  /*width: 140px;*/
+  width: 230px;
   height: 12px;
   padding-left: 40px;
-  padding-right: 60px;
+  padding-top: 25px;
   float: left;
   line-height: 12px;
 }
@@ -252,6 +252,46 @@ body{
   display: block;
 }*/
 
+/*项目进度总块*/
+.pro_bar_z{
+  /*behavior: url(css/ie-css3.htc);*/
+  width: 110px;
+  padding: 2px;
+  padding-top: 3px;
+  position: relative;
+  float: left;
+}
+/*项目进度数字表示*/
+.ui-label{
+  display: block;
+  width: 40px;
+  height: 20px;
+  padding-left: 3px;
+  font-size: 12px;
+  float: left;
+  color: #EC4849;
+  font-weight: 400;
+  font-family: '微软雅黑';
+}
+/*兼容ie6,7,8,9下进度条动画*/
+.ui-progress2
+{
+  background: #EC4849;
+}
+/*ie11 css hack*/
+/*兼容ie11下进度条动画*/ 
+@media all and (-ms-high-contrast:none) { 
+*::-ms-backdrop, .ui-progress3 { 
+  background: #EC4849;
+  }
+}
+/*ie10 css hack*/
+/*兼容ie10下进度条动画*/
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) { 
+.ui-progress4 { 
+  background: #EC4849;
+  } 
+}
 /*产品介绍上部右*/
 .product_up_r{
   width: 348px;

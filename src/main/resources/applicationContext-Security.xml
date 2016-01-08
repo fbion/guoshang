@@ -230,7 +230,6 @@ http://www.springframework.org/schema/security/spring-security-3.2.xsd">
 	<!-- Automatically receives AuthenticationEvent messages -->
 	<beans:bean id="loggerListener"
 		class="org.springframework.security.authentication.event.LoggerListener" />
-
 	<beans:bean id="messageSource"
 		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<beans:property name="basename"
