@@ -128,25 +128,57 @@
                                 </div>
                                 <div class="categorydetailpart">
                                     <div class="catdetail1">项目规模</div>
-                                    <div class="catdetail1-1"><h:outputText value="#{loanCar.loanMoney/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
+                                    <div class="catdetail1-1">
+                                        <ui:fragment rendered="#{loanCar.loanMoney ge 100}">
+                                            <h:outputText value="#{loanCar.loanMoney/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+
+                                        <ui:fragment rendered="#{loanCar.loanMoney lt 100}">
+                                            <h:outputText value="#{loanCar.loanMoney}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+
+                                    </div>
                                 </div>
+
                                 <div class="categorydetailpart2">
-                                    <div class="catdetail2">投资人数：30</div>
-                                    <div class="catdetail2">可投金额：<h:outputText value="#{(loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)))/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
-                                    <div class="catdetail2">已投金额：<h:outputText value="#{loanCar.loanMoney*(crCar/100)/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
+                                    <div class="catdetail2">投资人数：&#160;#{loanCalculator.countSuccessInvest(loanCar.id)}人</div>
+                                    <div class="catdetail2">可投金额：
+                                        <ui:fragment rendered="#{loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)) ge 100}">
+                                            <h:outputText value="#{(loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)))/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)) lt 100}">
+                                            <h:outputText value="#{(loanCar.loanMoney-(loanCar.loanMoney*(crCar/100)))}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+
+                                    </div>
+                                    <div class="catdetail2">已投金额：
+                                        <ui:fragment rendered="#{loanCar.loanMoney*(crCar/100) ge 100}">
+                                            <h:outputText value="#{loanCar.loanMoney*(crCar/100)/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+
+                                        <ui:fragment rendered="#{loanCar.loanMoney*(crCar/100) lt 100}">
+                                            <h:outputText value="#{loanCar.loanMoney*(crCar/100)}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+                                    </div>
                                 </div>
                                 <div  id="canvas" style="width:35%;height:80px;float:left;">
-                                    <div class="circle" id="circles-1">crCar</div>
+                                    <div class="circle" id="circles-1">#{crCar}</div>
                                 </div>
                             </div>
                             <div class="part3btn">
-                              <a href="#{path}/loanDetailCar/#{loanCar.id}"> <img src="#{tplVars.themeImagePath}/part3btn1.png" /> </a>
+                                <a href="#{path}/loanDetailCar/#{loanCar.id}"> <img src="#{tplVars.themeImagePath}/part3btn1.png" /> </a>
                             </div>
                         </ui:fragment>
                     </div>
@@ -154,7 +186,8 @@
                     <div class="part3-2-2"  style="position:relative;">
                         <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('房贷')}" />
                         <ui:fragment rendered="#{not empty loanHouse}">
-                            <ui:param name="crHouse" value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}" />
+                            <ui:param name="crHouse"
+                                      value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}"/>
                             <img class="categoryicon2" src="#{tplVars.themeImagePath}/category2.png"     />
                             <div class="category"  >
                                 <div class="categoryname"><span>#{loanHouse.name}</span></div>
@@ -168,34 +201,71 @@
                                     <div class="catdetail1">项目期限</div>
                                     <div class="catdetail1-1">#{loanHouse.deadline}#{dictUtil.getValue('repay_unit',loanHouse.type.repayTimeUnit)}</div>
                                 </div>
+
                                 <div class="categorydetailpart">
                                     <div class="catdetail1">项目规模</div>
-                                    <div class="catdetail1-1"><h:outputText value="#{loanHouse.loanMoney/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
+                                    <div class="catdetail1-1">
+                                        <ui:fragment rendered="#{loanHouse.loanMoney ge 100}">
+                                            <h:outputText value="#{loanHouse.loanMoney/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+
+                                        <ui:fragment rendered="#{loanHouse.loanMoney lt 100}">
+                                            <h:outputText value="#{loanHouse.loanMoney}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+
+                                    </div>
                                 </div>
+
                                 <div class="categorydetailpart2">
-                                    <div class="catdetail2">投资人数：10</div>
-                                    <div class="catdetail2">可投金额：<h:outputText value="#{(loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)))/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
-                                    <div class="catdetail2">已投金额：<h:outputText value="#{loanHouse.loanMoney*(crHouse/100)/10000}">
-                                        <f:convertNumber minFractionDigits="2" />
-                                    </h:outputText>万</div>
+                                    <div class="catdetail2">投资人数：&#160;#{loanCalculator.countSuccessInvest(loanHouse.id)}人</div>
+                                    <div class="catdetail2">可投金额：
+                                        <ui:fragment rendered="#{loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)) ge 100}">
+                                            <h:outputText value="#{(loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)))/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+                                        <ui:fragment rendered="#{loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)) lt 100}">
+                                            <h:outputText value="#{(loanHouse.loanMoney-(loanHouse.loanMoney*(crHouse/100)))}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+
+                                    </div>
+
+                                    <div class="catdetail2">已投金额：
+                                        <ui:fragment rendered="#{loanHouse.loanMoney*(crHouse/100) ge 100}">
+                                            <h:outputText value="#{loanHouse.loanMoney*(crHouse/100)/10000}">
+                                                <f:convertNumber minFractionDigits="2" />
+                                            </h:outputText>万
+                                        </ui:fragment>
+
+                                        <ui:fragment rendered="#{loanHouse.loanMoney*(crHouse/100) lt 100}">
+                                            <h:outputText value="#{loanHouse.loanMoney*(crHouse/100)}">
+                                                <f:convertNumber minFractionDigits="0" />
+                                            </h:outputText>元
+                                        </ui:fragment>
+                                    </div>
                                 </div>
                                 <div  id="canvas" style="width:35%;height:80px;float:left;">
-                                    <div class="circle" id="circles-2">crHouse</div>
+                                    <div class="circle" id="circles-2">#{crHouse}</div>
                                 </div>
                             </div>
                             <div class="part3btn">
                                 <a href="#{path}/loanDetailCar/#{loanHouse.id}"> <img src="#{tplVars.themeImagePath}/part3btn2.png" /></a>
                             </div>
-                         </ui:fragment>
+                        </ui:fragment>
 
                     </div>
 
 
                     <div class="part3-2-3" style="position:relative;">
+                        <ui:param name="loanHouse" value="#{loanList.getNewLoanByType('信贷')}" />
+                        <ui:fragment rendered="#{not empty loanHouse}">
+                        <ui:param name="crHouse" value="#{loanCalculator.calculateRaiseCompletedRate(loanHouse.id)}" />
                         <img class="categoryicon2" src="#{tplVars.themeImagePath}/category3.png"     />
                         <div class="category"  >
                             <div class="categoryname"><span>新手</span></div>
@@ -220,9 +290,13 @@
                                 <div class="circle" id="circles-3"></div>
                             </div>
                         </div>
+
                         <div class="part3btn">
                             <img src="#{tplVars.themeImagePath}/part3btn3.png" />
                         </div>
+
+
+                        </ui:fragment>
                     </div>
 
 

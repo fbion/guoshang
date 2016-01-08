@@ -71,9 +71,16 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
     public boolean calculateFee() {
         //add by shiqm   更改固定2元手续费
         this.getInstance().setFee(2D);
+        if(userBillService.getBalance(loginUserInfo.getLoginUserId()) < this.getInstance().getFee() + this.getInstance().getMoney()){
+            FacesUtil.addErrorMessage("余额不足！");
+            FacesUtil.getCurrentInstance().validationFailed();
+            this.getInstance().setMoney(0D);
+            return false;
+        }
         this.getInstance().setMoney(this.getInstance().getMoney()-2D);
         return true;
         //end
+
 //        double fee = wcs.calculateFee(this.getInstance().getMoney());
 //        if (userBillService.getBalance(loginUserInfo.getLoginUserId()) < fee + this.getInstance().getMoney()) {
 //            FacesUtil.addErrorMessage("余额不足！");

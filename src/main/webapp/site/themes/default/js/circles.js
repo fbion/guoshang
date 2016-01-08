@@ -240,7 +240,7 @@
       decimalPartClass = decimalPartClass || 'circles-decimals';
 
       var parts = (number + '').split('.'),
-          html  = '<span class="' + integerPartClass + '">' + parts[0]+'</span>';
+          html  = '<span class="' + integerPartClass + '">' + parts[0]+'%</span>';
 
       if (parts.length > 1) {
               html += '.<span class="' + decimalPartClass + '">' + parts[1].substring(0, 2) + '%</span>';
