@@ -108,7 +108,7 @@ $(function() {
       }
 	  
 	 function showInfoLabel(a){
-		 if($(a).val()=='房贷'){
+		 if($(a).val()=='houseType'){
 			 $("#form\\:infoOne").show();
 			 $("#form\\:infoOne").attr('placeholder','建筑面积');
 			 $("#form\\:infoTwo").show();
@@ -118,7 +118,7 @@ $(function() {
 			 $("#form\\:infoFour").show();
 			 $("#form\\:infoFour").attr('placeholder','所处位置');
 			 $("#form\\:infoTime").hide();
-		 }else if($(a).val()=='车贷'){
+		 }else if($(a).val()=='carType'){
 			 $("#form\\:infoOne").show();
 			 $("#form\\:infoOne").attr('placeholder','品牌型号');
 			 $("#form\\:infoTwo").show();

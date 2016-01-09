@@ -543,7 +543,6 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 			}
 			String status = respXML.selectSingleNode(
 					"/response/records/record/status").getStringValue();
-
 			if (code.equals("1") && status != null) {
 				to.setStatus(TrusteeshipConstants.Status.PASSED);
 				to.setResponseData(respInfo);
@@ -572,49 +571,6 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 		}
 	}
 
-	public static void main(String[] args) {
-		try {
-			BufferedReader br = new BufferedReader(new FileReader(new File(
-					"D:/recharge.txt")));
-			FileWriter bw = new FileWriter("D:/ssss.txt");
-			String line = br.readLine();
-			int count = 0;
-			int right = 0;
-			int error = 0;
-			System.out.println("begin");
-			bw.write("begin\n\r");
-			while (line != null) {
-				count += 1;
-				String id = line.substring(32, 44);
-				String status = line.substring(line.length() - 34,
-						line.length() - 26);
-				int ss = line.indexOf("success");
-				if (ss != -1) {
-					boolean b = ddd(id);
-					if (!b) {
-						error += 1;
-						System.out.println(id);
-						bw.write(id + "\n\r");
-						bw.flush();
-					} else {
-						right += 1;
-					}
-				}
-				//
-				line = br.readLine();
-			}
-			System.out.println("end");
-			System.out.println("right:" + right + "   error:" + error
-					+ "   count:" + count);
-			bw.write("end\n\r");
-			bw.write("right:" + right + "   error:" + error + "   count:"
-					+ count + "\n\r");
-		} catch (Exception e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-
-	}
 
 	public static boolean ddd(String id) {
 		boolean b = false;
@@ -997,8 +953,7 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 			}
 			// 只有code为1且记录返回状态不为空时才能对对其进行处理
 			if ("1".equals(code) && records != null && !records.equals("")) {
-				String status = respXML.selectSingleNode(
-						"/response/records/record/status").getStringValue();
+				String status = respXML.selectSingleNode("/response/records/record/status").getStringValue();
 				log.debug("status is null?" + status == null ? true : false);
 				Recharge r = ht.get(Recharge.class, to.getMarkId());
 				if (status != null && status.equals("SUCCESS")) {
@@ -1037,6 +992,12 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 			postMethod.releaseConnection();
 		}
 	}
+
+
+
+
+
+
 
 	/**
 	 * 提现

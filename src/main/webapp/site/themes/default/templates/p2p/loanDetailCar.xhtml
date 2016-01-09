@@ -23,11 +23,11 @@
         <div class="content">
             <!-- 头部开始 -->
             <div class="bread_top">
-                <a href="" style="margin-left:0px;">首页</a>
+                <a href="#{path}" style="margin-left:0px;">首页</a>
                 <span>></span>
-                <a href="">我要理财</a>
+                <a href="#{path}/loan-list-all">我要理财</a>
                 <span>></span>
-                <a href="" style="color:#EB4647">车贷</a>
+                <a href="" style="color:#EB4647">#{loan.name}</a>
             </div>
             <!-- 头部结束 -->
 
@@ -264,7 +264,20 @@
                         </ul>
 
                         <!-- 隐藏域存放数据库值，显示进度 -->
-                        <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
+                        <ui:fragment rendered="#{loan.status==LoanStatus.RAISING}">
+                           <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.status==LoanStatus.RECHECK}">
+                            <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.status==LoanStatus.REPAYING}">
+                            <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.status==LoanStatus.COMPLETE}">
+                            <input id="jinduvalue" type="hidden" name="jindu" value="4"/>
+                        </ui:fragment>
+
+
                         <!-- 隐藏域存放数据库值，显示进度 -->
                         <ul class="r_up_pro_line">
                             <li class="pro_line1"></li>

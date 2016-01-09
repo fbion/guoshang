@@ -20,7 +20,7 @@
 			<h:form>
 				<div class="xmzt">
 
-					<!-- 				清除筛选对分页的影响 -->
+					<!--清除筛选对分页的影响 -->
 					<p:remoteCommand process="@this" immediate="true" name="clearPage"
 									 actionListener="#{loanList.setCurrentPage(1)}"></p:remoteCommand>
 					<div class="xmzt_l">
@@ -100,31 +100,23 @@
 							<div class="clear"></div>
 						</div>
 						<div class="zt zt_01">
-							<p>项目规模：</p>
+							<p>项目类型：</p>
 							<div class="zt01">
 								<h:commandLink styleClass="hover" title="全部" value="全部">
 									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(1,500000*1000000)}"></f:ajax>
+											listener="#{loanList.example.setBusinessType('')}"></f:ajax>
 								</h:commandLink>
-								<h:commandLink title="10万以下" value="10万以下">
+								<h:commandLink title="易盈家" value="易盈家">
 									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(0,100000)}"></f:ajax>
+											listener="#{loanList.example.setBusinessType('houseType')}"></f:ajax>
 								</h:commandLink>
-								<h:commandLink title="10~50万" value="10~50万">
+								<h:commandLink title="易福车" value="易福车">
 									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(100000+1,500000)}"></f:ajax>
+											listener="#{loanList.example.setBusinessType('carType')}"></f:ajax>
 								</h:commandLink>
-								<h:commandLink title="50~100万" value="50~100万">
+								<h:commandLink title="易诺信" value="易诺信">
 									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(500000+1,1000000)}"></f:ajax>
-								</h:commandLink>
-								<h:commandLink title="100~500万" value="100~500万">
-									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(1000000+1,5000000)}"></f:ajax>
-								</h:commandLink>
-								<h:commandLink title="500万以上" value="500万以上">
-									<f:ajax render="dataTable"
-											listener="#{loanList.setMinAndMaxLoanMoney(500*10000+1,5000*10000)}"></f:ajax>
+											listener="#{loanList.example.setBusinessType('creditType')}"></f:ajax>
 								</h:commandLink>
 							</div>
 							<div class="clear"></div>
@@ -167,14 +159,26 @@
 							<div class="con_box">
 								<div class="con_l">
 									<center style="padding-top: 10px;">
-										<a href="#{path}/loan/#{loan.id}" ><img
-												style="width: 35px;"
-												src="#{tplVars.themeImagePath}/img15.png" /></a>
+										<ui:fragment rendered="#{loan.businessType =='houseType'}">
+											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+													style="width: 35px;"
+													src="#{tplVars.themeImagePath}/house_icon.png" /></a>
+										</ui:fragment>
+										<ui:fragment rendered="#{loan.businessType =='carType'}">
+											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+													style="width: 35px;"
+													src="#{tplVars.themeImagePath}/car_icon.png" /></a>
+										</ui:fragment>
+										<ui:fragment rendered="#{loan.businessType =='creditType'}">
+											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+													style="width: 35px;"
+													src="#{tplVars.themeImagePath}/credit_icon.png" /></a>
+										</ui:fragment>
 									</center>
 								</div>
 								<div class="con_c">
 									<h3 >
-										<a href="#{path}/loan/#{loan.id}">#{fn:substring(loan.name,0,66)}</a>
+										<a href="#{path}/loanDetailCar/#{loan.id}">#{fn:substring(loan.name,0,66)}</a>
 									</h3>
 									<style>
 										.loan_content li{
@@ -211,11 +215,11 @@
 											style="width: #{cr}%"></b></em><i>#{cr}%</i></span>
 									</div>
 									<ui:fragment rendered="#{loan.status ==LoanStatus.RAISING}">
-										<a href="#{path}/loan/#{loan.id}"
+										<a href="#{path}/loanDetailCar/#{loan.id}"
 										   class="txczje02_btn list_btn">立即投标</a>
 									</ui:fragment>
 									<ui:fragment rendered="#{loan.status !=LoanStatus.RAISING}">
-										<a href="#{path}/loan/#{loan.id}"
+										<a href="#{path}/loanDetailCar/#{loan.id}"
 										   class="txczje02_btn list_btn list_btn02">查看详情</a>
 									</ui:fragment>
 								</div>
