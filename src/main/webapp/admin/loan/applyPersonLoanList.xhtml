@@ -20,20 +20,17 @@
             <p:toolbar>
                 <p:toolbarGroup>
                     <h:outputLabel style="padding-left: 15px;"
-                                   value="#{commonMsg.currentPositionLabel} 项目管理 "></h:outputLabel>
+                                   value="#{commonMsg.currentPositionLabel} 个人借款申请列表 "></h:outputLabel>
                 </p:toolbarGroup>
                 <p:toolbarGroup align="right">
                     <p:separator/>
                     <!-- 	            <p:button value="新增借款项目" outcome="/admin/loan/loanAdd"></p:button> -->
                 </p:toolbarGroup>
             </p:toolbar>
-
             <h:form id="form">
                 <p:spacer></p:spacer>
-                <ui:param name="restriction"
-                          value="#{'loan.businessType!=\'个人借款\''}#{' and loan.businessType!=\'企业借款\''}"></ui:param>
                 <f:event type="preRenderComponent"
-                         listener="#{loanList.addRestriction(restriction)}"></f:event>
+                         listener="#{loanList.example.setBusinessType('个人借款')}"></f:event>
                 <p:panel id="filters">
                     <p:inputText id="searchId" value="#{loanList.example.id}"></p:inputText>
                     <p:inputText id="searchTitle" value="#{loanList.example.name}"></p:inputText>
@@ -50,7 +47,8 @@
                 <p:watermark for="searchTitle" value="项目名称"></p:watermark>
                 <p:watermark for="searchStartTime" value="发起时间&gt;="></p:watermark>
                 <p:watermark for="searchEndTime" value="=&lt;发起时间"></p:watermark>
-
+                <f:event type="preRenderComponent"
+                         listener="#{loanList.setPageSize(7)}"></f:event>
                 <p:spacer></p:spacer>
 
                 <!--                 rowStyleClass="#{loan.status != '1'?'disable':''}" -->
@@ -73,7 +71,6 @@
                         <a href="#{path}/p2p_loan/#{loan.id}" target="view_window">
                             <h:outputText value="#{loan.name}" title="#{loan.name}"></h:outputText>
                         </a>
-
                     </p:column>
                     <p:column width="80">
                         <f:facet name="header">
@@ -85,12 +82,7 @@
                         <f:facet name="header">
                             <h:outputText value="项目类型"></h:outputText>
                         </f:facet>
-                        <h:outputText rendered="#{loan.businessType=='creditType'}" value="易诺信">
-                        </h:outputText>
-                        <h:outputText rendered="#{loan.businessType=='carType'}" value="易福车">
-                        </h:outputText>
-                        <h:outputText rendered="#{loan.businessType=='houseType'}" value="易盈房">
-                        </h:outputText>
+                        <h:outputText value="#{loan.businessType}"></h:outputText>
                     </p:column>
                     <p:column width="100">
                         <f:facet name="header">
@@ -170,29 +162,29 @@
                         %
                     </p:column>
 
-                    <p:column headerText="#{commonMsg.actionLabel}" exportable="false">
-                        <h:link value="编辑" outcome="/admin/loan/loanEdit?id=#{loan.id}"></h:link>
+                    <!--<p:column headerText="#{commonMsg.actionLabel}" exportable="false">-->
+                        <!--<h:link value="编辑" outcome="/admin/loan/loanEdit?id=#{loan.id}"></h:link>-->
 
-                        <ui:fragment
-                                rendered="#{loanList.example.status==LoanStatus.WAITING_VERIFY or loanList.example.status==LoanStatus.RECHECK}">
-                            |
-                            <ui:fragment rendered="#{loan.status==LoanStatus.WAITING_VERIFY}">
-                                <h:link value="审核" outcome="/admin/loan/verifyLoan?id=#{loan.id}"></h:link>
-                            </ui:fragment>
-                            <ui:fragment rendered="#{loan.status==LoanStatus.RECHECK}">
-                                <h:link value="复核" outcome="/admin/loan/recheckLoan?id=#{loan.id}"></h:link>
-                            </ui:fragment>
-                        </ui:fragment>
+                        <!--<ui:fragment-->
+                                <!--rendered="#{loanList.example.status==LoanStatus.WAITING_VERIFY or loanList.example.status==LoanStatus.RECHECK}">-->
+                            <!--|-->
+                            <!--<ui:fragment rendered="#{loan.status==LoanStatus.WAITING_VERIFY}">-->
+                                <!--<h:link value="审核" outcome="/admin/loan/verifyLoan?id=#{loan.id}"></h:link>-->
+                            <!--</ui:fragment>-->
+                            <!--<ui:fragment rendered="#{loan.status==LoanStatus.RECHECK}">-->
+                                <!--<h:link value="复核" outcome="/admin/loan/recheckLoan?id=#{loan.id}"></h:link>-->
+                            <!--</ui:fragment>-->
+                        <!--</ui:fragment>-->
 
-                        <ui:fragment rendered="#{loan.status == LoanStatus.REPAYING}">
-                            |
-                            <h:commandLink onclick="return confirm('确定要提前还款吗？');" value="提前还款"
-                                           action="#{systemRepayHome.advanceRepay(loan.id)}">
-                            </h:commandLink>
+                        <!--<ui:fragment rendered="#{loan.status == LoanStatus.REPAYING}">-->
+                            <!--|-->
+                            <!--<h:commandLink onclick="return confirm('确定要提前还款吗？');" value="提前还款"-->
+                                           <!--action="#{systemRepayHome.advanceRepay(loan.id)}">-->
+                            <!--</h:commandLink>-->
 
-                        </ui:fragment>
+                        <!--</ui:fragment>-->
 
-                    </p:column>
+                    <!--</p:column>-->
                     <f:facet name="footer">
                         <p:commandButton value="导出Excel" ajax="false">
                             <p:dataExporter target="dataTable" type="xls"

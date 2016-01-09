@@ -230,6 +230,11 @@ public class LoanHome extends EntityHome<Loan> implements Serializable {
 				getInstance().setLoanActivityType(
 						LoanConstants.LoanActivityType.PT);
 			}
+			//如果是前台申请，super债权人填写自己
+			if(getInstance().getBusinessType().equals("个人借款")){
+				getInstance().setSuperUser(user);
+			}
+
 			loanService.applyLoan(getInstance());
 			FacesUtil.addInfoMessage("发布借款成功，请填写个人基本信息。");
 			return "pretty:loanerPersonInfo";
