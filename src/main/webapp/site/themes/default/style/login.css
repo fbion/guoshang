@@ -289,7 +289,7 @@
 }
 
 .email p a {
-	color: #F18F68;
+	color: #E84848;
 	text-decoration: underline;
 	line-height: 40px;
 }
@@ -304,7 +304,7 @@
 	margin-top: 20px;
 	width: 131px;
 	height: 42px;
-	background: #F18F68;
+	background: #E84848;
 	color: #fff;
 	border-radius: 5px;
 	-webkit-border-radius: 5px;
@@ -327,7 +327,7 @@
 	padding: 15px 28px;
 	line-height: 45px;
 	text-align: center;
-	background: #F18F68;
+	background: #E84848;
 	font-size: 16px;
 	color: #fff;
 	border-radius: 5px;
@@ -395,7 +395,7 @@
 }
 
 .zhmm_p_02 span {
-	color: #F18F68;
+	color: #E84848;
 	font-size: 21px;
 }
 
@@ -410,7 +410,7 @@
 	font-size: 12px;
 	padding: 2px 10px;
 	margin-left: 5px;
-	background: #F18F68;
+	background: #E84848;
 	border-radius: 20px;
 	-webkit-border-radius: 20px;
 	-moz-border-radius: 20px;
@@ -422,7 +422,7 @@
 
 /*手机找回密码04*/
 .zhmm_p_03 {
-	color: #F18F68;
+	color: #E84848;
 	font-size: 16px;
 }
 
@@ -434,7 +434,7 @@
 .zhmm_p_02 a {
 	font-weight: normal;
 	text-decoration: underline;
-	color: #F18F68;
+	color: #E84848;
 }
 
 .zhmm_p_04 {

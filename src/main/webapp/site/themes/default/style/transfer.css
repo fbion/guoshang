@@ -4,12 +4,12 @@
 .xmzt h3 p.zqzr_p{ font-weight:bold; display:inline-block; float:left;}
 .xmzt h3 span{float:right; padding-right:10px; font-weight:normal; font-size:14px; line-height:30px;}
 .xmzt_01 h3{padding-top:10px; height:35px;}
-.xmzt h3 span a{color:#F18F68; padding-left:20px;}
+.xmzt h3 span a{color:#E84848; padding-left:20px;}
 .xmzt_r_p{ font-size:18px; color:#3f3f3f; line-height:50px;}
 
 .zqzr_ul li{line-height:25px;}
 .zqzr_ul li a{ color:#6b6b6b; font-size:14px;}
-.zqzr_ul li a:hover{color:#F18F68;}
+.zqzr_ul li a:hover{color:#E84848;}
 
 .zqzr{width:998px; min-height:100px; border:1px solid #ededed; margin-bottom:30px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
 
@@ -30,7 +30,7 @@
 .pad20px{padding-left:20px;}
 .list_btn_02{width:80px; height:35px; line-height:35px; margin:0;}
 .zqzr_title{height:35px; background:#f5f6f7; padding-top:10px; }
-.zqzr_title p{padding-left:10px; border-left:3px solid #F18F68; font-size:18px; color:#3e3e3e; font-weight:bold; margin-left:10px;}
+.zqzr_title p{padding-left:10px; border-left:3px solid #E84848; font-size:18px; color:#3e3e3e; font-weight:bold; margin-left:10px;}
 .zqzr_title p span{font-size:14px; font-weight:normal; padding-left:5px;}
 
 
@@ -43,14 +43,14 @@
 .zqzrsq_tab td.noline{border:0; }
 .line-height30px{line-height:30px;}
 .zqzrsq_tab td.gray{ font-size:13px; color:#9d9d9d;}
-.zqzrsq_tab td.gray a{color:#F18F68;}
-.zqzrsq_tab a{color:#F18F68;}
+.zqzrsq_tab td.gray a{color:#E84848;}
+.zqzrsq_tab a{color:#E84848;}
 .pad87px{padding-left:87px;}
 .list_btn_03{width:118px; height:47px; line-height:47px; margin:20px 20px 20px 87px; float:left;}
 .zqzrsq_tab a.list_btn_03{color:#fff;}
 .list_btn_03:hover{background:#FF8832;}
 .list_btn_04{background:#e6e6e6; margin:0; margin-top:20px;}
-.zqzrsq_tab a.list_btn_04{color:#F18F68;}
+.zqzrsq_tab a.list_btn_04{color:#E84848;}
 .list_btn_04:hover{ background:#d1d1d1;}
 
 .loan-detail_01 .line span{ text-decoration:line-through;}
@@ -66,7 +66,7 @@
 .hf span{color:#da525c;}
 .yhpl_more{width:670px; height:35px; line-height:35px; text-align:center; background:#f3f3f3; color:#3f3f3f; font-size:14px; margin:20px auto;}
 .yhpl_more a{color:#3f3f3f;}
-.yhpl_more a:hover{color:#F18F68;}
+.yhpl_more a:hover{color:#E84848;}
 
 
 

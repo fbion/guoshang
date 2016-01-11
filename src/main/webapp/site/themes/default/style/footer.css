@@ -24,7 +24,7 @@ img{
 /*底部中背景*/
 .footer_bg{
 	width: 100%;
-	height: 305px;
+	height: 190px;
 	background: #1D1B1B;
 }
 
@@ -97,11 +97,92 @@ img{
 	text-align: center;
 }
 
+
+/*底部黑色区域居中总框2*/
+.footer_main2{
+	width: 1100px;
+	height: 145px;
+	margin: 0 auto;
+}
+/*底部黑色区域左边大部分*/
+.footer_m2_l{
+	width: 750px;
+	height: 145px;
+	float: left;
+	padding-top: 45px;
+}
+/*左大部分ul上*/
+.footer_m2_l_1{
+	width: 750px;
+	height: 26px;
+	list-style: none;
+}
+.footer_m2_l_1 li{
+	/*width: 145px;*/
+	padding-left: 33px;
+	padding-right: 70px;
+	float: left;
+	height: 26px;
+	line-height: 26px;
+
+}
+.footer_m2_l_1 li a{
+	color:#999999;
+	text-decoration: none;
+	font-size: 18px;
+}
+.footer_m2_l_1 li a:hover{
+	text-decoration: underline;
+}
+/*左大部分ul下*/
+.footer_m2_l_2{
+	width: 750px;
+	list-style: none;
+	padding-top: 35px;
+}
+.footer_m2_l_2 li{
+	padding-right: 40px;
+	color:#999999;
+	float: left;
+	font-size: 18px;
+}
+
+/*黑色区域中部*/
+.footer_m2_m{
+	width: 30px;
+	height: 145px;
+	float: left;
+	padding-top: 27px;
+	padding-left: 10px;
+}
+/*黑色区域右部*/
+.footer_m2_r{
+	width: 130px;
+	height: 130px;
+	float: left;
+	text-align: center;
+	padding-top: 45px;
+	padding-left: 130px;
+}
+.footer_m2_r img{
+	width: 94px;
+	height: 94px;
+	margin: 0 auto;
+}
+.footer_m2_r span{
+	display: block;
+	width: 130px;
+	height: 20px;
+	line-height: 20px;
+	color:#999999;
+	font-size: 14px;
+	padding-top: 7px;
+}
 /*友情链接样式*/
 .friendly_link{
 	width: 100%;
 	height: 44px;
-	background: #BC1125;
+	background: #EB4647;
 }
 .friendly_l_c{
 	width: 1100px;
@@ -133,7 +214,7 @@ img{
 /*底部认证、备案大背景*/
 .footer_rzba{
 	width: 100%;
-	height: 200px;
+	height: 175px;
 	background: #F6F6F6;
 }
 /*底部认证总块*/
@@ -143,6 +224,7 @@ img{
 	margin: 0 auto;
 	line-height: 87px;
 	padding-top: 15px;
+	display: none;
 }
 .footer_rz img{
 	height: 34px;
@@ -159,4 +241,5 @@ img{
 	font-size: 12px;
 	color:#999999;
 	text-align: center;
+	padding-top: 20px;
 }

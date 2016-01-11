@@ -25,6 +25,8 @@ devSrc=build/artifacts/WEB-INF/lib/*
 goalSrc=E:/apache-tomcat-6.0.37/webapps/
 rm -rf E:/apache-tomcat-6.0.37/webapps/ROOT
 rm -rf E:/apache-tomcat-6.0.37/webapps/ROOT.war
+#删除tomcat记录
+rm -rf E:/apache-tomcat-6.0.37/work
 echo '=========第二步copy到容器==========='
 cp -R $devSrc $goalSrc
 echo '.'

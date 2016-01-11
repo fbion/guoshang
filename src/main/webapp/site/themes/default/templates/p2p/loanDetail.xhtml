@@ -35,21 +35,55 @@
             <div class="product_up">
                 <!-- 左 -->
                 <div class="product_up_l">
+                    <div style="float:left;  padding-top: 15px;">
+                        <ui:fragment rendered="#{loan.businessType eq 'carType'}">
+                          <img  src="#{tplVars.themeImagePath}/version_two/header_car.png" />
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.businessType eq 'houseType'}">
+                            <img  src="#{tplVars.themeImagePath}/version_two/header_house.png" />
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.businessType eq 'creditType'}">
+                            <img  src="#{tplVars.themeImagePath}/version_two/header_credit.png" />
+                        </ui:fragment>
+                    </div>
                     <div class="product_name">
                         <span>#{loan.name}</span>
                     </div>
                     <div class="product_details">
                         <div class="product_details_l">
-                            <img src="#{tplVars.themeImagePath}/version_two/houselogo.jpg" alt=""/>
-
-                            <div></div>
-                            <img src="#{tplVars.themeImagePath}/version_two/shouyigg.jpg" alt=""/>
-
-                            <p>
-                                收益高高，收益高高，
-                            </p>
-
-                            <p>收益高高，收益高高。</p>
+                            <ui:fragment rendered="#{loan.businessType eq 'carType'}">
+                                <img src="#{tplVars.themeImagePath}/version_two/carlogo.jpg" alt=""/>
+                                <div></div>
+                                <img src="#{tplVars.themeImagePath}/version_two/des_car.png" alt=""/>
+                                <p>
+                                    优质车辆抵押，证件齐全，
+                                </p>
+                                <p>
+                                    实时GPS跟踪，资产变现快。
+                                </p>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{loan.businessType eq 'houseType'}">
+                                <img src="#{tplVars.themeImagePath}/version_two/houselogo.jpg" alt=""/>
+                                <div></div>
+                                <img src="#{tplVars.themeImagePath}/version_two/des_house.png" alt=""/>
+                                <p>
+                                    优质房产抵押，证件齐全，
+                                </p>
+                                <p>
+                                    过户登记，资产不易贬值。
+                                </p>
+                            </ui:fragment>
+                            <ui:fragment rendered="#{loan.businessType eq 'creditType'}">
+                                <img src="#{tplVars.themeImagePath}/version_two/creditlogo.jpg" alt=""/>
+                                <div></div>
+                                <img src="#{tplVars.themeImagePath}/version_two/des_credit.png" alt=""/>
+                                <p>
+                                    证件、资料齐全，征信体系
+                                </p>
+                                <p>
+                                    完善，严格授信额度评估。
+                                </p>
+                            </ui:fragment>
                         </div>
 
                         <div class="product_details_r">
@@ -126,18 +160,7 @@
                                 </li>
 
                                 <li>
-                                    <div class="d_r_ul2_point"></div>
-                                    <div class="point_r">
-                                        <span>项目特点：</span>
-                                        <span style="color:black;">时间短，收益高</span>
-                                    </div>
-                                    <div class="point_wen">
-                                        <img src="#{tplVars.themeImagePath}/version_two/wenhao.jpg" alt=""/>
 
-                                        <div class="wenhaosm">
-                                            问号问号问号问号问号问号
-                                        </div>
-                                    </div>
                                 </li>
 
 
@@ -264,7 +287,7 @@
                         </ul>
                         <!-- 隐藏域存放数据库值，显示进度 -->
                         <ui:fragment rendered="#{loan.status==LoanStatus.RAISING}">
-                           <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
+                            <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
                         </ui:fragment>
                         <ui:fragment rendered="#{loan.status==LoanStatus.RECHECK}">
                             <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
@@ -310,6 +333,7 @@
 							元</span>
                             </li>
                             <li>
+                                <span>账户余额：</span>
                                 <ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
 						         <span style="color:#EA4748;">
 							         <a href="#{request.contextPath}/memberLogin"
@@ -317,7 +341,6 @@
 							     </span>
                                 </ui:fragment>
                                 <ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
-                                    <span>账户余额：</span>
 								       <span style="color:#333333;"><h:outputLabel
                                                value="#{userBillHome.getBalanceByUserId(loginUserInfo.loginUserId)}">
                                            <f:convertNumber/>
@@ -358,7 +381,7 @@
                                     <ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
                                         <h:link outcome="pretty:memberLogin" styleClass="investmentbtn">
                                             <f:param name="spring-security-redirect"
-                                                     value="/loanDetailCar/#{loan.id}"/>
+                                                     value="/loanDetail/#{loan.id}"/>
                                             <h:outputText value="立即投资"></h:outputText>
                                         </h:link>
                                     </ui:fragment>

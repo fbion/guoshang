@@ -61,7 +61,7 @@ body{
   border-bottom: 1px solid #DCDCDC;
   padding-top: 15px;
   padding-bottom: 15px;
-  padding-left: 70px;
+  padding-left: 45px;
   color:#333333;
   font-size: 20px;
   line-height: 20px;
@@ -102,14 +102,13 @@ body{
 }
 /*产品详情左文字*/
 .product_details_l p{
-  width:140px;
+  width:160px;
   height: 20px;
   line-height: 20px;
   text-align: center; 
   font-size: 12px;
   color:black;
   font-family: "微软雅黑";
-  font-weight: 700;
 }
 
 /*商品详情右*/
@@ -224,8 +223,8 @@ body{
   padding: 5px;
   border:1px solid #BDBDBD;
   position: absolute;
-  top:25px;
-  left:-51.5px;
+  top:-12px;
+  left:25px;
   border-radius: 5px;
   font-size: 12px;
   font-family: '微软雅黑';

@@ -1,0 +1,119 @@
+<ui:composition template="page.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pm="http://primefaces.org/mobile"
+				xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+				xmlns:o="http://omnifaces.org/ui"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+
+
+
+	<ui:define name="content">
+
+		<style>
+			.about1{background-color: #42A8FD;width: 100%;height:364px}
+			.about1content{margin: 0 auto;width: 1100px;}
+
+			.about2{background-color: #fff;width: 100%;height:492px}
+			.about2content{margin: 0 auto;width: 1100px;}
+
+			.about3{background-color: #E7F8FF;width: 100%;height:647px}
+			.about3content{margin: 0 auto;width: 1100px;}
+
+			.about4{background-color: white;width: 100%;height:411px}
+			.about4content{margin: 0 auto;width: 1100px;}
+
+			.friendfd{
+			width: 1100px;
+			height: 89px;
+			margin: 0 auto;
+			background: url(#{tplVars.themeImagePath}/friendfd.png) no-repeat;
+			}
+
+			.friends_all{
+			list-style: none;
+			width: 1100px;
+			margin: 0 auto;
+			height: 200px;
+			padding-top: 28px;
+			}
+			.friends_all li{
+			float: left;
+			width: 158px;
+			height: 62px;
+			padding-right: 77px;
+			padding-bottom: 30px;
+			}
+
+		</style>
+
+		<div class="about1">
+			<div class="about1content">
+				<img src="#{tplVars.themeImagePath}/aboutpart1.jpg" />
+			</div>
+		</div>
+
+		<div class="about2">
+			<div class="about2content">
+				<img src="#{tplVars.themeImagePath}/aboutpart2.jpg" />
+			</div>
+		</div>
+
+		<div class="about3">
+			<div class="about3content">
+				<img src="#{tplVars.themeImagePath}/aboutpart3.jpg" />
+			</div>
+		</div>
+
+		<div class="about4">
+			<div class="about4content">
+				<img src="#{tplVars.themeImagePath}/aboutpart4.jpg" />
+			</div>
+		</div>
+
+		<div class="friendfd">
+
+		</div>
+
+		<ul class="friends_all">
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl1.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl2.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl3.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl4.png" alt="" />
+			</li>
+			<li style="padding-right:0px;">
+				<img src="#{tplVars.themeImagePath}/friendsl5.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl6.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl7.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl8.png" alt="" />
+			</li>
+			<li>
+				<img src="#{tplVars.themeImagePath}/friendsl9.png" alt="" />
+			</li>
+			<li style="padding-right:0px;">
+				<img src="#{tplVars.themeImagePath}/friendsl10.png" alt="" />
+			</li>
+		</ul>
+
+
+
+	</ui:define>
+</ui:composition>

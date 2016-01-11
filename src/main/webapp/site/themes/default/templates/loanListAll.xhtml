@@ -15,7 +15,7 @@
 
 		<div class="main">
 			<div class="tag">
-				<span><a href="#">首页</a> ></span><span><a href="#">我要理财</a> > </span><a style="font-size: 15px;" href="#">所有项目列表</a>
+				<span><a href="#{path}/">首页</a> ></span><span><a href="#{path}/loan-list-all">我要理财</a> > </span><a style="font-size: 15px;" href="#">所有项目列表</a>
 			</div>
 			<h:form>
 				<div class="xmzt">
@@ -160,17 +160,17 @@
 								<div class="con_l">
 									<center style="padding-top: 10px;">
 										<ui:fragment rendered="#{loan.businessType =='houseType'}">
-											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+											<a href="#{path}/loanDetail/#{loan.id}" ><img
 													style="width: 35px;"
 													src="#{tplVars.themeImagePath}/house_icon.png" /></a>
 										</ui:fragment>
 										<ui:fragment rendered="#{loan.businessType =='carType'}">
-											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+											<a href="#{path}/loanDetail/#{loan.id}" ><img
 													style="width: 35px;"
 													src="#{tplVars.themeImagePath}/car_icon.png" /></a>
 										</ui:fragment>
 										<ui:fragment rendered="#{loan.businessType =='creditType'}">
-											<a href="#{path}/loanDetailCar/#{loan.id}" ><img
+											<a href="#{path}/loanDetail/#{loan.id}" ><img
 													style="width: 35px;"
 													src="#{tplVars.themeImagePath}/credit_icon.png" /></a>
 										</ui:fragment>
@@ -178,7 +178,7 @@
 								</div>
 								<div class="con_c">
 									<h3 >
-										<a href="#{path}/loanDetailCar/#{loan.id}">#{fn:substring(loan.name,0,66)}</a>
+										<a href="#{path}/loanDetail/#{loan.id}">#{fn:substring(loan.name,0,66)}</a>
 									</h3>
 									<style>
 										.loan_content li{
@@ -215,11 +215,11 @@
 											style="width: #{cr}%"></b></em><i>#{cr}%</i></span>
 									</div>
 									<ui:fragment rendered="#{loan.status ==LoanStatus.RAISING}">
-										<a href="#{path}/loanDetailCar/#{loan.id}"
+										<a href="#{path}/loanDetail/#{loan.id}"
 										   class="txczje02_btn list_btn">立即投标</a>
 									</ui:fragment>
 									<ui:fragment rendered="#{loan.status !=LoanStatus.RAISING}">
-										<a href="#{path}/loanDetailCar/#{loan.id}"
+										<a href="#{path}/loanDetail/#{loan.id}"
 										   class="txczje02_btn list_btn list_btn02">查看详情</a>
 									</ui:fragment>
 								</div>

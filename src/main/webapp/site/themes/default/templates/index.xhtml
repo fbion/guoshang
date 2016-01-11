@@ -67,37 +67,28 @@
                 </div>
                 <div class="part2-2">
                     <div class="part2-2-1">
-                        <a href="#{request.contextPath}/node/index/index_banner_1" >
                             <img src="#{tplVars.themeImagePath}/fkbz.png" />
                             <ui:param name="nodeHome1" value="#{nodeList.getNodeById('index_banner_1')}" />
                             <div>#{stringHome.ellipsis(nodeHome1.description,50)}</div>
-                        </a>
                     </div>
                     <div class="part2-2-1">
-                        <a href="#{request.contextPath}/node/index/index_banner_2" >
                             <img src="#{tplVars.themeImagePath}/zjaq.png" />
                             <ui:param name="nodeHome2" value="#{nodeList.getNodeById('index_banner_2')}" />
                             <div>#{stringHome.ellipsis(nodeHome2.description,50)}</div>
-                        </a>
                     </div>
                     <div class="part2-2-1">
-                        <a href="#{request.contextPath}/node/index/index_banner_3" >
                             <img src="#{tplVars.themeImagePath}/ylbz.png" />
                             <ui:param name="nodeHome3" value="#{nodeList.getNodeById('index_banner_3')}" />
                             <div>#{stringHome.ellipsis(nodeHome3.description,50)}</div>
-                        </a>
                     </div>
                     <div class="part2-2-1">
-                        <a href="#{request.contextPath}/node/index/index_banner_3" >
                             <img src="#{tplVars.themeImagePath}/cxbz.png" />
                             <ui:param name="nodeHome4" value="#{nodeList.getNodeById('index_banner_4')}" />
                             <div>#{stringHome.ellipsis(nodeHome4.description,50)}</div>
-                        </a>
                     </div>
                 </div>
             </div>
             <!--服务保障结束-->
-
 
             <!--投资项目开始-->
             <div class="part3">
@@ -176,7 +167,7 @@
                                 </div>
                             </div>
                             <div class="part3btn">
-                                <a href="#{path}/loanDetailCar/#{loanCar.id}"> <img src="#{tplVars.themeImagePath}/part3btn1.png" /> </a>
+                                <a href="#{path}/loanDetail/#{loanCar.id}"> <img src="#{tplVars.themeImagePath}/part3btn1.png" /> </a>
                             </div>
                         </ui:fragment>
                     </div>
@@ -251,12 +242,10 @@
                                 </div>
                             </div>
                             <div class="part3btn">
-                                <a href="#{path}/loanDetailCar/#{loanHouse.id}"> <img src="#{tplVars.themeImagePath}/part3btn2.png" /></a>
+                                <a href="#{path}/loanDetail/#{loanHouse.id}"> <img src="#{tplVars.themeImagePath}/part3btn2.png" /></a>
                             </div>
                         </ui:fragment>
-
                     </div>
-
 
                     <div class="part3-2-3" style="position:relative;">
                         <ui:param name="loanCredit" value="#{loanList.getNewLoanByType('creditType')}" />
@@ -324,7 +313,7 @@
                             </div>
 
                             <div class="part3btn">
-                                <a href="#{path}/loanDetailCar/#{loanCredit.id}"> <img src="#{tplVars.themeImagePath}/part3btn3.png" /></a>
+                                <a href="#{path}/loanDetail/#{loanCredit.id}"> <img src="#{tplVars.themeImagePath}/part3btn3.png" /></a>
                             </div>
                         </ui:fragment>
                     </div>
@@ -342,7 +331,6 @@
 
 
             <!--行业动态开始-->
-
             <div class="part4">
                 <div class="part2-1" style="position:relative;" >
                     <div class="part2-1-1">行业动态</div>
@@ -364,7 +352,6 @@
                                 <img src="#{tplVars.themeImagePath}/newsstatus0.png" />
                             </div>
                         </div>
-
                         <ul class="slides_container_news" >
                             <ui:repeat var="item" value="#{nodeList.getNodes('PTGG',4).data}" varStatus='i'>
                                 <ui:fragment rendered="#{i.first}">
