@@ -422,7 +422,12 @@
                         <span class="intro_tab_line2" style="display:block;"></span>
                     </li>
                     <li class="intro_tab2">
-                        <span>抵押物信息</span>
+                        <ui:fragment rendered="#{loan.businessType eq 'creditType'}">
+                            <span>项目资料信息</span>
+                        </ui:fragment>
+                        <ui:fragment rendered="#{loan.businessType ne 'creditType'}">
+                            <span>抵押物信息</span>
+                        </ui:fragment>
                         <span class="intro_tab_line1"></span>
                         <span class="intro_tab_line2"></span>
                     </li>
@@ -438,7 +443,7 @@
                         <ul class="i_t_d_c1">
                             <li>
                                 <span class="i_t_d_cspan">品牌型号：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:370px;">奥迪A4L</span>
+                                <span class="i_t_d_cspan" style="color:#333333;width:370px;"></span>
                             </li>
                             <li>
                                 <span class="i_t_d_cspan">品牌型号：</span>
