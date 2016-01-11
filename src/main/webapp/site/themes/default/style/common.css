@@ -65,7 +65,7 @@ img {
 .mlnav li ul{}
 .mlnav li li{border:0; line-height:30px; padding:0; line-height:40px; width:143px;}
 .mlnav li li a{color:#8b8b8b; background:none; display:block; width:143px; height:40px; padding:0; margin-left:50px; text-align:center;}
-.mlnav li li a:hover,.mlnav li li a.hover{background:#FF8832; color:#fff;} 
+.mlnav li li a:hover,.mlnav li li a.hover{background:#E84848; color:#fff;}
 
 .mlnav li a.li01{background:url(../images/img01.png) no-repeat; background-position:50px 22px; }
 .mlnav li a.li01:hover{background:#E84848 url(../images/img08.png) no-repeat; background-position:50px 18px; }
@@ -103,10 +103,10 @@ img {
 .grzx_c p a img{position: relative; margin-top: 0px; top: 5px;}
 .grzx_r{float:right; margin-top:20px;}
 .grzx_r a{display:block; width:80px; height:35px; line-height:35px; text-align:center; font-size:14px; color:#fff; float:right; }
-.cz{background:#fe7610; margin-right:18px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
-.cz:hover{background:#da650e;}
+.cz{background:#E84848; margin-right:18px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
+.cz:hover{background:#E84848;}
 .tx{background:#E84848; margin-right:5px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
-.tx:hover{background:#FF8832;}
+.tx:hover{background:#E84848;}
 .grzx_ul li{width:22%; float:left; line-height:30px; font-size:14px; color: #3f3f3f; padding-left:20px; }
 .grzx_ul li img{margin:-3px 5px -1px 0;}
 .grzx_ul li span{color:#E84848;}
@@ -210,7 +210,7 @@ img {
   padding: 10px;
 }
 .pnr-permission #last{
-	color:#fe7610;
+	color:#E84848;
 }
 .pnr-permission-btn-div{
 	margin:20px auto 0;

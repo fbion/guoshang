@@ -13,13 +13,13 @@
 .grzx_r02{ float:right;}
 .grzx_r02 a{display:block; width:80px; height:35px; line-height:35px; text-align:center; font-size:14px; color:#fff; float:left; margin-top:-2px;}
 .cx{background:#E84848; margin-right:10px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
-.cx:hover{background:#FF8832;}
+.cx:hover{background:#E84848;}
 .cx02{margin-right:50px;}
 .tab_01{color:#000000;}
 .tab_01 .tab02{line-height:45px;}
 .tab_01 .tab03{line-height:75px;}
 .tab_01 .tab05{line-height:20px; font-size:12px;}
-.tab_01 .tab_green a{color:#FF8832;}
+.tab_01 .tab_green a{color:#E84848;}
 .tab_blue{color:#468847;}
 .tab_red{color:#d81515;}
 
@@ -55,7 +55,7 @@
 .txczje_r span{font-size:24px;}
 .txt02{width:177px; height:40px; border:1px solid #e5e5e5; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; line-height:40px; margin-right:10px;}
 
-.txczje02_btn:hover{ background:#FF8832;}
+.txczje02_btn:hover{ background:#E84848;}
 .set-cash-pw {
   height: 35px;
   line-height: 35px;
@@ -98,7 +98,7 @@
 .yhkxx li{width:228px; height:120px; border:2px solid #c8c8c8; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; float:left; margin:20px 20px 0 0; font-size:14px; line-height:27px;}
 .yhkxx li .yhk{width:228px; padding-top:16px; height:75px; text-align:center; font-size:14px; color:#a3a3a3; border-bottom:1px solid #e1e1e1;}
 .yhkxx li .yhk p{ line-height:30px;}
-.yhkxx li a{color:#FF8832; line-height:25px; }
+.yhkxx li a{color:#E84848; line-height:25px; }
 .yhkxx_l{ float:left; padding-left:53px;}
 .yhkxx_r{ padding-left:65px;}
 .yhkxx_c{ padding-left:80px; line-height:10px;}
@@ -131,7 +131,7 @@
 
 /*债权转让*/
 .grzx_ul03 li{width:45%; text-align:center; line-height:60px; font-size:16px;}
-.grzx_ul03 li span{color:#fe7610;}
+.grzx_ul03 li span{color:#E84848;}
 .center_zj02 div p{width:175px;}
 .center_zj02 div.center_zj_04 p{width:190px;}
 .zqzr_c{padding:0px 0 0 25px;}
@@ -145,14 +145,14 @@
 .aqxx_tab .font18{font-size:18px; padding-left:20px;}
 .aqxx_tab a{color:#E84848;}
 .grzx_ul04 li{line-height:60px; text-align:center;}
-.grzx_ul04 li.orange{color:#fe7610;}
+.grzx_ul04 li.orange{color:#E84848;}
 .grzx_ul04 li span{padding-left:20px;}
 .jf{line-height:50px; font-size:18px; color:#3e3e3e; padding-left:10px;}
 .tj01{line-height:60px;}
 .tj01 p{display:inline-block; padding-left:28px; float:left; font-size:14px; color:#3e3e3e; }
 .tj01 p .link{color:#E84848; font-size:14px; text-decoration:underline; padding:0;}
 .tj01 p .fz{color:#fff; padding:2px; background:#E84848; margin-left:5px; font-size:12px;}
-.tj01 p .fx{color:#fe7610; font-size:12px; text-decoration:underline;}
+.tj01 p .fx{color:#E84848; font-size:12px; text-decoration:underline;}
 .tj01 span{float:right; color:#5d5d5d; font-size:12px; line-height:90px; padding-right:20px;}
 
 /*个人基础信息*/
@@ -163,7 +163,7 @@
 .jcxx_tab td img{margin:0 5px -3px 0;}
 .jcxx_tab a{display:block; width:80px; height:35px; line-height:35px; text-align:center; font-size:14px; color:#fff; background:#E84848; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px; margin:20px 0;}
 .jcxx_tab td.last{border:0;}
-.jcxx_tab a:hover{background:#FF8832;}
+.jcxx_tab a:hover{background:#E84848;}
 
 /*绑定手机*/
 .bdsj_p{width:743px; height:60px; line-height:58px; margin:0 auto; border-bottom:1px dashed #ebe7e7; font-size:18px; color:#666666;}
@@ -177,8 +177,8 @@
 .bdsj_l span{color:red;}
 .bdsj_r a{display:block; width:120px; height:30px; line-height:30px; text-align:center; background:#E84848; color:#fff; font-size:14px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
 .bdsj_r .send-btn{border:none; display:block; width:120px; height:30px; line-height:30px; text-align:center; background:#E84848; color:#fff; font-size:14px; border-radius:5px; -webkit-border-radius:5px; -moz-border-radius:5px;}
-.bdsj_r a:hover{background:#FF8832;}
-.bdsj_r .send-btn:hover{background:#FF8832;}
+.bdsj_r a:hover{background:#E84848;}
+.bdsj_r .send-btn:hover{background:#E84848;}
 .bdsj_02{margin-bottom:30px;}
 .bdsj_p i{font-size:14px; padding-left:100px; font-style:normal;}
 .bdsj_r .bdsj_btn{ float:left; margin-left:10px;font-family: microsoft yahei;cursor:pointer;}

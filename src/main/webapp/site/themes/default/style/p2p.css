@@ -48,7 +48,7 @@ a{ text-decoration:none;}
 .level{ width:38px; height:38px; display:block; line-height:38px; color:#fff; border-radius:100%; background:#E84848;}
 .tzbtn{ display:block; width:80px; height:33px; text-align:center; line-height:33px; color:#fff; background:#E84848; border-radius:7px; font-size:14px;}
 .tzbtn02{display:block; width:80px; height:33px; text-align:center; line-height:33px; color:#fff; background:#ababab; border-radius:7px; font-size:14px;}
-.tzbtn:hover{ background:#FF8832}
+.tzbtn:hover{ background:#E84848}
 
 .pagebar{ width:1000px; text-align:center; line-height:35px;}
 .pagebar a{ font-size:14px; color:#3e3e3e; padding:10px;}

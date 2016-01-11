@@ -79,7 +79,7 @@
 .loan-detail_r p span{color:#E84848;}
 .xq{ padding:28px 0 0 20px;}
 .p2c_btn:hover{
-	background-color: #FF8832;	
+	background-color: #E84848;
 }
 .p2c_btn{width:214px; height:47px; line-height:47px; color:#fff; background:#E84848; float:left;}
 .p2c_btn_grey{width:214px; height:47px; line-height:47px; color:#fff; background:#d4d4d4;float:left;}
@@ -157,7 +157,7 @@
 .yzmimg{ position:relative; margin-bottom:-10px; margin-left:4px;}
 .pl-right p{ height:80px; line-height:80px; padding-right:10px;}
 .pl-right p a{ display:block; width:116px; height:32px; border-radius:6px; background:#E84848; text-align:center; line-height:32px; font-size:14px; color:#fff; margin-left:65px;}
-.pl-right p a:hover{ background:#FF8832;}
+.pl-right p a:hover{ background:#E84848;}
 .pl-ul li{ min-height:110px; border-bottom:1px dashed #eaeaea;}
 .pl-name{ font-size:16px; color:#E84848; padding-left:21px; height:35px; line-height:35px;}
 .pl-con{ min-height:25px; line-height:23px;white-space: pre-wrap;*white-space: pre;*word-wrap: break-word;word-wrap:break-word; word-break:break-all;}
