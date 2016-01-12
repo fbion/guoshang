@@ -27,20 +27,20 @@ img {
 .fr{ float:right;}
 .pointer{cursor: pointer;}
 
-.content{ width:890px; margin:0 auto;}
+.content{ width:1100px; margin:0 auto;}
 
 .left-ul{}
 .left-ul li{ margin-bottom:3px;}
 .left-ul li a{ width:180px; height:54x; display:block; text-align:center; font-size:14px; color:#343434; line-height:54px;}
 .left-ul li a.currentpage{background:#2896c9; color:#fff; border-radius:5px;}
 .left-ul li a:hover{background:#2896c9; color:#fff; border-radius:5px;}
-.content-right{ width:690px; min-height:500px;margin-bottom: 30px; border:1px solid #efefef; border-radius:3px;}
+.content-right{ width:1100px; min-height:500px;margin-bottom: 30px; border:1px solid #efefef; border-radius:3px;}
 .titleh{ color:#E84848; height:52px; line-height:52px; background:#fbfbfb; border-bottom:1px solid #efefef; padding-left:20px; border-top-left-radius:5px; border-top-right-radius:5px;}
 .right-ul li{ border-bottom:1px solid #efefef; height:57px; line-height:57px; padding-left:20px;}
 .content-right02{width:650px; min-height:500px;margin-bottom: 30px;  border:1px solid #efefef; border-radius:3px; padding:20px;}
 .content-right02 h5{ padding-bottom:20px;}
 .content-right02 p{ line-height:25px; margin-left:8px; font-size:14px; color:#454545;}
-.pagebar{ margin-top: 36px; width:690px; text-align:center}
+.pagebar{ margin-top: 36px; width:100%; text-align:center}
 .pagebar a.currentnumber{ color:#2896c9}
 .pagebar a{color:#999; padding:0px 5px;font-size: 16px;}
 .pagebar a:hover{color:#E84848;}
@@ -201,7 +201,7 @@ img {
 }
 
 /*文章列表*/
-.guide-div{ width:890px; margin:0 auto; height:35px; line-height:35px; margin-bottom:20px;}
+.guide-div{ width:1100px; margin:0 auto; height:35px; line-height:35px; margin-bottom:20px;}
 /**汇付天下 个人实名**/
 .pnr-permission {
   border-bottom: 1px dashed #ccc;

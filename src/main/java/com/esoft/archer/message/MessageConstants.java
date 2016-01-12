@@ -83,12 +83,21 @@ public class MessageConstants {
 	 *
 	 */
 	public final static class YtxMessageTemplateId{
+		//注册时发送的验证码
 		public final static String USER_REGISTER_CODE = "58587";
-		public final static String USER_REGISTER_SUCCESS = "58588";
+		//注册成功
+		//public final static String USER_REGISTER_SUCCESS = "58588";
+		//注册成功(新)
+		public final static String USER_REGISTER_SUCCESS = "60781";
+		//更改绑定手机
 		public final static String USER_CHANGE_MOBILE = "58589";
+		//充值成功
 		public final static String USER_RECHARGE_SUCCESS = "58591";
+		//找回密码
 		public final static String USER_FIND_PASSWORD = "59120";
+		//投资成功
 		public final static String LOAN_CREATE_SUCCESS = "58592";
+		//提现成功
 		public final static String WITHDRAW_CREATE_SUCCESS = "58596";
 	}
 	
