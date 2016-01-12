@@ -52,7 +52,6 @@ public class YeePayInvestHome extends InvestHome {
 		Loan loan = getBaseService().get(Loan.class,
 				getInstance().getLoan().getId());
 		if (loan.getUser().getId().equals(loginUserInfo.getLoginUserId())) {
-			
 			FacesUtil.addInfoMessage("你不能投自己的项目！");
 			return null;
 		}
