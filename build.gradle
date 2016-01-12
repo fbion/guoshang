@@ -6,7 +6,9 @@ war{
     baseName='ROOT'
 }
 
-
+repositories {
+    mavenCentral()
+}
 
 tasks.withType(JavaCompile){ options.encoding = "utf-8"}
 dependencies {
