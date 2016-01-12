@@ -84,9 +84,9 @@ public class DictUtil implements java.io.Serializable{
 		List<Dict> dicts = getHt().find(hql,key);
 		if(dicts.size() > 1){
 			log.error("有多个相同的key存在数据库中");
-			return "ERROR[多个相同的KEY]";
+			return "";
 		}else if(dicts.size() < 1){
-			return key + " not found";
+			return "";
 		}else{
 			return dicts.get(0).getValue();
 		}
