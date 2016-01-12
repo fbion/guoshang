@@ -511,7 +511,7 @@ body{
 }
 .i_t_d_cspan{
   display: block;
-  width: 70px;
+  width: 90px;
   height: 35px;
   float: left;
 }
@@ -612,3 +612,21 @@ body{
 .intro_tab_down_lunbo .left{left: 0px;}
 .intro_tab_down_lunbo .right{right: 0px;}
 
+.tab_td1{
+  BORDER-RIGHT: #CCCCCC 0px solid;
+  BORDER-TOP: #CCCCCC 1px solid;
+  BORDER-LEFT: #CCCCCC 1px solid;
+  BORDER-BOTTOM: #CCCCCC 1px solid;
+}
+.tab_td2{
+  BORDER-RIGHT: #CCCCCC 0px solid;
+  BORDER-TOP: #CCCCCC 1px solid;
+  BORDER-LEFT: #CCCCCC 0px solid;
+  BORDER-BOTTOM: #CCCCCC 1px solid;
+}
+.tab_td3{
+  BORDER-RIGHT: #CCCCCC 1px solid;
+  BORDER-TOP: #CCCCCC 1px solid;
+  BORDER-LEFT: #CCCCCC 0px solid;
+  BORDER-BOTTOM: #CCCCCC 1px solid;
+}

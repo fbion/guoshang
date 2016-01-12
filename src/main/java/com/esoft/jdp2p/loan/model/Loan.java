@@ -2,39 +2,26 @@ package com.esoft.jdp2p.loan.model;
 
 // default package
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-
-import javax.persistence.Basic;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.Lob;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.apache.commons.lang.StringUtils;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
 import com.esoft.archer.banner.model.BannerPicture;
 import com.esoft.archer.node.model.NodeAttr;
+import com.esoft.archer.system.controller.DictUtil;
 import com.esoft.archer.user.model.User;
 import com.esoft.core.util.ArithUtil;
+import com.esoft.core.util.DateUtil;
 import com.esoft.jdp2p.invest.model.Invest;
 import com.esoft.jdp2p.loan.LoanConstants;
 import com.esoft.jdp2p.loan.LoanConstants.RepayStatus;
 import com.esoft.jdp2p.repay.model.LoanRepay;
 import com.esoft.jdp2p.repay.model.RepayRoadmap;
+import org.apache.commons.lang.StringUtils;
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.annotation.Resources;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
 /**
  * Loan entity.
@@ -1224,4 +1211,45 @@ public class Loan implements java.io.Serializable, Cloneable {
 		return this.repayRoadmap;
 	}
 
+	@Transient
+	private String personInfo;
+
+	public String getPersonInfo() {
+		String strSex = "",strAge = "",resultStr = "借款人";
+		if(user.getSex()!=null && !"".equals(user.getSex())){
+			if("m".equalsIgnoreCase(user.getSex())){
+				strSex = "为男性,";
+			}else if("f".equalsIgnoreCase(user.getSex())){
+				strSex = "为女性,";
+			}else {
+				strSex = "性别未知,";
+			}
+			resultStr+=strSex;
+		}
+		if(user.getBirthday()!=null && !"".equals(user.getBirthday())){
+			String strDate1 = DateUtil.DateToString(user.getBirthday(),"yyyy-MM-dd HH:mm:ss");
+			String strDate2 = DateUtil.DateToString(new Date(),"yyyy-MM-dd HH:mm:ss");
+			strAge = Integer.valueOf(strDate2.substring(0, strDate2.indexOf("-")))-Integer.valueOf(strDate1.substring(0, strDate1.indexOf("-")))+"";
+			resultStr+=strAge+"岁，";
+		}
+		if(!"".equals(strSex) || !"".equals(strAge)){
+			return resultStr;
+		}
+		return "";
+	}
+
+	public void setPersonInfo(String personInfo) {
+		this.personInfo = personInfo;
+	}
+
+	@Transient
+	private String businessTypeName;
+
+	public String getBusinessTypeName() {
+		return DictUtil.getValueName(businessType);
+	}
+
+	public void setBusinessTypeName(String businessTypeName) {
+		this.businessTypeName = businessTypeName;
+	}
 }
