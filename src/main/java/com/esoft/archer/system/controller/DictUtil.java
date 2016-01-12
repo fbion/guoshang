@@ -66,7 +66,7 @@ public class DictUtil implements java.io.Serializable{
 	}
 	
 	public static List<Dict> getDictByParentKey(String parentKey){
-		return getHt().find("from Dict where parent.key = ? order by seqNum",parentKey);
+		return getHt().find("from Dict where parent.key = ? order by seqNum", parentKey);
 	}
 	
 	private static HibernateTemplate getHt(){
@@ -76,5 +76,19 @@ public class DictUtil implements java.io.Serializable{
 		return ht ;
 	}
 	
-	
+	public static String getValueName(String key){
+		if (StringUtils.isEmpty(key)) {
+			return null;
+		}
+		String hql = "from Dict where key = ?";
+		List<Dict> dicts = getHt().find(hql,key);
+		if(dicts.size() > 1){
+			log.error("有多个相同的key存在数据库中");
+			return "ERROR[多个相同的KEY]";
+		}else if(dicts.size() < 1){
+			return key + " not found";
+		}else{
+			return dicts.get(0).getValue();
+		}
+	}
 }
