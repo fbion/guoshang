@@ -12,8 +12,8 @@ repositories {
 
 tasks.withType(JavaCompile){ options.encoding = "utf-8"}
 dependencies {
-    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.8'
-    compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.50'
+   // compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.8'
+   // compile group: 'org.bouncycastle', name: 'bcprov-jdk15on', version: '1.50'
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 

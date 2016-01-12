@@ -85,7 +85,7 @@ public class YeePayCancelInvestOperation{
 				}
 			}
 		}
-		log.debug("流标失败（失败为true）" + success);
+		log.debug("流标操作执行现失败：（失败为true）" + success);
 		// FIXME:如果有一笔没有没有取消流标成功的话 ,下面是否继续处理
 		try {
 			if (!success) {
