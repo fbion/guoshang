@@ -10,6 +10,8 @@ war{
 
 tasks.withType(JavaCompile){ options.encoding = "utf-8"}
 dependencies {
+
+    compile group: 'com.itextpdf', name: 'itextpdf', version: '5.5.8'
     compile fileTree(dir: 'lib', include: '*.jar')
 }
 

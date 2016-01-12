@@ -300,7 +300,6 @@ public class YeePayInvestNofreezeOperation extends
 			String code = resultMap.get("code");
 			Invest invest = ht.get(Invest.class, requestNo);
 			if ("1".equals(code)) {// 易宝处理成功
-
 				to.setResponseData(respXML);
 				to.setResponseTime(new Date());
 				to.setStatus(TrusteeshipConstants.Status.PASSED);
@@ -365,7 +364,6 @@ public class YeePayInvestNofreezeOperation extends
 											+ "  投资id:" + invest.getId());
 						}
 						ht.update(invest);
-
 						User user=null;
 						//云通讯
 						try {
