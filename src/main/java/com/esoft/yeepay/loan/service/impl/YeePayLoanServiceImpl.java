@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.user.model.User;
+import com.esoft.archer.user.service.UserService;
 import org.apache.commons.logging.Log;
 import org.hibernate.LockMode;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -44,6 +46,9 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 
 	@Resource
 	RepayService repayService;
+
+	@Resource
+	UserService userService;
 	
 	@Resource
 	ConfigService configService;
@@ -140,10 +145,8 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 		if (loan.getInterestBeginTime() == null) {
 			loan.setInterestBeginTime(dateNow);
 		}
-
 		// 实际到借款账户的金额
 		double actualMoney = 0D;
-
 		List<Invest> invests = loan.getInvests();
 		double actualFee = 0d;
 		for (Invest invest : invests) {
@@ -176,7 +179,6 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 						actualMoney = ArithUtil.add(actualMoney,
 								invest.getInvestMoney());
 					}
-
 					double guranteeFee = loan.getLoanGuranteeFee()==null?0.0:loan.getLoanGuranteeFee();
 					double fee = ArithUtil.round(ArithUtil.mul(guranteeFee, ArithUtil.div(invest.getInvestMoney(), loan.getLoanMoney())), 2);
 					actualFee += fee;
@@ -187,6 +189,9 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 				// 更改投资状态
 				invest.setStatus(InvestConstants.InvestStatus.REPAYING);
 				ht.update(invest);
+				//云通讯发送投资成功信息给用户
+				User user=invest.getUser();
+				userService.sendSuccessCreateYtxSMS(user.getUsername(),loan.getName(),invest.getMoney(), user.getMobileNumber());
 			}
 		}
 //		String isYeepay2 = "0";
@@ -203,7 +208,6 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 
 		// 借款手续费-借款保证金
 		double subR = ArithUtil.sub(actualFee, loan.getDeposit());
-
 		double tooLittle = ArithUtil.sub(actualMoney, subR);
 		// 借到的钱，可能不足以支付借款手续费
 		if (tooLittle <= 0) {

@@ -1,5 +1,6 @@
 package com.esoft.jdp2p.repay.service.impl;
 
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -149,13 +150,13 @@ public class RepayServiceImpl implements RepayService {
 
 		// TODO:投资的所有还款信息加和，判断是否等于借款的还款信息，如果不相等，抛异常
 
+
+
 		// 更改投资的还款信息
 		for (InvestRepay ir : irs) {
-
 			ir.setStatus(LoanConstants.RepayStatus.COMPLETE);
 			ir.setTime(new Date());
 			ht.update(ir);
-
 			userBillBO.transferIntoBalance(
 					ir.getInvest().getUser().getId(),
 					ArithUtil.add(ir.getCorpus(), ir.getInterest()),
@@ -209,13 +210,12 @@ public class RepayServiceImpl implements RepayService {
 				OperatorInfo.NORMAL_REPAY, "项目ID:" + repay.getLoan().getId()
 						+ "正常还款，扣除手续费， 还款ID：" + repay.getId());
 
-		ht.merge(repay);		
+		ht.merge(repay);
 
 		// 判断是否所有还款结束，更改等待还款的投资状态和还款状态，还有项目状态。
 		loanService.dealComplete(repay.getLoan().getId());
 	}
-	
-	
+
 
 	@Override
 	@Transactional(rollbackFor = Exception.class)

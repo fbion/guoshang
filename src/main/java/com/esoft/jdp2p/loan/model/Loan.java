@@ -1127,12 +1127,6 @@ public class Loan implements java.io.Serializable, Cloneable {
 	}
 
 
-
-
-
-
-
-
 	/**
 	 * 还款路标（待还、已还金额之类）
 	 */
@@ -1211,45 +1205,4 @@ public class Loan implements java.io.Serializable, Cloneable {
 		return this.repayRoadmap;
 	}
 
-	@Transient
-	private String personInfo;
-
-	public String getPersonInfo() {
-		String strSex = "",strAge = "",resultStr = "借款人";
-		if(user.getSex()!=null && !"".equals(user.getSex())){
-			if("m".equalsIgnoreCase(user.getSex())){
-				strSex = "为男性,";
-			}else if("f".equalsIgnoreCase(user.getSex())){
-				strSex = "为女性,";
-			}else {
-				strSex = "性别未知,";
-			}
-			resultStr+=strSex;
-		}
-		if(user.getBirthday()!=null && !"".equals(user.getBirthday())){
-			String strDate1 = DateUtil.DateToString(user.getBirthday(),"yyyy-MM-dd HH:mm:ss");
-			String strDate2 = DateUtil.DateToString(new Date(),"yyyy-MM-dd HH:mm:ss");
-			strAge = Integer.valueOf(strDate2.substring(0, strDate2.indexOf("-")))-Integer.valueOf(strDate1.substring(0, strDate1.indexOf("-")))+"";
-			resultStr+=strAge+"岁，";
-		}
-		if(!"".equals(strSex) || !"".equals(strAge)){
-			return resultStr;
-		}
-		return "";
-	}
-
-	public void setPersonInfo(String personInfo) {
-		this.personInfo = personInfo;
-	}
-
-	@Transient
-	private String businessTypeName;
-
-	public String getBusinessTypeName() {
-		return DictUtil.getValueName(businessType);
-	}
-
-	public void setBusinessTypeName(String businessTypeName) {
-		this.businessTypeName = businessTypeName;
-	}
 }

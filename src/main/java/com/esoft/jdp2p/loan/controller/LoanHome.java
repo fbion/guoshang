@@ -320,6 +320,13 @@ public class LoanHome extends EntityHome<Loan> implements Serializable {
 	 */
 	public String createAdminLoan() {
 		Loan loan = this.getInstance();
+		loan.setDeposit(0D);
+		loan.setLoanGuranteeFee(0D);
+		loan.setFeeOnRepay(0D);
+		loan.setInvestorFeeRatePercent(0D);
+
+
+
 		if (!userService.hasRole(loan.getUser().getId(), "INVESTOR")
 				&& !userService.hasRole(loan.getUser().getId(), "LOANER")) {
 			FacesUtil.addErrorMessage("用户：" + loan.getUser().getId()

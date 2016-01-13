@@ -1,5 +1,6 @@
 package com.esoft.jdp2p.repay.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,9 +41,9 @@ public class NormalRepayRLIOCalculator implements NormalRepayCalculator {
 			String interestBeginPoint, List<RepayCustomPeriod> customPeriods) {
 		// TODO:自定义（不等额分期还款）尚未实现
 		if (interestType.equals(InterestType.DAY)) {
-			// 按天计息
+			// 按天计息 1
 			if (repayTimeUnit.equals(RepayUnit.DAY)) {
-				// 按天s还款
+				// 按天s还款 1
 				return generateDayDayRepays(investMoney, investTime, rate,
 						rateIBOI, deadline, repayTimePeriod, interestBeginTime,
 						interestBeginPoint);
@@ -78,6 +79,7 @@ public class NormalRepayRLIOCalculator implements NormalRepayCalculator {
 				+ ", repayTimeUnit:" + repayTimeUnit + ". 不支持该借款类型。");
 	}
 
+
 	/**
 	 * 生成按天计息、按月s还款的投资还款数据
 	 * 
@@ -106,7 +108,6 @@ public class NormalRepayRLIOCalculator implements NormalRepayCalculator {
 		ir.setDefaultInterest(0D);
 		// 只要不是最后一期，无需还本金
 		ir.setCorpus(investMoney);
-
 		// investBeginTime当前计息，还款日当天不计息
 		int interestDays = DateUtil.getIntervalDays(interestBeginTime,
 				DateUtil.addMonth(interestBeginTime, deadline));
@@ -167,15 +168,13 @@ public class NormalRepayRLIOCalculator implements NormalRepayCalculator {
 
 		Repay ir = new Repay();
 		ir.setDefaultInterest(0D);
-		// 只要不是最后一期，无需还本金
+		// 只要不是最后一期，无需还本金 1
 		ir.setCorpus(investMoney);
-
 		// investBeginTime当前计息，还款日当天不计息
 		int intervalDays = 0;
 		if (interestBeginPoint.equals(InterestPoint.INTEREST_BEGIN_ON_INVEST)) {
 			// 需处理 即投即生息 所产生的利息
 			// FIXME:此处有bug,不能往前选超过一个还款周期,不然就会在第一个还款日以后,还有投资出现,就没法计算了.
-			
 			// 计息的天数，投资后第二天开始计息,因为是T+1，所以要intervalDays+1。
 			intervalDays = DateUtil.calculateIntervalDays(interestBeginTime,
 					investTime) + 1;
@@ -191,7 +190,7 @@ public class NormalRepayRLIOCalculator implements NormalRepayCalculator {
 			}
 		} else {
 			// 金额*还款周期*还款周期单位*还款周期单位利率 = 利息
-			ir.setInterest(ArithUtil.round(rate * deadline * investMoney / 365,
+			ir.setInterest(ArithUtil.round(rate * deadline * investMoney / 360,
 					2));
 		}
 		ir.setLength(deadline);

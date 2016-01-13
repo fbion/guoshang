@@ -1,5 +1,6 @@
 package com.esoft.jdp2p.repay.service.impl;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -110,8 +111,7 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 			} else {
 				ir.setCorpus(0D);
 			}
-
-			// interestBeginTime的第二天开始计息
+			// interestBeginTime的第二天开始计息T+1
 			int interestDays = DateUtil.getIntervalDays(
 					DateUtil.addMonth(interestBeginTime, (i - 1)
 							* repayTimePeriod),
@@ -140,8 +140,9 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 				}
 			} else {
 				// 金额*还款周期*还款周期单位*还款周期单位利率 = 利息
-				ir.setInterest(ArithUtil.round(rate * interestDays
-						* investMoney / 365, 2));
+				//update
+				//金额*利率/12==一个月的利息
+				ir.setInterest(ArithUtil.round(rate * investMoney / 12, 2));
 			}
 			ir.setLength(repayTimePeriod);
 			ir.setPeriod(i);
@@ -176,6 +177,7 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 			Integer repayTimePeriod, Date interestBeginTime,
 			String interestBeginPoint) {
 		List<Repay> repays = new ArrayList<Repay>();
+
 		for (int i = 1; i <= deadline; i++) {
 			Repay ir = new Repay();
 			ir.setDefaultInterest(0D);
@@ -185,7 +187,6 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 			} else {
 				ir.setCorpus(0D);
 			}
-
 			// investBeginTime当前计息，还款日当天不计息
 			int intervalDays = 0;
 			if (i == 1

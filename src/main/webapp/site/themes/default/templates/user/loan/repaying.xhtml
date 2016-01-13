@@ -189,13 +189,13 @@
 										<ui:fragment
 											rendered="#{repayService.isInRepayPeriod(ir.repayDay)}">
 											<h:commandLink onclick="return confirm('你确定要还款吗？');"
-												value="还款" action="#{repayHome.normalRepay(ir.id)}">
+												value="正常还款" action="#{repayHome.normalRepay(ir.id)}">
 											</h:commandLink>
 										</ui:fragment>
 									</ui:fragment> <!-- 					逾期还款 --> <ui:fragment
 										rendered="#{ir.status ==RepayStatus.OVERDUE or ir.status==RepayStatus.BAD_DEBT}">
 										<h:commandLink onclick="return confirm('你确定要还款吗？');"
-											value="还款" action="#{repayHome.overdueRepay(ir.id)}">
+											value="逾期还款" action="#{repayHome.overdueRepay(ir.id)}">
 										</h:commandLink>
 									</ui:fragment>
 								</td>

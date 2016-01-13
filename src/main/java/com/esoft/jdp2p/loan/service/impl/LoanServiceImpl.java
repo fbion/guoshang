@@ -124,7 +124,6 @@ public class LoanServiceImpl implements LoanService {
 			throw new InsufficientBalance("用户余额不足以支付保证金。");
 		}
 		loan.setDeposit(cashDepositMoney);
-
 		loan.setCommitTime(new Date());
 		// 设置借款状态
 		loan.setStatus(LoanConstants.LoanStatus.WAITING_VERIFY);

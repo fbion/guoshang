@@ -441,9 +441,11 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
             if (isLoginAfterRegister) {
                 login(getInstance().getId(), FacesUtil.getHttpSession());
             }
+
             FacesUtil.addInfoMessage("注册成功");
             //云通讯
-            userService.sendSuccessRegisterMegByYtxSMS(getInstance().getMobileNumber(), getInstance().getUsername());
+            //userService.sendSuccessRegisterMegByYtxSMS(getInstance().getMobileNumber(), getInstance().getUsername());
+
             if (FacesUtil.isMobileRequest()) {
                 return "pretty:mobile_user_center";
             }

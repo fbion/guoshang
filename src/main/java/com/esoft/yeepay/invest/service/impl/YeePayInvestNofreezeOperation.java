@@ -270,6 +270,18 @@ public class YeePayInvestNofreezeOperation extends
 		return null;
 	}
 
+	public static void main(String[] args) {
+
+
+//		double fee = ArithUtil.round(
+//				ArithUtil.mul(guranteeFee, ArithUtil.div(invest.getInvestMoney(), loan.getLoanMoney())), 2);
+
+		System.out.println(ArithUtil.div(500, 2000));
+		System.out.println(ArithUtil.mul(0.5, 50));
+		System.out.println(ArithUtil.round(0.125,2));
+
+	}
+
 	@SuppressWarnings({ "deprecation", "unchecked" })
 	@Override
 	@Transactional(rollbackFor = Exception.class)

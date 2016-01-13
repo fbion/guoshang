@@ -187,7 +187,11 @@
                         <ui:fragment rendered="#{loan.status == LoanStatus.REPAYING}">
                             |
                             <h:commandLink onclick="return confirm('确定要提前还款吗？');" value="提前还款"
-                                           action="#{systemRepayHome.advanceRepay(loan.id)}">
+                                           action="#{repayHome.advanceRepay(loan.id)}">
+                            </h:commandLink>
+
+                            <h:commandLink onclick="return confirm('确定要提前还款吗？');" value="正常还款"
+                                           action="#{repayHome.normalRepayByAdmin(loan.id)}">
                             </h:commandLink>
 
                         </ui:fragment>

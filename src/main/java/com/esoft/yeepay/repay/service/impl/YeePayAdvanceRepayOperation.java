@@ -168,7 +168,6 @@ public class YeePayAdvanceRepayOperation extends
 				}
 				irRepayMoney = ArithUtil.add(ir.getCorpus(),
 						ircashFineToInvestor);
-				
 				//投资账户资金明细
 				FundDetail fd = new FundDetail();
 				fd.setAmount(String.valueOf(currentNumberFormat.format(irRepayMoney)));

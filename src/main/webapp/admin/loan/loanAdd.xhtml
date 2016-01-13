@@ -252,41 +252,41 @@
 						<font color="red">*必填</font>
 					</ui:fragment>
 
-					<h:outputLabel value="借款保证金（元）"></h:outputLabel>
-					<ui:fragment>
-						<h:inputText label="借款保证金"
-									 value="#{loanHome.instance.deposit}">
-							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
-						</h:inputText>
-						发起借款的时候冻结保证金，放款时候解冻。
-					</ui:fragment>
+					<!--<h:outputLabel value="借款保证金（元）"></h:outputLabel>-->
+					<!--<ui:fragment>-->
+						<!--<h:inputText label="借款保证金"-->
+									 <!--value="#{loanHome.instance.deposit}">-->
+							<!--<f:validateDoubleRange minimum="0"></f:validateDoubleRange>-->
+						<!--</h:inputText>-->
+						<!--发起借款的时候冻结保证金，放款时候解冻。-->
+					<!--</ui:fragment>-->
 
-					<h:outputLabel value="放款时收取借款手续费（元）"></h:outputLabel>
-					<ui:fragment>
-						<h:inputText required="true" label="借款手续费（放款）"
-									 value="#{loanHome.instance.loanGuranteeFee}">
-							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
-						</h:inputText>
-						<font color="red">*必填</font>	放款时候收取的手续费，从借款金额中扣除
-					</ui:fragment>
+					<!--<h:outputLabel value="放款时收取借款手续费（元）"></h:outputLabel>-->
+					<!--<ui:fragment>-->
+						<!--<h:inputText required="true" label="借款手续费（放款）"-->
+									 <!--value="#{loanHome.instance.loanGuranteeFee}">-->
+							<!--<f:validateDoubleRange minimum="0"></f:validateDoubleRange>-->
+						<!--</h:inputText>-->
+						<!--<font color="red">*必填</font>	放款时候收取的手续费，从借款金额中扣除-->
+					<!--</ui:fragment>-->
 
-					<h:outputLabel value="还款时收取借款手续费（元）"></h:outputLabel>
-					<ui:fragment>
-						<h:inputText required="true" label="借款手续费（还款）"
-									 value="#{loanHome.instance.feeOnRepay}">
-							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
-						</h:inputText>
-						<font color="red">*必填</font>	还款时收取的金额，平均到每次还款中
-					</ui:fragment>
+					<!--<h:outputLabel value="还款时收取借款手续费（元）"></h:outputLabel>-->
+					<!--<ui:fragment>-->
+						<!--<h:inputText required="true" label="借款手续费（还款）"-->
+									 <!--value="#{loanHome.instance.feeOnRepay}">-->
+							<!--<f:validateDoubleRange minimum="0"></f:validateDoubleRange>-->
+						<!--</h:inputText>-->
+						<!--<font color="red">*必填</font>	还款时收取的金额，平均到每次还款中-->
+					<!--</ui:fragment>-->
 
-					<h:outputLabel value="投资手续费比例(%)"></h:outputLabel>
-					<ui:fragment>
-						<h:inputText required="true" label="投资手续费比例"
-									 value="#{loanHome.instance.investorFeeRatePercent}">
-							<f:validateDoubleRange minimum="0"></f:validateDoubleRange>
-						</h:inputText>
-						<font color="red">*必填</font>	还款时收取所得利息的百分比
-					</ui:fragment>
+					<!--<h:outputLabel value="投资手续费比例(%)"></h:outputLabel>-->
+					<!--<ui:fragment>-->
+						<!--<h:inputText required="true" label="投资手续费比例"-->
+									 <!--value="#{loanHome.instance.investorFeeRatePercent}">-->
+							<!--<f:validateDoubleRange minimum="0"></f:validateDoubleRange>-->
+						<!--</h:inputText>-->
+						<!--<font color="red">*必填</font>	还款时收取所得利息的百分比-->
+					<!--</ui:fragment>-->
 
 
 					<h:outputLabel value="最小投资金额（元）"></h:outputLabel>
@@ -372,11 +372,11 @@
 					</ui:fragment>
 
 
-					<h:outputLabel value="风险等级"></h:outputLabel>
-					<h:selectOneMenu value="#{loanHome.instance.riskLevel}">
-						<f:selectItems value="#{riskRankList.allResultList}" var="risk"
-									   itemLabel="#{risk.rank}" itemValue="#{risk.rank}" />
-					</h:selectOneMenu>
+					<!--<h:outputLabel value="风险等级"></h:outputLabel>-->
+					<!--<h:selectOneMenu value="#{loanHome.instance.riskLevel}">-->
+						<!--<f:selectItems value="#{riskRankList.allResultList}" var="risk"-->
+									   <!--itemLabel="#{risk.rank}" itemValue="#{risk.rank}" />-->
+					<!--</h:selectOneMenu>-->
 
 					<h:outputLabel value="合同"></h:outputLabel>
 					<h:selectOneMenu value="#{loanHome.instance.contractType}"
@@ -401,9 +401,9 @@
 						即为计息日。如不填写，则默认放款当天；如果在放款之前计算预计利息，则该值取预计执行时间。
 					</ui:fragment>
 
-					<h:outputLabel value="预计执行时间"></h:outputLabel>
+					<h:outputLabel value="募集结束时间"></h:outputLabel>
 					<ui:fragment>
-						<p:calendar value="#{loanHome.instance.expectTime}" required="true" label="预计执行时间"
+						<p:calendar value="#{loanHome.instance.expectTime}" required="true" label="募集结束时间"
 									pattern="yyyy-MM-dd HH:mm:ss" timeZone="GMT+8" navigator="true"
 									showButtonPanel="true">
 						</p:calendar>
