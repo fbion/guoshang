@@ -24,6 +24,14 @@
 								});
 			</script>
 	</sec:ifNotGranted>
+	<script>
+		function validateMoney(){
+					var money = $("#form\\:money").val();
+					if(money==null || ""==money){
+						location.reload();
+					}
+		}
+	</script>
 <!-- 	已实名认证 -->
 	<sec:ifAllGranted roles="INVESTOR">
 		<div class="center_right">
@@ -70,7 +78,7 @@
 						</div>
 						<div class="txczje_r">
 							<h:inputText label="提现金额" styleClass="txt02" required="true"
-								id="money" value="#{withdrawHome.instance.money}">
+								id="money" value="#{withdrawHome.instance.money}" onblur="validateMoney()">
 								<archer:validateNumber precision="2"></archer:validateNumber>
 								<!--<f:validateDoubleRange minimum="1" maximum="50000"></f:validateDoubleRange>-->
 								<f:ajax event="blur" render="fee actualMoney" execute="money"

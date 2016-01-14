@@ -47,7 +47,7 @@
 .zhcz_ul li a.hover{border:4px solid #38b64b;}
 .zhcz_ul li input{float:left; margin-top:17px;}
 .zhcz_h302{background:none;}
-.zhcz_p02{font-size:14px; line-height:25px; color:#343434; padding-left:80px; padding-bottom:20px;}
+.zhcz_p02{font-size:14px; line-height:25px; color:#343434; padding-left:80px; padding-bottom:20px;float:right;width:100%;}
 .txczje{padding:20px 0; font-size:16px; color:#343434; line-height:40px;}
 .txczje_l{width:280px; height:50px; float:left; text-align:right;}
 .txczje_l span{color:red;}
