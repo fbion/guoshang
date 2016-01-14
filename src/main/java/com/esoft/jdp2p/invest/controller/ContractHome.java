@@ -342,7 +342,7 @@ public class ContractHome {
 			fontResolver.addFont(FacesUtil.getRealPath("SIMSUN.TTC"), BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
 			renderer.layout();
 			renderer.createPDF(os);
-			addPdfMark(srcPdf, fromPdf, "e:/1.png", 5);//测试数据
+			addPdfMark(srcPdf, fromPdf, FacesUtil.getRealPath("favicon.ico"), 5);//测试数据
 			os.flush();
 			os.close();
 			FacesUtil.getHttpServletResponse().setContentType("application/pdf;charset=UTF-8");
