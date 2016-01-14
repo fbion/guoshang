@@ -1,7 +1,6 @@
 package com.esoft.jdp2p.invest.controller;
 
-import java.io.IOException;
-import java.io.StringReader;
+import java.io.*;
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -13,6 +12,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.lowagie.text.Image;
+import com.lowagie.text.pdf.PdfContentByte;
+import com.lowagie.text.pdf.PdfReader;
+import com.lowagie.text.pdf.PdfStamper;
 import org.apache.commons.io.IOUtils;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Element;
@@ -112,7 +115,7 @@ public class ContractHome {
 
 		List<Invest> is = ht.find(
 				"from Invest i where i.loan.id=? and i.status!=?",
-				new String[] { loan.getId(), InvestStatus.CANCEL });
+				new String[]{loan.getId(), InvestStatus.CANCEL});
 		for (Invest invest : is) {
 			tbody.append("<tr><td style='text-align:center;'>"
 					+ invest.getUser().getUsername()
@@ -200,7 +203,7 @@ public class ContractHome {
 	/**
 	 * 替换债权借款合同正文中的信息
 	 * 
-	 * @param loanId
+	 * @param
 	 * @return
 	 */
 	@SuppressWarnings({ "unused", "static-access" })
@@ -294,11 +297,73 @@ public class ContractHome {
 							"#{fee_gm}",
 							String.valueOf(feeConfig.getFee()
 									* (transferApply.getCorpus() - transferApply
-											.getPremium())))
+									.getPremium())))
 					// 转让日期
 					.replace("#{time_gm}",
 							transferApply.getApplyTime().toString());
 		}
 		return contractContent;
+	}
+
+	/**
+	 * 添加pdf图片水印
+	 * @param InPdfFile
+	 * @param outPdfFile
+	 * @param markImagePath
+	 * @param pageSize
+	 * @throws Exception
+	 */
+	public void addPdfMark(String InPdfFile, String outPdfFile, String markImagePath, int pageSize) throws Exception {
+		PdfReader reader = new PdfReader(InPdfFile, "PDF".getBytes());
+		PdfStamper stamp = new PdfStamper(reader, new FileOutputStream(outPdfFile));
+		Image img = Image.getInstance(markImagePath);
+		img.setAbsolutePosition(420, 500);
+		for(int i = 1; i <= pageSize; i++) {
+			PdfContentByte under = stamp.getUnderContent(i);
+			under.addImage(img);
+		}
+		stamp.close();
+		File tempfile = new File(InPdfFile);
+		if(tempfile.exists()) {
+			tempfile.delete();
+		}
+	}
+
+	public void contractTPdfDownload(String fileName) {
+		String srcPdf = "default.pdf";
+		String fromPdf = "convert.pdf";
+		try {
+			OutputStream os = new FileOutputStream(srcPdf);
+			String body = contractContent.replace("&nbsp;", "&#160;");
+			body = "<html><head></head><body style=\"font-family:'SimSun';\">" + body + "</body></html>";
+			ITextRenderer renderer = new ITextRenderer();
+			renderer.setDocumentFromString(body);
+			ITextFontResolver fontResolver = renderer.getFontResolver();
+			fontResolver.addFont(FacesUtil.getRealPath("SIMSUN.TTC"), BaseFont.IDENTITY_H, BaseFont.NOT_EMBEDDED);
+			renderer.layout();
+			renderer.createPDF(os);
+			addPdfMark(srcPdf, fromPdf, "e:/1.png", 5);//测试数据
+			os.flush();
+			os.close();
+			FacesUtil.getHttpServletResponse().setContentType("application/pdf;charset=UTF-8");
+			FacesUtil.getHttpServletResponse().addHeader("Content-Disposition", "attachment;filename=\"" + fileName + "\"");
+			BufferedInputStream input = new BufferedInputStream(new FileInputStream(fromPdf));
+			byte buffBytes[] = new byte[1024];
+			OutputStream fos = FacesUtil.getHttpServletResponse().getOutputStream();
+			int read = 0;
+			while ((read = input.read(buffBytes)) != -1) {
+				fos.write(buffBytes, 0, read);
+			}
+			fos.flush();
+			fos.close();
+			input.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			File file = new File(fromPdf);
+			if(file.exists()){
+				file.delete();
+			}
+		}
 	}
 }
