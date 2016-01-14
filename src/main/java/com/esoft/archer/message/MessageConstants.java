@@ -99,6 +99,10 @@ public class MessageConstants {
 		public final static String LOAN_CREATE_SUCCESS = "58592";
 		//提现成功
 		public final static String WITHDRAW_CREATE_SUCCESS = "58596";
+		//利息到账
+		public final static String FEE_CREATE_SUCCESS = "60783";
+		//本息到账
+		public final static String CORPUS_CREATE_SUCCESS = "58594";
 	}
 	
 	

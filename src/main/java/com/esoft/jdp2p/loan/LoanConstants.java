@@ -83,6 +83,10 @@ public class LoanConstants {
 		 */
 		public final static String REPAYING = "repaying";
 		/**
+		 * 结算中
+		 */
+		public final static String REPAYING_BACK = "repaying_back";
+		/**
 		 * 等待还款确认
 		 */
 		public final static String WAIT_REPAY_VERIFY = "wait_repay_verify";
@@ -111,6 +115,10 @@ public class LoanConstants {
 		 * 还款中
 		 */
 		public final static String REPAYING = "repaying";
+		/**
+		* 结算中
+		*/
+		public final static String REPAYING_BACK = "repaying_back";
 		/**
 		 * 等待还款确认
 		 */

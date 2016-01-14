@@ -447,6 +447,20 @@ public interface UserService {
 	 */
 	public void sendSuccessWithdrawYtxSMS(String username,double money,String mobileNumber);
 
+	/**
+	 * 云通讯发送“利息到账”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendSuccessFeeYtxSMS(String username,String loanName ,double money, String mobileNumber);
+
+	/**
+	 * 云通讯发送“本息”的认证短信
+	 *
+	 * @param mobileNumber
+	 */
+	public void sendSuccessFeeAndCorpusYtxSMS(String username,String loanName, double fee,double corpus, String mobileNumber);
+
 
 	/**
 	 * 管理员创建借款者

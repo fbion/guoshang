@@ -11,6 +11,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.user.service.UserService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.hibernate.LockMode;
@@ -121,6 +122,9 @@ public class RepayServiceImpl implements RepayService {
 	@Resource
 	CompensationService compensationService;
 
+	@Resource
+	private UserService userService;
+
 	@Override
 	@Transactional(readOnly = false, rollbackFor = Exception.class)
 	public void normalRepay(String repayId) throws InsufficientBalance,
@@ -150,8 +154,6 @@ public class RepayServiceImpl implements RepayService {
 
 		// TODO:投资的所有还款信息加和，判断是否等于借款的还款信息，如果不相等，抛异常
 
-
-
 		// 更改投资的还款信息
 		for (InvestRepay ir : irs) {
 			ir.setStatus(LoanConstants.RepayStatus.COMPLETE);
@@ -165,6 +167,14 @@ public class RepayServiceImpl implements RepayService {
 							+ repay.getId() + "  借款ID:"
 							+ repay.getLoan().getId() + "  本金："
 							+ ir.getCorpus() + "  利息：" + ir.getInterest());
+			//云通讯
+			if (ir.getCorpus()>0){
+				//本息还款
+				userService.sendSuccessFeeAndCorpusYtxSMS(ir.getInvest().getUser().getUsername(), ir.getInvest().getLoan().getName(),ir.getInterest(),ir.getCorpus(),ir.getInvest().getUser().getMobileNumber());
+			}else{
+				//利息还款
+				userService.sendSuccessFeeYtxSMS(ir.getInvest().getUser().getUsername(), ir.getInvest().getLoan().getName(),ir.getInterest(),ir.getInvest().getUser().getMobileNumber());
+			}
 			if (ir.getCorpusToSystem() != null && ir.getCorpusToSystem() != 0) {
 				// 系统回收体验金
 				systemBillService.transferInto(ir.getCorpusToSystem(),
@@ -653,10 +663,32 @@ public class RepayServiceImpl implements RepayService {
 					.find("from InvestRepay ir where ir.invest.loan.id=? and ir.period=?",
 							new Object[] { lr.getLoan().getId(), lr.getPeriod() });
 
+
+			//如果今天比还款期多1天
 			if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+				log.info("调度:查看在此还款期的借款期次是否还款过期，过期则更改状态：结算中：借款ID"+lr.getLoan().getId());
 				Date repayDay = DateUtil.addDay(
 						DateUtil.StringToDate(DateUtil.DateToString(
 								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 1);
+				if (repayDay.before(new Date())) {
+					log.info("超过还款期："+DateUtil.DateToString(
+							lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)+"更新结算中，借款ID"+lr.getLoan().getId());
+					lr.setStatus(LoanConstants.RepayStatus.REPAYING_BACK);
+					loan.setStatus(LoanConstants.LoanStatus.REPAYING_BACK);
+					for (InvestRepay ir : irs) {
+						ir.setStatus(RepayStatus.REPAYING_BACK);
+						ir.getInvest().setStatus(InvestStatus.REPAYING_BACK);
+						ht.update(ir.getInvest());
+						ht.update(ir);
+					}
+				}
+			}
+
+			//如果今天比还款期多2天
+			if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
+				Date repayDay = DateUtil.addDay(
+						DateUtil.StringToDate(DateUtil.DateToString(
+								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 2);
 				if (repayDay.before(new Date())) {
 					lr.setStatus(LoanConstants.RepayStatus.OVERDUE);
 					// FIXME:冻结用户，只允许还钱，其他都不能干。
@@ -675,6 +707,7 @@ public class RepayServiceImpl implements RepayService {
 					}
 				}
 			}
+
 
 			if (lr.getStatus().equals(LoanConstants.RepayStatus.OVERDUE)) {
 				if (log.isDebugEnabled()) {
