@@ -122,7 +122,6 @@ public class YeePayRepayHome extends RepayHome {
         }
     }
 
-
     @Override
     public void advanceRepay(String loanId) {
         Loan loan = getBaseService().get(Loan.class, loanId);

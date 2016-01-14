@@ -52,7 +52,7 @@
 								<f:event type="preRenderComponent" listener="#{investList.addOrder('time','desc')}"></f:event>
 								<ui:repeat var="invest" value="#{investList.lazyModelData}" varStatus="status">
 									<tr class="#{status.index%2==0?'tab02':''} bg">
-										<td class="tab02 tab04 tab06" style="width: 200px;"><a href="#{path}/loan/#{invest.loan.id}" target="_blank" title="#{invest.loan.name}(#{invest.id})">#{stringHome.ellipsis(invest.loan.name,10)}</a><br />
+										<td class="tab02 tab04 tab06" style="width: 200px;"><a href="#{path}/loanDetail/#{invest.loan.id}" target="_blank" title="#{invest.loan.name}(#{invest.id})">#{stringHome.ellipsis(invest.loan.name,10)}</a><br />
 											利率：<h:outputText value="#{invest.rate}">
 												<f:convertNumber type="percent" minFractionDigits="2" />
 											</h:outputText> 期数：#{invest.repayRoadmap.paidPeriod}/#{invest.repayRoadmap.repayPeriod}</td>

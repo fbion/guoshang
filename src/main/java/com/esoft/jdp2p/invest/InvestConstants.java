@@ -72,6 +72,10 @@ public class InvestConstants {
 		 */
 		public final static String REPAYING = "repaying";
 		/**
+		 * 结算中
+		 */
+		public final static String REPAYING_BACK = "repaying_back";
+		/**
 		 * 债权转让
 		 */
 //		public final static String TRANSFER = "债权转让";

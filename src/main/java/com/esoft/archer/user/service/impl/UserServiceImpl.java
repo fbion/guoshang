@@ -641,6 +641,20 @@ public class UserServiceImpl implements UserService {
 
     }
 
+    @Override
+    public void sendSuccessFeeYtxSMS(String username,String loanName ,double money, String mobileNumber) {
+        String[] content={username,loanName,String.valueOf(money)};
+        messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.FEE_CREATE_SUCCESS, content, mobileNumber);
+
+    }
+
+    @Override
+    public void sendSuccessFeeAndCorpusYtxSMS(String username,String loanName, double fee,double corpus, String mobileNumber) {
+        String[] content={username,loanName,String.valueOf(fee+corpus)};
+        messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.CORPUS_CREATE_SUCCESS, content, mobileNumber);
+    }
+
+
     public void sendSuccessRegisterMegByYtxSMS(String mobileNumber,String username){
         String[] content={username};
         messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.USER_REGISTER_SUCCESS, content, mobileNumber);
