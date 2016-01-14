@@ -48,7 +48,7 @@ public class YeePayRepayServiceImpl{
 			ht.lock(repay, LockMode.UPGRADE);
 			Loan loan = repay.getInvest().getLoan();
 			ht.lock(loan, LockMode.UPGRADE);
-			if (repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)
+			if ((repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)||repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK))
 					&& repay.getRepayDay().before(new Date())) {
 				// 到还款日了，自动扣款
 				double balance = ubs.getBalance(repay.getInvest().getUser().getId());
@@ -74,12 +74,12 @@ public class YeePayRepayServiceImpl{
 						log.debug("autoRepay InsufficientBalance overdue repayId:"
 								+ repay.getId());
 					}
-					repay.setStatus(LoanConstants.RepayStatus.OVERDUE);
-					loan.setStatus(LoanConstants.LoanStatus.OVERDUE);
+					repay.setStatus(LoanConstants.RepayStatus.REPAYING_BACK);
+					loan.setStatus(LoanConstants.LoanStatus.REPAYING_BACK);
 					for (Invest iv : loan.getInvests()) {
 						if (iv.getStatus().equals(
 								InvestConstants.InvestStatus.REPAYING)) {
-							iv.setStatus(InvestConstants.InvestStatus.OVERDUE);
+							iv.setStatus(InvestConstants.InvestStatus.REPAYING_BACK);
 							ht.update(iv);
 						}
 					}

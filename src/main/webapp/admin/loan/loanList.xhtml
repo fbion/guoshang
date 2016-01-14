@@ -190,10 +190,16 @@
                                            action="#{repayHome.advanceRepay(loan.id)}">
                             </h:commandLink>
                             |
-                            <h:commandLink  target="_blank" onclick="return confirm('确定要提前还款吗？');" value="正常还款"
+                            <h:commandLink  target="_blank" onclick="return confirm('确定要还款吗？');" value="正常还款"
                                            action="#{repayHome.normalRepayByAdmin(loan.id)}">
                             </h:commandLink>
+                        </ui:fragment>
 
+                        <ui:fragment rendered="#{loan.status == LoanStatus.REPAYING_BACK}">
+                            |
+                            <h:commandLink  target="_blank" onclick="return confirm('确定要还款吗？');" value="正常还款"
+                                            action="#{repayHome.normalRepayByAdmin(loan.id)}">
+                            </h:commandLink>
                         </ui:fragment>
 
                     </p:column>

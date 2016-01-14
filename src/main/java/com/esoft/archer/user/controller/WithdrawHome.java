@@ -69,8 +69,6 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
      * 计算手续费和罚金
      */
     public boolean calculateFee() {
-        //add by shiqm   更改固定2元手续费
-        this.getInstance().setFee(2D);
         if(userBillService.getBalance(loginUserInfo.getLoginUserId()) < this.getInstance().getFee() + this.getInstance().getMoney()){
             FacesUtil.addErrorMessage("余额不足！");
             FacesUtil.getCurrentInstance().validationFailed();

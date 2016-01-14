@@ -1,0 +1,166 @@
+*{
+	margin:0;
+	padding: 0;
+}
+img{
+	border: 0;
+}
+body{
+	font-family: '微软雅黑';
+}
+/*新手指引顶部背景*/
+.guide_top{
+	width: 100%;
+}
+.guide1{
+	width: 100%;
+	height: 497px;
+}
+.guide_1{
+	width: 1100px;
+	height: 497px;
+	margin: 0 auto;
+}
+.guide2{
+	width: 100%;
+	height: 530px;
+	background: #F0F4F7;
+}
+.guide_2{
+	width: 1100px;
+	height: 530px;
+	margin: 0 auto;
+}
+.guide3{
+	width: 100%;
+	height: 651px;
+}
+.guide_3{
+	width: 1100px;
+	height: 130px;
+	margin: 0 auto;
+}
+.guide_3_img{
+	width: 1100px;
+	height: 466px;
+	margin: 0 auto;
+}
+.guide_3_img img{
+	width: 266px;
+	height: 466px;
+	margin-right: 8px;
+}
+.guide4{
+	width: 100%;
+	height: 776px;
+	background: #F0F4F7;
+}
+.guide_4{
+	width: 1100px;
+	height: 80px;
+	margin: 0 auto;
+	margin-bottom: 30px;
+}
+/*轮播部分*/
+#guide_box{
+	width: 1100px;height: 500px;
+	margin: 0 auto;
+	position: relative;
+}
+/*图片部分---------------------------*/
+.guide_box_img{
+	width: 860px;
+	height: 338px;
+   	margin: 0 auto;
+    border:2px solid #4B71BA;
+    overflow: hidden;
+}
+.guide_box_img img{
+	width: 860px;
+	height: 338px;
+	display: none;
+}
+.loan_project{
+    list-style:none; /* 去掉ul前面的符号 */
+    margin: 0px; /* 与外界元素的距离为0 */
+    padding: 0px; /* 与内部元素的距离为0 */
+    width: auto; /* 宽度根据元素内容调整 */
+}
+
+.loan_project li{
+   float:left;
+   padding-left: 1px;
+}
+
+/*列表区域*/
+.guide_box_ul{
+	width: 638px;
+	height: 80px;
+	margin: 0 auto;
+	margin-bottom: 50px;
+}
+.guide_box_ul li{
+	/*width: 186px;*/
+	height: 80px;
+	list-style: none;
+	float: left;
+}
+.guide_b_li_s{
+	display: block;
+	width: 80px;height: 80px;
+	border-radius: 50%;
+	background: #FE6C6F;
+	line-height: 80px;
+	text-align: center;
+	color: white;
+	font-size: 20px;
+	cursor: pointer;
+	float: left;
+}
+.guide_b_li_s2{
+	display: block;
+	width: 106px;height: 80px;
+	background: #F0F4F7;
+	line-height: 80px;
+	text-align: center;
+	color: #FE6C6F;
+	font-size: 20px;
+	float: left;
+}
+/*左右按键*/
+.guide_left,.guide_right{
+    width: 29px;height:  126px;
+    position: absolute;
+    top: 235px;
+    display: block;
+}
+
+.guide_left{
+	left: 50px;
+	background: url(../images/guide_left.jpg) no-repeat;
+}
+.guide_right{
+	right: 50px;
+	background: url(../images/guide_right.jpg) no-repeat;
+}
+
+/*新手指引立即注册*/
+.guide_register{
+	display: block;
+	text-decoration: none;
+	width: 300px;
+	height: 55px;
+	line-height: 55px;
+	font-size: 18px;
+	text-align: center;
+	color:white;
+	border-radius: 5px;
+	background: #FE6C6F;
+	margin: 0 auto;
+	font-weight: 700;
+	margin-top: 40px;
+	cursor: pointer;
+}
+.guide_register:hover{
+	color:white;
+}

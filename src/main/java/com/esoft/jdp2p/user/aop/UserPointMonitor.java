@@ -49,7 +49,7 @@ public class UserPointMonitor {
 	 * @param user
 	 * @param role
 	 */
-	@AfterReturning(argNames = "loanId", value = "execution(public void com.esoft.jdp2p.loan.service.LoanService.giveMoneyToBorrower(..)) && args(loanId)")
+	//@AfterReturning(argNames = "loanId", value = "execution(public void com.esoft.jdp2p.loan.service.LoanService.giveMoneyToBorrower(..)) && args(loanId)")
 	public void addPoint(String loanId) {
 		String investRate = configService
 				.getConfigValue(ConfigConstants.UserPointMonitor.INVEST);

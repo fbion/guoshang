@@ -9,17 +9,23 @@
 	xmlns:c="http://java.sun.com/jsp/jstl/core">
 
 	<ul class="grzx_ul grzx_ul02">
-		<li><img src="#{tplVars.themeImagePath}/img20.png" />投资已赚金额<br />
+		<li>
+			<!--<img src="#{tplVars.themeImagePath}/img20.png" />-->
+			投资已赚金额<br />
 			<span><h:outputText
 					value="#{investStatistics.getReceivedInterest(loginUserInfo.loginUserId)}">
 					<f:convertNumber type="currency" />
 				</h:outputText></span></li>
-		<li><img src="#{tplVars.themeImagePath}/img20.png" />还款中的投资金额<br />
+		<li>
+			<!--<img src="#{tplVars.themeImagePath}/img20.png" />-->
+			还款中的投资金额<br />
 			<span><h:outputText
 					value="#{investStatistics.getReceivableCorpus(loginUserInfo.loginUserId)}">
 					<f:convertNumber type="currency" />
 				</h:outputText></span></li>
-		<li><img src="#{tplVars.themeImagePath}/img20.png" />本月待收金额<br />
+		<li>
+			<!--<img src="#{tplVars.themeImagePath}/img20.png" />-->
+			本月待收金额<br />
 			<span> <!-- 			下月第一天 --> <ui:param name="ldm"
 					value="#{of:addDays(dateUtil.getLastDayOfMonth(now),1)}"></ui:param>
 				<h:outputText

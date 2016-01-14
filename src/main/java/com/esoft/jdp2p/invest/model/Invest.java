@@ -314,7 +314,7 @@ public class Invest implements java.io.Serializable {
 				InvestRepay ir = getInvestRepays().get(i);
 				if (ir.getStatus().equals(RepayStatus.BAD_DEBT)
 						|| ir.getStatus().equals(RepayStatus.OVERDUE)
-						|| ir.getStatus().equals(RepayStatus.REPAYING)) {
+						|| ir.getStatus().equals(RepayStatus.REPAYING)||ir.getStatus().equals(RepayStatus.REPAYING_BACK)) {
 					unPaidCorpus = ArithUtil.add(unPaidCorpus, ir.getCorpus());
 					unPaidInterest = ArithUtil.add(unPaidInterest,
 							ir.getInterest());

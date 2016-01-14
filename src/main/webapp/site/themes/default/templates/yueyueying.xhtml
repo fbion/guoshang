@@ -1,0 +1,45 @@
+<ui:composition template="page.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pm="http://primefaces.org/mobile"
+				xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+				xmlns:o="http://omnifaces.org/ui"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+	<ui:define name="content">
+
+		<link type="text/css"  rel="stylesheet" href="#{tplVars.themeStylePath}/product.css" />
+
+		<!-- 产品区域上部图片开始 -->
+		<div style="background:#74C4FF;" class="product_top">
+			<div class="product_t_img">
+				<img src="#{tplVars.themeImagePath}/yyy_top.jpg" alt="" />
+			</div>
+		</div>
+		<!-- 产品区域上部图片结束 -->
+
+		<!-- 产品区开始 -->
+		<div class="product_area">
+			<ul class="product_ul">
+				<!-- 遍历单数li时，添加style -->
+				<li style="margin-right:14px;">
+					<img src="#{tplVars.themeImagePath}/yyy1.jpg" alt="" />
+				</li>
+				<li>
+					<img src="#{tplVars.themeImagePath}/yyy2.jpg" alt="" />
+				</li>
+				<div style="clear:both;">
+
+				</div>
+			</ul>
+		</div>
+		<!-- 产品区结束 -->
+
+
+
+	</ui:define>
+</ui:composition>

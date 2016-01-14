@@ -239,7 +239,7 @@ public class TransferServiceImpl implements TransferService {
 			InvestRepay ir =  (InvestRepay) iterator.next();
 			if (ir.getStatus().equals(RepayStatus.WAIT_REPAY_VERIFY)
 					|| ir.getStatus().equals(RepayStatus.OVERDUE)
-					|| ir.getStatus().equals(RepayStatus.BAD_DEBT)) {
+					|| ir.getStatus().equals(RepayStatus.BAD_DEBT)||ir.getStatus().equals(RepayStatus.REPAYING_BACK)) {
 				throw new RuntimeException("investRepay with status "
 						+ RepayStatus.WAIT_REPAY_VERIFY + "exist!");
 			} else if (ir.getStatus().equals(RepayStatus.REPAYING)) {
@@ -471,7 +471,7 @@ public class TransferServiceImpl implements TransferService {
 		int period = 0;
 		for (int i = 0; i < irsOri.size(); i++) {
 			InvestRepay irTemp = irsOri.get(i);
-			if (irTemp.getStatus().equals(RepayStatus.REPAYING)||irTemp.getStatus().equals(RepayStatus.OVERDUE)) {
+			if (irTemp.getStatus().equals(RepayStatus.REPAYING)||irTemp.getStatus().equals(RepayStatus.REPAYING_BACK)||irTemp.getStatus().equals(RepayStatus.OVERDUE)) {
 				interestM = irTemp.getInterest();
 				// 上一个还款日
 				Date prevRepayDay;

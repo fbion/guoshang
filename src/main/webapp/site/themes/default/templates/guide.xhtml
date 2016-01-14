@@ -1,0 +1,120 @@
+<ui:composition template="page.xhtml"
+				xmlns="http://www.w3.org/1999/xhtml"
+				xmlns:ui="http://java.sun.com/jsf/facelets"
+				xmlns:h="http://java.sun.com/jsf/html"
+				xmlns:f="http://java.sun.com/jsf/core"
+				xmlns:p="http://primefaces.org/ui"
+				xmlns:pm="http://primefaces.org/mobile"
+				xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+				xmlns:o="http://omnifaces.org/ui"
+				xmlns:c="http://java.sun.com/jsp/jstl/core"
+				xmlns:sec="http://www.springframework.org/security/facelets/tags">
+
+	<ui:define name="content">
+
+		<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/guide.css" />
+		<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/bootstrap.min.css" />
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/bootstrap.min.js"></script>
+		<script type="text/javascript" src="#{tplVars.themeJSPath}/guide.js"></script>
+
+
+		<!-- 新手指引顶部背景开始 -->
+		<div class="guide_top">
+			<div class="guide_t_img">
+				<img style="min-width:1100px;margin:0 auto;" class="img-responsive" src="#{tplVars.themeImagePath}/guide_top.jpg" alt="" />
+			</div>
+		</div>
+		<!-- 新手指引顶部背景结束 -->
+
+		<!-- 新手指引步骤开始 -->
+		<div class="guide1">
+			<div class="guide_1">
+				<img src="#{tplVars.themeImagePath}/guide1.jpg" alt="" />
+			</div>
+		</div>
+		<div class="guide2">
+			<div class="guide_2">
+				<img src="#{tplVars.themeImagePath}/guide2.jpg" alt="" />
+			</div>
+		</div>
+		<div class="guide3">
+			<div class="guide_3">
+				<img src="#{tplVars.themeImagePath}/guidetixi0.jpg" alt="" />
+			</div>
+			<div class="guide_3_img">
+				<ul class="loan_project">
+					<li>
+						<img src="#{tplVars.themeImagePath}/guidetixi1.jpg" alt="" />
+					</li>
+					<li>
+						<img src="#{tplVars.themeImagePath}/guidetixi2.jpg" alt="" />
+					</li>
+					<li>
+						<img src="#{tplVars.themeImagePath}/guidetixi3.jpg" alt="" />
+					</li>
+					<li>
+						<img style="margin:0;" src="#{tplVars.themeImagePath}/guidetixi4.jpg" alt="" />
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class="guide4">
+			<div class="guide_4">
+				<img src="#{tplVars.themeImagePath}/guide4.jpg" alt="" />
+			</div>
+
+			<div id="guide_box">
+				<!-- 列表区域 -->
+				<ul class="guide_box_ul">
+					<li>
+						<span style="background:url(#{tplVars.themeImagePath}/guideieli1.jpg)" class="guide_b_li_s">注册</span>
+						<span class="guide_b_li_s2">>>>></span>
+					</li>
+
+					<li>
+						<span class="guide_b_li_s">实名</span>
+						<span class="guide_b_li_s2">>>>></span>
+					</li>
+
+					<li>
+						<span class="guide_b_li_s">充值</span>
+						<span class="guide_b_li_s2">>>>></span>
+					</li>
+
+					<li>
+						<span class="guide_b_li_s">投资</span>
+					</li>
+				</ul>
+				<!-- 图片部分 -->
+				<div class="guide_box_img">
+					<img style="display:block;" src="#{tplVars.themeImagePath}/guide_slide1.png" alt="" />
+					<img src="#{tplVars.themeImagePath}/guide_slide2.png" alt="" />
+					<img src="#{tplVars.themeImagePath}/guide_slide3.png" alt="" />
+					<img src="#{tplVars.themeImagePath}/guide_slide4.png" alt="" />
+				</div>
+				<!-- 左右两侧 -->
+				<a href="javascript:;" class="guide_left">
+
+				</a>
+				<a href="javascript:;" class="guide_right">
+
+				</a>
+			</div>
+
+			<ui:fragment rendered="#{empty loginUserInfo.loginUserId}">
+			<a href="#{path}/register" class="guide_register">
+				立即注册
+			</a>
+			</ui:fragment>
+			<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
+				<a href="#{path}/user/center" class="guide_register">
+					个人中心
+				</a>
+			</ui:fragment>
+		</div>
+		<!-- 新手指引步骤结束 -->
+
+
+
+	</ui:define>
+</ui:composition>

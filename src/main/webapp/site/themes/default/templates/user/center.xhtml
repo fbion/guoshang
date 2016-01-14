@@ -180,7 +180,7 @@
 						<div class="hd">
 							<ul class="slidings">
 								<li class="hover" id="two1"><a href="javascript:void(0)">最新投资</a></li>
-								<li id="two2"><a href="javascript:void(0)">最近借款</a></li>
+								<!--<li id="two2"><a href="javascript:void(0)">最近借款</a></li>-->
 							</ul>
 							<div class="bd">
 								<div id="con_two_1" class="slidnr">
@@ -205,7 +205,7 @@
 											varStatus="status">
 											<tr class="#{status.index%2==0?'tab02':''} bg">
 												<td align="left" class="tab02 tab04"><a target="_blank"
-													href="#{path}/loan/#{invest.loan.id}"
+													href="#{path}/loanDetail/#{invest.loan.id}"
 													title="#{invest.loan.name}(#{invest.id})">#{stringHome.ellipsis(invest.loan.name,10)}</a></td>
 												<td align="center" class="tab02"><h:outputText
 														value="#{invest.money}">

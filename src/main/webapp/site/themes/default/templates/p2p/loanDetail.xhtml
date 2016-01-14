@@ -37,7 +37,7 @@
                 <div class="product_up_l">
                     <div style="float:left;  padding-top: 15px;">
                         <ui:fragment rendered="#{loan.businessType eq 'carType'}">
-                          <img  src="#{tplVars.themeImagePath}/version_two/header_car.png" />
+                            <img  src="#{tplVars.themeImagePath}/version_two/header_car.png" />
                         </ui:fragment>
                         <ui:fragment rendered="#{loan.businessType eq 'houseType'}">
                             <img  src="#{tplVars.themeImagePath}/version_two/header_house.png" />
@@ -285,18 +285,25 @@
                             </li>
                         </ul>
                         <!-- 隐藏域存放数据库值，显示进度 -->
-                        <ui:fragment rendered="#{loan.status==LoanStatus.RAISING}">
-                            <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
-                        </ui:fragment>
-                        <ui:fragment rendered="#{loan.status==LoanStatus.RECHECK}">
-                            <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
-                        </ui:fragment>
-                        <ui:fragment rendered="#{loan.status==LoanStatus.REPAYING}">
-                            <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
-                        </ui:fragment>
-                        <ui:fragment rendered="#{loan.status==LoanStatus.COMPLETE}">
-                            <input id="jinduvalue" type="hidden" name="jindu" value="4"/>
-                        </ui:fragment>
+
+                        <c:choose>
+                            <c:when test="#{loanCalculator.calculateMoneyNeedRaised(loan.id) eq 0}">
+                                <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
+                            </c:when>
+                            <c:when test="#{loan.status==LoanStatus.RAISING}">
+                                <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
+                            </c:when>
+                            <c:when test="#{loan.status==LoanStatus.REPAYING}">
+                                <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
+                            </c:when>
+                            <c:when test="#{loan.status==LoanStatus.REPAYING_BACK}">
+                                <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
+                            </c:when>
+                            <c:when test="#{loan.status==LoanStatus.COMPLETE}">
+                                <input id="jinduvalue" type="hidden" name="jindu" value="4"/>
+                            </c:when>
+                        </c:choose>
+
                         <!-- 隐藏域存放数据库值，显示进度 -->
                         <ul class="r_up_pro_line">
                             <li class="pro_line1"></li>
@@ -440,10 +447,9 @@
                 <div class="intro_tab_down">
                     <div class="intro_tab_down_c">
                         <ul class="i_t_d_c1">
-                            <li>
-                                <span class="i_t_d_cspan">项目介绍：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.description}" escape="false"></h:outputText></span>
-                            </li>
+                            <h:outputText
+                                    value="#{loan.description}" escape="false" ></h:outputText>
+
                         </ul>
                         <c:if test="#{loan.businessType=='carType'}">
                             <ul style="display:none;" class="i_t_d_c2">
@@ -475,54 +481,54 @@
 
                         </c:if>
                         <c:if test="#{loan.businessType=='houseType'}">
-                        <ul style="display:none;" class="i_t_d_c2">
-                            <li>
-                                <span class="i_t_d_cspan">建筑面积：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoOne}</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">房龄：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoTwo}</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">评估价格：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoThree}</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">所处位置：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoFour}</span>
-                            </li>
-                        </ul>
+                            <ul style="display:none;" class="i_t_d_c2">
+                                <li>
+                                    <span class="i_t_d_cspan">建筑面积：</span>
+                                    <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoOne}</span>
+                                </li>
+                                <li>
+                                    <span class="i_t_d_cspan">房龄：</span>
+                                    <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoTwo}</span>
+                                </li>
+                                <li>
+                                    <span class="i_t_d_cspan">评估价格：</span>
+                                    <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoThree}</span>
+                                </li>
+                                <li>
+                                    <span class="i_t_d_cspan">所处位置：</span>
+                                    <span class="i_t_d_cspan" style="color:#333333;width:350px;">#{loan.infoFour}</span>
+                                </li>
+                            </ul>
                         </c:if>
                         <c:if test="#{loan.businessType=='creditType'}">
 
-                        <table style="display:none;border-collapse:collapse;margin:62pt auto auto 42pt;height:200px;" class="i_t_d_c2">
-                            <tr bgcolor="#87CEFF">
-                                <td align="center" width="40%" height="30px" class="tab_td1">审核项目</td>
-                                <td width="20%" class="tab_td2" height="30px"></td>
-                                <td align="center" width="40%" height="30px" class="tab_td3">状态</td>
-                            </tr>
-                            <tr>
-                                <td align="center" width="40%" height="30px" class="tab_td1">身份认证</td>
-                                <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
-                                <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
-                            </tr>
-                            <tr>
-                                <td align="center" width="40%" height="30px" class="tab_td1">工作认证</td>
-                                <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
-                                <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
-                            </tr>
-                            <tr>
-                                <td align="center" width="40%" height="30px" class="tab_td1">收入认证</td>
-                                <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
-                                <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
-                            </tr>
-                            <tr>
-                                <td align="center" width="40%" height="30px" class="tab_td1">征信报告</td>
-                                <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
-                                <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
-                            </tr>
-                        </table>
+                            <table style="display:none;border-collapse:collapse;margin:62pt auto auto 42pt;height:200px;" class="i_t_d_c2">
+                                <tr bgcolor="#87CEFF">
+                                    <td align="center" width="40%" height="30px" class="tab_td1">审核项目</td>
+                                    <td width="20%" class="tab_td2" height="30px"></td>
+                                    <td align="center" width="40%" height="30px" class="tab_td3">状态</td>
+                                </tr>
+                                <tr>
+                                    <td align="center" width="40%" height="30px" class="tab_td1">身份认证</td>
+                                    <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
+                                    <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" width="40%" height="30px" class="tab_td1">工作认证</td>
+                                    <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
+                                    <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" width="40%" height="30px" class="tab_td1">收入认证</td>
+                                    <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
+                                    <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
+                                </tr>
+                                <tr>
+                                    <td align="center" width="40%" height="30px" class="tab_td1">征信报告</td>
+                                    <td align="center" width="20%" height="30px" class="tab_td2"><img src="#{tplVars.themeImagePath}/gou_06.png"/></td>
+                                    <td align="center" width="40%" height="30px" class="tab_td3"><font color="#87CEFF">已完成</font></td>
+                                </tr>
+                            </table>
                         </c:if>
                         <div style="display:none;" class="i_t_d_c3">
                             <h:form id="investsForm" style="margin-top: 20px;">

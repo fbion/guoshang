@@ -23,7 +23,7 @@ public class RefereeModelList extends EntityQuery<RefereeModel> {
 			+ "from Invest invest inner join invest.user user "
 			+ "where user.referrer is not null and user.referrer != '' and "
 			+ "invest.status in ('" + InvestStatus.BID_SUCCESS + "','"
-			+ InvestStatus.REPAYING + "','" + InvestStatus.OVERDUE + "','"
+			+ InvestStatus.REPAYING + "','" + InvestStatus.OVERDUE + "','"+ InvestStatus.REPAYING_BACK + "','"
 			+ InvestStatus.COMPLETE + "','" + InvestStatus.BAD_DEBT + "')";
 
 	// 查询数据如果为空会报错，需要修改
@@ -32,7 +32,7 @@ public class RefereeModelList extends EntityQuery<RefereeModel> {
 			+ "from Invest invest inner join invest.user user "
 			+ "where user.referrer is not null and user.referrer != '' and "
 			+ "invest.status in ('" + InvestStatus.BID_SUCCESS + "','"
-			+ InvestStatus.REPAYING + "','" + InvestStatus.OVERDUE + "','"
+			+ InvestStatus.REPAYING + "','" + InvestStatus.OVERDUE + "','" + InvestStatus.REPAYING_BACK + "','"
 			+ InvestStatus.COMPLETE + "','" + InvestStatus.BAD_DEBT + "')";
 
 	// 查询条件 start

@@ -503,8 +503,8 @@ public class LoanServiceImpl implements LoanService {
 			loan.setStatus(LoanConstants.LoanStatus.COMPLETE);
 			ht.merge(loan);
 			List<Invest> is = ht
-					.find("from Invest invest where invest.loan.id=? and invest.status in (?,?,?)",
-							new String[] { loanId, InvestStatus.REPAYING,
+					.find("from Invest invest where invest.loan.id=? and invest.status in (?,?,?,?)",
+							new String[] { loanId, InvestStatus.REPAYING,InvestStatus.REPAYING_BACK,
 									InvestStatus.OVERDUE, InvestStatus.BAD_DEBT });
 			for (Invest invest : is) {
 				invest.setStatus(InvestConstants.InvestStatus.COMPLETE);
@@ -675,13 +675,14 @@ public class LoanServiceImpl implements LoanService {
 	@Override
 	public List<Invest> getSuccessfulInvests(String loanId) {
 		return ht
-				.find("select im from Invest im where im.loan.id=? and im.status in (?,?,?,?,?)",
+				.find("select im from Invest im where im.loan.id=? and im.status in (?,?,?,?,?,?)",
 						new String[] { loanId,
 								InvestConstants.InvestStatus.BID_SUCCESS,
 								InvestConstants.InvestStatus.OVERDUE,
 								InvestConstants.InvestStatus.COMPLETE,
 								InvestConstants.InvestStatus.BAD_DEBT,
-								InvestConstants.InvestStatus.REPAYING });
+								InvestConstants.InvestStatus.REPAYING,
+								InvestConstants.InvestStatus.REPAYING_BACK });
 	}
 
 	// XXX: guoyw 20150314 检查借款是否到预计发布时间 借款到预计发布时间，执行自动发布操作

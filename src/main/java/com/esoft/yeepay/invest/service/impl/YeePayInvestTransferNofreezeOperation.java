@@ -446,6 +446,7 @@ public class YeePayInvestTransferNofreezeOperation extends
 			InvestRepay ir =  (InvestRepay) iterator.next();
 			if (ir.getStatus().equals(RepayStatus.WAIT_REPAY_VERIFY)
 					|| ir.getStatus().equals(RepayStatus.OVERDUE)
+					|| ir.getStatus().equals(RepayStatus.REPAYING_BACK)
 					|| ir.getStatus().equals(RepayStatus.BAD_DEBT)) {
 				throw new RuntimeException("investRepay with status "
 						+ RepayStatus.WAIT_REPAY_VERIFY + "exist!");

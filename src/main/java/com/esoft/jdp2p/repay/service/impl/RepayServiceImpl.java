@@ -665,23 +665,23 @@ public class RepayServiceImpl implements RepayService {
 
 
 			//如果今天比还款期多1天
-			if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
-				log.info("调度:查看在此还款期的借款期次是否还款过期，过期则更改状态：结算中：借款ID"+lr.getLoan().getId());
-				Date repayDay = DateUtil.addDay(
-						DateUtil.StringToDate(DateUtil.DateToString(
-								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 1);
-				if (repayDay.before(new Date())) {
-					log.info("超过还款期："+DateUtil.DateToString(
-							lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)+"更新结算中，借款ID"+lr.getLoan().getId());
-					lr.setStatus(LoanConstants.RepayStatus.REPAYING_BACK);
-					loan.setStatus(LoanConstants.LoanStatus.REPAYING_BACK);
-					for (InvestRepay ir : irs) {
-						ir.setStatus(RepayStatus.REPAYING_BACK);
-						ir.getInvest().setStatus(InvestStatus.REPAYING_BACK);
-						ht.update(ir.getInvest());
-						ht.update(ir);
+				if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+					log.info("调度:查看在此还款期的借款期次是否还款过期，过期则更改状态：结算中：借款ID"+lr.getLoan().getId());
+					Date repayDay = DateUtil.addDay(
+							DateUtil.StringToDate(DateUtil.DateToString(
+									lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 1);
+					if (repayDay.before(new Date())) {
+						log.info("超过还款期："+DateUtil.DateToString(
+								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)+"更新结算中，借款ID"+lr.getLoan().getId());
+						lr.setStatus(LoanConstants.RepayStatus.REPAYING_BACK);
+						loan.setStatus(LoanConstants.LoanStatus.REPAYING_BACK);
+						for (InvestRepay ir : irs) {
+							ir.setStatus(RepayStatus.REPAYING_BACK);
+							ir.getInvest().setStatus(InvestStatus.REPAYING_BACK);
+							ht.update(ir.getInvest());
+							ht.update(ir);
+						}
 					}
-				}
 			}
 
 			//如果今天比还款期多2天
@@ -782,8 +782,8 @@ public class RepayServiceImpl implements RepayService {
 		}
 
 		List<LoanRepay> lrs = ht.find(
-				"from LoanRepay repay where repay.status =? or repay.status =?",
-				new Object[] {LoanConstants.RepayStatus.REPAYING,LoanConstants.RepayStatus.OVERDUE});
+				"from LoanRepay repay where repay.status =? or repay.status =? or repay.status =?",
+				new Object[] {LoanConstants.RepayStatus.REPAYING, LoanConstants.RepayStatus.REPAYING_BACK,LoanConstants.RepayStatus.OVERDUE});
 		for (LoanRepay lr : lrs) {
 			ht.lock(lr, LockMode.UPGRADE);
 			Loan loan = lr.getLoan();
@@ -814,7 +814,8 @@ public class RepayServiceImpl implements RepayService {
 						log.info("compensation, repayerId: "
 								+ lr.getLoan().getCompensationUser().getId());
 						try {
-							if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING.toString())) {
+							if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING.toString())||
+									lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK.toString())) {
 								compensationService.normalRepay(lr, lr.getLoan().getCompensationUser().getId());
 							}
 							if (lr.getStatus().equals(LoanConstants.RepayStatus.OVERDUE.toString())) {
