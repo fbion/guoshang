@@ -135,10 +135,10 @@ public class LoanStatistics {
 	 * @return
 	 */
 	public Long getLoanRSCount(String businessType) {
-		String hql = "select count(loan) from Loan loan where loan.status in(?,?,?,?,?,?,?) and loan.businessType=?";
+		String hql = "select count(loan) from Loan loan where loan.status in(?,?,?,?,?,?,?,?) and loan.businessType=?";
 		List<Object> oos = ht.find(hql, new String[] { LoanStatus.BAD_DEBT,
 				LoanStatus.COMPLETE, LoanStatus.OVERDUE, LoanStatus.RAISING,
-				LoanStatus.RECHECK, LoanStatus.REPAYING,
+				LoanStatus.RECHECK, LoanStatus.REPAYING,LoanStatus.REPAYING_BACK,
 				LoanStatus.WAITING_RECHECK_VERIFY, businessType });
 		Object o = oos.get(0);
 		if (o == null) {
@@ -153,10 +153,10 @@ public class LoanStatistics {
 	 * @return
 	 */
 	public Long getLoanRSCount() {
-		String hql = "select count(loan) from Loan loan where loan.status in(?,?,?,?,?,?,?)";
+		String hql = "select count(loan) from Loan loan where loan.status in(?,?,?,?,?,?,?,?)";
 		List<Object> oos = ht.find(hql, new String[] { LoanStatus.BAD_DEBT,
 				LoanStatus.COMPLETE, LoanStatus.OVERDUE, LoanStatus.RAISING,
-				LoanStatus.RECHECK, LoanStatus.REPAYING,
+				LoanStatus.RECHECK, LoanStatus.REPAYING,LoanStatus.REPAYING_BACK,
 				LoanStatus.WAITING_RECHECK_VERIFY });
 		Object o = oos.get(0);
 		if (o == null) {
@@ -221,11 +221,12 @@ public class LoanStatistics {
 	@SuppressWarnings("rawtypes")
 	public double getSumLoanMoney(String userId) {
 		List sumLoanMoney = ht
-				.find("select sum(loan.money) from Loan loan where loan.user.id=? and loan.status in (?,?,?)",
+				.find("select sum(loan.money) from Loan loan where loan.user.id=? and loan.status in (?,?,?,?)",
 						new String[] { userId,
 								LoanConstants.LoanStatus.RAISING,
 								LoanConstants.LoanStatus.RECHECK,
-								LoanConstants.LoanStatus.REPAYING, });
+								LoanConstants.LoanStatus.REPAYING,
+								LoanConstants.LoanStatus.REPAYING_BACK});
 		if (sumLoanMoney == null || sumLoanMoney.size() == 0
 				|| sumLoanMoney.contains(null)) {
 			return 0.0;

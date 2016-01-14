@@ -158,7 +158,7 @@ public class LoanCalculatorImpl implements LoanCalculator {
 
 	@Override
 	public Long countSuccessInvest(String loanId) {
-		Object o = ht.find("select count(im) from Invest im where im.loan.id = ? and  im.status in (?,?,?,?,?)", new String[] { loanId, InvestConstants.InvestStatus.BID_SUCCESS, InvestConstants.InvestStatus.COMPLETE, InvestConstants.InvestStatus.OVERDUE, InvestConstants.InvestStatus.BAD_DEBT, InvestConstants.InvestStatus.REPAYING }).get(0);
+		Object o = ht.find("select count(im) from Invest im where im.loan.id = ? and  im.status in (?,?,?,?,?,?)", new String[] { loanId, InvestConstants.InvestStatus.BID_SUCCESS, InvestConstants.InvestStatus.COMPLETE, InvestConstants.InvestStatus.OVERDUE, InvestStatus.REPAYING_BACK, InvestConstants.InvestStatus.BAD_DEBT, InvestConstants.InvestStatus.REPAYING }).get(0);
 		if (o == null) {
 			return 0L;
 		}

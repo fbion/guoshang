@@ -120,13 +120,13 @@
 						onclick="nextVerifyCode();" /> <a href="javascript:void(0);"
 						onclick="nextVerifyCode();">换一张 </a>
 				</p>
-				<p>
-					<span class="stxt"></span><span><h:selectBooleanCheckbox
-							id="agree" selected="true" requiredMessage="请阅读并同意《借款协议》!">
-							<f:validator validatorId="omnifaces.RequiredCheckboxValidator" />
-							<f:ajax event="click"></f:ajax>
-						</h:selectBooleanCheckbox><label for="xy">我已阅读并同意签署<a href="#{path}/node/spage/jiekuanxieyi" target="_blank">《借款协议》</a></label></span>
-				</p>
+				<!--<p>-->
+					<!--<span class="stxt"></span><span><h:selectBooleanCheckbox-->
+							<!--id="agree" selected="true" requiredMessage="请阅读并同意《借款协议》!">-->
+							<!--<f:validator validatorId="omnifaces.RequiredCheckboxValidator" />-->
+							<!--<f:ajax event="click"></f:ajax>-->
+						<!--</h:selectBooleanCheckbox><label for="xy">我已阅读并同意签署<a href="#{path}/node/spage/jiekuanxieyi" target="_blank">《借款协议》</a></label></span>-->
+				<!--</p>-->
 				<p>
 					<span class="stxt"></span><span>
 					<h:commandLink action="#{loanHome.save}" styleClass="save-btn" value="保存并继续">

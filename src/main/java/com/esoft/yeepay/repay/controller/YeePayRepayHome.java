@@ -66,7 +66,7 @@ public class YeePayRepayHome extends RepayHome {
             FacesUtil.addErrorMessage("您的账户余额不足，请先进行充值然后再还款。");
             return;
         }
-        if (!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+        if (!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)||!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
             FacesUtil.addErrorMessage("还款：" + repay.getId() + "不处于正常还款状态。");
             return;
         }
@@ -93,7 +93,7 @@ public class YeePayRepayHome extends RepayHome {
         LoanRepay repay = null;
         //找到当前借款项目中最新一期还款期
         for (int i = 0; i < repays.size(); i++) {
-            if (repays.get(i).getStatus().equals(LoanConstants.RepayStatus.REPAYING) && repays.get(i).getTime() == null) {
+            if ((repays.get(i).getStatus().equals(LoanConstants.RepayStatus.REPAYING) || repays.get(i).getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK))  && repays.get(i).getTime() == null) {
                 repay = repays.get(i);
                 break;
             }
@@ -108,7 +108,7 @@ public class YeePayRepayHome extends RepayHome {
             FacesUtil.addErrorMessage("该账户余额不足，请先进行充值然后再还款。");
             return;
         }
-        if (!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+        if (!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)||!repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
             FacesUtil.addErrorMessage("还款：" + repay.getId() + "不处于正常还款状态。");
             return;
         }

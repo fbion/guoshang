@@ -284,6 +284,7 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 				new String[] { LoanConstants.LoanStatus.RAISING,
 						LoanConstants.LoanStatus.RECHECK,
 						LoanConstants.LoanStatus.REPAYING,
+						LoanConstants.LoanStatus.REPAYING_BACK,
 						LoanConstants.LoanStatus.OVERDUE,
 						LoanConstants.LoanStatus.COMPLETE,
 						LoanConstants.LoanStatus.BAD_DEBT });

@@ -54,7 +54,7 @@
 								<ui:repeat var="loan" value="#{loanList.lazyModelData}" varStatus="status">
 									<tr class="#{status.index%2==0?'tab02':''} bg">
 										<td class="tab02 tab04 tab06" style="width: 200px;"><a
-											href="#{path}/loan/#{loan.id}" target="_blank"
+											href="#{path}/loanDetail/#{loan.id}" target="_blank"
 											title="#{loan.name}(#{loan.id})">#{stringHome.ellipsis(loan.name,13)}</a>
 <!-- 											<br /> <LABEL title="#{loan.type.name}">#{stringHome.ellipsis(loan.type.name,10)}</LABEL> -->
 											<br />利率：<h:outputText value="#{loan.rate}">

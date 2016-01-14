@@ -106,7 +106,8 @@ public class CompensationServiceImpl implements CompensationService {
 		ht.evict(repay);
 		repay = ht.get(LoanRepay.class, repay.getId(), LockMode.UPGRADE);
 		// 正常还款
-		if (!(repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING) || repay
+		if (!(repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING) ||
+				!(repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) ||repay
 				.getStatus()
 				.equals(LoanConstants.RepayStatus.WAIT_REPAY_VERIFY))) {
 			// 该还款不处于正常还款状态。

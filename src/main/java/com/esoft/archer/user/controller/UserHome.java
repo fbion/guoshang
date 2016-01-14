@@ -422,7 +422,7 @@ public class UserHome extends EntityHome<User> implements java.io.Serializable {
      */
     public String registerByMobileNumber() {
         try {
-            if (getInstance().getReferrer() != null) {
+            if (getInstance().getReferrer() != null && !"".equals(getInstance().getReferrer())) {
                 String referrer = getInstance().getReferrer();
                 try {
                     userService.getUserById(referrer);

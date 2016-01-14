@@ -754,7 +754,8 @@ public class Loan implements java.io.Serializable, Cloneable {
 		for (LoanRepay lr : getLoanRepays()) {
 			if (lr.getStatus().equals(RepayStatus.BAD_DEBT)
 					|| lr.getStatus().equals(RepayStatus.OVERDUE)
-					|| lr.getStatus().equals(RepayStatus.REPAYING)) {
+					|| lr.getStatus().equals(RepayStatus.REPAYING)
+					|| lr.getStatus().equals(RepayStatus.REPAYING_BACK)) {
 				sum = ArithUtil.add(sum, lr.getCorpus());
 				sum = ArithUtil.add(sum, lr.getInterest());
 				sum = ArithUtil.add(sum, lr.getDefaultInterest());
@@ -1167,7 +1168,8 @@ public class Loan implements java.io.Serializable, Cloneable {
 				LoanRepay ir = getLoanRepays().get(i);
 				if (ir.getStatus().equals(RepayStatus.BAD_DEBT)
 						|| ir.getStatus().equals(RepayStatus.OVERDUE)
-						|| ir.getStatus().equals(RepayStatus.REPAYING)) {
+						|| ir.getStatus().equals(RepayStatus.REPAYING)
+						|| ir.getStatus().equals(RepayStatus.REPAYING_BACK)) {
 					unPaidCorpus = ArithUtil.add(unPaidCorpus, ir.getCorpus());
 					unPaidInterest = ArithUtil.add(unPaidInterest,
 							ir.getInterest());

@@ -149,7 +149,12 @@ var canvas = document.getElementById('canvas'),
 		}
 
 		function elementInViewport(el) {
+		try{
 		var rect = el.getBoundingClientRect();
+		}catch(e){
+		 return;
+		}
+
 
 		return (
 		  rect.top  >= 0 &&

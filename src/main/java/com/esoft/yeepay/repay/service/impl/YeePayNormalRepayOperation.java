@@ -216,7 +216,7 @@ public class YeePayNormalRepayOperation extends
 				try {
 					log.debug("repayservice.normalRepay(repayID" + requestNo+ ")result = " + result + " repayStatus = " + repay.getStatus());
 					if(result){//易宝转账确认成功
-						if (repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+						if (repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)||repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
 							repayService.normalRepay(requestNo);
 						}
 					}else{//易宝转账确认失败
@@ -283,7 +283,7 @@ public class YeePayNormalRepayOperation extends
 				try {
 					log.debug("repayservice.normalRepay(repayID" + requestNo + ")");
 					if(result){//易宝转账确认成功
-						if (repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
+						if (repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING)||repay.getStatus().equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
 							repayService.normalRepay(requestNo);
 						}
 					}else{//易宝转账确认失败

@@ -672,7 +672,8 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 						"/response/records/record/status").getStringValue();
 				if (status != null && status.equals("SUCCESS")) {
 					if (repay.getStatus().equals(
-							LoanConstants.RepayStatus.REPAYING)) {
+							LoanConstants.RepayStatus.REPAYING)||repay.getStatus().equals(
+							LoanConstants.RepayStatus.REPAYING_BACK)) {
 						repayService.normalRepay(to.getMarkId());
 						to.setResponseData(respInfo);
 						to.setResponseTime(new Date());
@@ -682,7 +683,8 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 				}
 				if (status != null && status.equals("INIT")) {
 					if (repay.getStatus().equals(
-							LoanConstants.RepayStatus.REPAYING)) {
+							LoanConstants.RepayStatus.REPAYING)||repay.getStatus().equals(
+							LoanConstants.RepayStatus.REPAYING_BACK)) {
 						to.setResponseData(respInfo);
 						to.setResponseTime(new Date());
 						to.setStatus(TrusteeshipConstants.Status.PASSED);
@@ -691,7 +693,8 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 				}
 			} else {
 				if (repay.getStatus()
-						.equals(LoanConstants.RepayStatus.REPAYING)) {
+						.equals(LoanConstants.RepayStatus.REPAYING)||repay.getStatus()
+						.equals(LoanConstants.RepayStatus.REPAYING_BACK)) {
 					to.setStatus(TrusteeshipConstants.Status.REFUSED);
 					to.setResponseData(respInfo);
 					to.setResponseTime(new Date());
@@ -1198,7 +1201,8 @@ public class YeePayTrusteeshipServiceImpl implements TrusteeshipService {
 			InvestRepay ir = (InvestRepay) iterator.next();
 			if (ir.getStatus().equals(RepayStatus.WAIT_REPAY_VERIFY)
 					|| ir.getStatus().equals(RepayStatus.OVERDUE)
-					|| ir.getStatus().equals(RepayStatus.BAD_DEBT)) {
+					|| ir.getStatus().equals(RepayStatus.BAD_DEBT)
+			        || ir.getStatus().equals(RepayStatus.REPAYING_BACK)) {
 				throw new RuntimeException("investRepay with status "
 						+ RepayStatus.WAIT_REPAY_VERIFY + "exist!");
 			} else if (ir.getStatus().equals(RepayStatus.REPAYING)) {

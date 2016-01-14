@@ -1,8 +1,8 @@
 <ui:component xmlns:c="http://java.sun.com/jsp/jstl/core" xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:sec="http://www.springframework.org/security/facelets/tags">
+			  xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:p="http://primefaces.org/ui" xmlns:sec="http://www.springframework.org/security/facelets/tags">
 
-	<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/banner.css" />	
-	
+	<link type="text/css" rel="stylesheet" href="#{tplVars.themeStylePath}/banner.css" />
+
 	<div id="slides" class="visual">
 		<ul class="slides_container">
 			<ui:repeat var="pic" value="#{bannerList.getBannerById('index').pictures}" varStatus="i">
@@ -40,6 +40,14 @@
 				effect : 'slide',
 				slideSpeed : 850
 			});
+			var widthScreen=window.screen.width;
+			if(widthScreen == 1400 || widthScreen== 1600){
+              $(".slide_lBt").css("left","80px");
+              $(".slide_rBt").css("right","80px");
+			}else if(widthScreen==1200 || widthScreen==1400){
+              $(".slide_lBt").css("left","40px");
+              $(".slide_rBt").css("right","40px");
+			}
 		});
 	</script>
 	<!--banner end-->

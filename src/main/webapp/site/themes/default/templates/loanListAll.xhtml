@@ -39,7 +39,7 @@
 									<f:ajax render="dataTable"
 											listener="#{loanList.example.setStatus(LoanStatus.REPAYING)}"></f:ajax>
 								</h:commandLink>
-								<h:commandLink title="已完成" value="已完成">
+								<h:commandLink title="已结清" value="已结清">
 									<f:ajax render="dataTable"
 											listener="#{loanList.example.setStatus(LoanStatus.COMPLETE)}"></f:ajax>
 								</h:commandLink>
@@ -118,6 +118,9 @@
 									<f:ajax render="dataTable"
 											listener="#{loanList.example.setBusinessType('creditType')}"></f:ajax>
 								</h:commandLink>
+								<a href="#{path}/gsj" >国商金</a>
+								<a href="#{path}/rxy" >任逍遥</a>
+								<a href="#{path}/jjy" >月月盈</a>
 							</div>
 							<div class="clear"></div>
 						</div>

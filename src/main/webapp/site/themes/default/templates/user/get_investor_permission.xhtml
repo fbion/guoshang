@@ -216,7 +216,7 @@
 			<div class="zhcz_h3">个人信息</div>
 			<h:form id="form">
 				<!-- 不是汇付资金托管时显示。 -->
-				<table width="456" border="0" cellspacing="0" cellpadding="0" class="jcxx_tab">
+				<table width="456" border="0" cellspacing="0" cellpadding="0" class="jcxx_tab" style="  margin-bottom: 30px;">
 					<sec:ifAnyGranted roles="INVESTOR,CORP,GUARANTEE,LOANER">
 						<tr>
 							<td width="135" align="right"><span>*</span>用户名：</td>
@@ -245,46 +245,46 @@
 								src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"
 								height="16" />已认证</td>
 						</tr>
-						<tr>
-							<td align="right"><span>*</span>出生日期：</td>
-							<td><h:outputText value="#{userHome.instance.birthday}">
-									<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+8" />
-								</h:outputText></td>
-							<td class="gray"><img
-								src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"
-								height="16" />已认证</td>
-						</tr>
+						<!--<tr>-->
+							<!--<td align="right"><span>*</span>出生日期：</td>-->
+							<!--<td><h:outputText value="#{userHome.instance.birthday}">-->
+									<!--<f:convertDateTime pattern="yyyy-MM-dd" timeZone="GMT+8" />-->
+								<!--</h:outputText></td>-->
+							<!--<td class="gray"><img-->
+								<!--src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"-->
+								<!--height="16" />已认证</td>-->
+						<!--</tr>-->
 
-						<ui:fragment
-							rendered="#{not empty borrowerInfoHome.instance.borrowerPersonalInfo}">
-							<tr>
-								<td align="right"><span>*</span>个人基础信息</td>
-								<td></td>
-								<td class="gray"><img
-									src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"
-									height="16" />已认证	</td>
-							</tr>
-						</ui:fragment>
-						<ui:fragment
-							rendered="#{not empty borrowerInfoHome.instance.borrowerAdditionalInfo}">
-							<tr>
-								<td align="right"><span>*</span>工作财务信息</td>
-								<td></td>
-								<td class="gray"><img
-									src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"
-									height="16" />已认证</td>
-							</tr>
-						</ui:fragment>
-						<ui:fragment
-							rendered="#{not empty borrowerInfoHome.instance.borrowerAuthentication}">
-							<tr>
-								<td align="right"><span>*</span>认证资料</td>
-								<td></td>
-								<td class="gray"><img
-									src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"
-									height="16" />已认证</td>
-							</tr>
-						</ui:fragment>
+						<!--<ui:fragment-->
+							<!--rendered="#{not empty borrowerInfoHome.instance.borrowerPersonalInfo}">-->
+							<!--<tr>-->
+								<!--<td align="right"><span>*</span>个人基础信息</td>-->
+								<!--<td></td>-->
+								<!--<td class="gray"><img-->
+									<!--src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"-->
+									<!--height="16" />已认证	</td>-->
+							<!--</tr>-->
+						<!--</ui:fragment>-->
+						<!--<ui:fragment-->
+							<!--rendered="#{not empty borrowerInfoHome.instance.borrowerAdditionalInfo}">-->
+							<!--<tr>-->
+								<!--<td align="right"><span>*</span>工作财务信息</td>-->
+								<!--<td></td>-->
+								<!--<td class="gray"><img-->
+									<!--src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"-->
+									<!--height="16" />已认证</td>-->
+							<!--</tr>-->
+						<!--</ui:fragment>-->
+						<!--<ui:fragment-->
+							<!--rendered="#{not empty borrowerInfoHome.instance.borrowerAuthentication}">-->
+							<!--<tr>-->
+								<!--<td align="right"><span>*</span>认证资料</td>-->
+								<!--<td></td>-->
+								<!--<td class="gray"><img-->
+									<!--src="#{tplVars.themeImagePath}/img71.png" alt="" width="16"-->
+									<!--height="16" />已认证</td>-->
+							<!--</tr>-->
+						<!--</ui:fragment>-->
 					</sec:ifAnyGranted>
 					<sec:ifNotGranted roles="INVESTOR,CORP,GUARANTEE,LOANER,WAIT_CONFIRM">
 						<ui:fragment rendered="#{configHome.getConfigValue('pnrpay_enable') ne '1'}">

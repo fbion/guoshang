@@ -274,6 +274,7 @@ public class YeePayWithdrawNofreezeOperation extends
 		to.setResponseData(notifyXML);
 
 		WithdrawCash wc = ht.get(WithdrawCash.class, requestNo);
+
 		ht.evict(wc);
 		wc = ht.get(WithdrawCash.class, requestNo, LockMode.UPGRADE);
 		if (wc.getStatus().equals(UserConstants.WithdrawStatus.WAIT_VERIFY)) {
