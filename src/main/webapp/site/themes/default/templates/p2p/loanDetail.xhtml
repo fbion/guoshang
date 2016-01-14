@@ -98,7 +98,7 @@
                                     </div>
                                     <div class="d_r_num">
 										<span><h:outputText
-                                                value="#{loan.ratePercent}">
+                                                value="#{loan.ratePercent}"><f:convertNumber minFractionDigits="0"/>
                                         </h:outputText></span>
                                         <span style="font-size:12px;">%</span>
                                     </div>
@@ -130,12 +130,12 @@
                                     </div>
                                     <div class="d_r_num">
                                         <ui:fragment rendered="#{loan.loanMoney ge 100}">
-                                            <span><h:outputText value="#{loan.loanMoney/10000}">
-                                            </h:outputText></span>
+                                            <span><h:outputText value="#{loan.loanMoney/10000}" >
+                                                <f:convertNumber minFractionDigits="0"/></h:outputText></span>
                                             <span style="font-size:12px;">万</span>
                                         </ui:fragment>
                                         <ui:fragment rendered="#{loan.loanMoney lt 100}">
-                                            <span><h:outputText value="#{loan.loanMoney}">
+                                            <span><h:outputText value="#{loan.loanMoney}"><f:convertNumber minFractionDigits="0"/>
                                             </h:outputText></span>
                                             <span style="font-size:12px;">元</span>
                                         </ui:fragment>
