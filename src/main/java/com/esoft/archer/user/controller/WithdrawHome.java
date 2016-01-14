@@ -77,7 +77,7 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
             this.getInstance().setMoney(0D);
             return false;
         }
-        this.getInstance().setMoney(this.getInstance().getMoney()-2D);
+        this.getInstance().setMoney(this.getInstance().getMoney()-2D>0?this.getInstance().getMoney()-2D:0D);
         return true;
         //end
 
