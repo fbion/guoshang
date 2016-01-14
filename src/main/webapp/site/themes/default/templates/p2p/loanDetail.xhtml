@@ -441,32 +441,8 @@
                     <div class="intro_tab_down_c">
                         <ul class="i_t_d_c1">
                             <li>
-                                <span class="i_t_d_cspan">借款类型：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.businessTypeName}"></h:outputText></span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">借款用途：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.loanPurpose}"></h:outputText></span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">还款来源：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">还款来源为借款人工资收入及经营性收入，还款有保障。</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">个人基本信息：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.personInfo}"></h:outputText>借款人目前无信用卡，征信正常。</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">企业基本信息：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.companyDescription}"></h:outputText></span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">企业经营状况：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">无</span>
-                            </li>
-                            <li>
-                                <span class="i_t_d_cspan">涉诉信息：</span>
-                                <span class="i_t_d_cspan" style="color:#333333;width:350px;">无</span>
+                                <span class="i_t_d_cspan">项目介绍：</span>
+                                <span class="i_t_d_cspan" style="color:#333333;width:350px;"><h:outputText value="#{loan.description}" escape="false"></h:outputText></span>
                             </li>
                         </ul>
                         <c:if test="#{loan.businessType=='carType'}">
