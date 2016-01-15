@@ -195,7 +195,7 @@
 									</style>
 									<ul class="loan_content">
 										<li>年化收益：<span><h:outputText value="#{loan.ratePercent}">
-											<f:convertNumber minFractionDigits="2" />
+											<f:convertNumber minFractionDigits="0" />
 										</h:outputText></span>%</li>
 										<li>项目期限：<span>#{loan.deadline*loan.type.repayTimePeriod}</span>(#{dictUtil.getValue('repay_unit',loan.type.repayTimeUnit)})</li>
 										<li style="margin-top:12px">还款方式：#{dictUtil.getValue('repay_type',loan.type.repayType)}</li>

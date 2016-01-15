@@ -157,13 +157,13 @@ body{
 
 /*产品详情右标题下数字*/
 .d_r_num{
-  width: 115px;
+  width: 125px;
   height: 52px;
   text-align: center;
   padding-top: 8px;
 }
 .d_r_num span{
-  font-size: 30px;
+  font-size: 20px;
   font-family: '微软雅黑';
   color:#EB4748;  
 }
