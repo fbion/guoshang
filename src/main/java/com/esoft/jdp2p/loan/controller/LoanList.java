@@ -76,11 +76,11 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 		setHql(lazyModelHql);
 		final String[] RESTRICTIONS = { "loan.id like #{loanList.example.id}",
 				"loan.repayType like #{loanList.example.repayType}",
-				"loan.status like #{loanList.example.status}",
+//				"loan.status like #{loanList.example.status}",
 				"loan.name like #{loanList.example.name}",
 				"loan.jkRate >=#{loanList.minRate}",
 				"loan.jkRate <=#{loanList.maxRate}",
-				"loan.status like #{loanList.example.status}",
+//				"loan.status like #{loanList.example.status}",
 				"loan.riskLevel like #{loanList.example.riskLevel}",
 				"loan.type like #{loanList.example.type}",
 				"loan.user.id = #{loanList.example.user.id}",
@@ -227,6 +227,21 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 
 	public void setMaxRate(Double maxRate) {
 		this.maxRate = maxRate;
+	}
+
+	private  String fTypeQuery;
+	public void setLoanType(String fType,String lType){
+		this.removeRestriction(fTypeQuery);
+		if(fType!=null && !"".equals(fType)){
+			if(fType.equals(LoanConstants.LoanStatus.RAISING) || fType.equals(LoanConstants.LoanStatus.COMPLETE)){
+				this.fTypeQuery = "(loan.status like '"+fType+"')";
+			}else{
+				this.fTypeQuery = "(loan.status like '"+fType+"' or loan.status like '"+lType+"')";
+			}
+		}else{
+			this.fTypeQuery = "(loan.status is not null)";
+		}
+		this.addRestriction(fTypeQuery);
 	}
 
 	/**

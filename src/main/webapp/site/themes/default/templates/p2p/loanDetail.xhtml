@@ -580,6 +580,7 @@
                             </h:form>
                         </div>
                     </div>
+                    <ui:fragment rendered="#{not empty loan.guaranteeInfoPics}">
                     <div class="intro_tab_down_lunbo">
                         <!-- 图片部分 -->
                         <ui:repeat var="infoPic" varStatus="status" value="#{loan.guaranteeInfoPics}">
@@ -622,6 +623,7 @@
                             <div class="cont">&gt;</div>
                         </a>
                     </div>
+                    </ui:fragment>
                 </div>
             </div>
             <!--&lt;!&ndash; 产品介绍下部结束 &ndash;&gt;-->

@@ -57,7 +57,11 @@
 				render="@form"></f:ajax>
 		</h:commandLink>
 	</ui:fragment>
-	<a class="on">#{investList.currentPage}</a>
+	<a class="on">
+		<ui:fragment rendered="#{investList.lazyModel.rowCount>0}">
+			#{investList.currentPage}
+		</ui:fragment>
+	</a>
 	<ui:fragment
 		rendered="#{investList.lazyModel.rowCount/investList.pageSize > (investList.currentPage)}">
 		<h:commandLink title="到第 #{investList.currentPage+1} 页"
