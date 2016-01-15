@@ -183,10 +183,15 @@
                                             <span>秒</span>
                                         </div>
                                         <!-- 隐藏域value存放数据库中剩余时间值，可能需要格式化时间，比如2017/05/1 10:00:00 -->
-                                        <input id="surplus_time" type="hidden" value="#{loan.expectTime}"/>
+
+                                        <!--<input id="surplus_time" type="hidden" value="#{loan.expectTime}"/>-->
+                                        <h:outputText style="display:none" id="surplus_time" value="#{loan.expectTime}">
+                                            <f:convertDateTime pattern="yyyy/MM/dd HH:mm:ss" timeZone="GMT+8"/>
+                                        </h:outputText>
+
                                         <script type="text/javascript">
 								    function getRTime(){
-								    	var surplus_time=$('#surplus_time').val();
+								    	var surplus_time=$('#surplus_time').html();
 								        var EndTime= new Date(surplus_time);
 								        var NowTime = new Date();
 								        var t =EndTime.getTime() - NowTime.getTime();
@@ -197,12 +202,11 @@
 								        var m=Math.floor(t/1000/60);
 								        t-=m*60*1000;
 								        var s=Math.floor(t/1000);*/
-
+									 
 								        var d=Math.floor(t/1000/60/60/24);
 								        var h=Math.floor(t/1000/60/60%24);
 								        var m=Math.floor(t/1000/60%60);
 								        var s=Math.floor(t/1000%60);
-
 								        document.getElementById("t_d").innerHTML = d ;
 								        document.getElementById("t_h").innerHTML = h ;
 								        document.getElementById("t_m").innerHTML = m ;
@@ -622,7 +626,6 @@
             </div>
             <!--&lt;!&ndash; 产品介绍下部结束 &ndash;&gt;-->
         </div>
-
 
         <script>
 			  //如果登录用户没有投资权限，则提示，并跳转页面。

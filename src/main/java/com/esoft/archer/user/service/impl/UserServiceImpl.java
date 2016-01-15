@@ -625,7 +625,9 @@ public class UserServiceImpl implements UserService {
     }
 
     public void sendFindPasswordByMobileNumberYtxSMS(String mobileNumber){
-        String authCode = authService.createAuthInfo(null, mobileNumber, null, CommonConstants.AuthInfoType.REGISTER_BY_MOBILE_NUMBER).getAuthCode();
+        System.out.println("=================CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE");
+        String authCode = authService.createAuthInfo(null, mobileNumber, null, CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE).getAuthCode();
+        System.out.println("=================authCode:"+authCode);
         String[] content={authCode};
         messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.USER_FIND_PASSWORD, content, mobileNumber);
     }

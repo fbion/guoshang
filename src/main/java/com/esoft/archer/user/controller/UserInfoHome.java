@@ -325,10 +325,10 @@ public class UserInfoHome extends EntityHome<User> implements Serializable {
 		RequestContext.getCurrentInstance().execute(jsCode);
 	}
 
-	
 	public void findPwdByMobile1(){
 		try {
-			authService.verifyAuthInfo(getInstance().getId(), getInstance().getMobileNumber(),
+			System.out.println("前台输入的："+authCode);
+			authService.verifyAuthInfo(null, getInstance().getMobileNumber(),
 					authCode,
 					CommonConstants.AuthInfoType.FIND_LOGIN_PASSWORD_BY_MOBILE);
 			this.step = 2;
