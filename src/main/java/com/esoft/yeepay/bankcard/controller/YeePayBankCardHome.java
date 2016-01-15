@@ -137,6 +137,11 @@ public class YeePayBankCardHome extends BankCardHome {
 		User loginUser = getBaseService().get(User.class,
 				loginUserInfo.getLoginUserId());
 
+		if(this.getVaiPass()==null||"".equals(this.getVaiPass())){
+			FacesUtil.addErrorMessage("密码不能为空");
+			return;
+		}
+
 		if(this.getVaiPass()!=null&&!"".equals(this.getVaiPass())){
 			if(!HashCrypt.getDigestHash(this.getVaiPass()).equals(loginUser.getPassword())){
 				FacesUtil.addErrorMessage("密码输入有误");

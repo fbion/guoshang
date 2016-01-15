@@ -114,10 +114,8 @@
 					<div class="txczje_r">
 						<h:inputText label="充值金额" styleClass="txt02 money"
 							id="actualMoney" value="#{rechargeHome.instance.actualMoney}"
-							required="true">
-							<f:validateDoubleRange minimum="1"></f:validateDoubleRange>
+							>
 							<f:convertNumber maxFractionDigits="0" minIntegerDigits="1" />
-							<archer:validateNumber precision="0" />
 							<f:ajax render="fee allMoney" event="change"
 								listener="#{rechargeHome.calculateFee}"></f:ajax>
 						</h:inputText>

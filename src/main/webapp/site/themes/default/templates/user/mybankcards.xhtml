@@ -81,7 +81,7 @@
                                     </ui:fragment>
 
                                     <ui:fragment rendered="#{bankcard.status == 'VERIFIED'}">
-                                        <a class="yhkxx_r"  onclick="showPass();">解绑</a>
+                                        <a class="yhkxx_r" href="javascript:showPass();" >解绑</a>
                                     </ui:fragment>
                                     <ui:fragment rendered="#{bankcard.status == 'BINDING_WAIT'}">
                                         <a class="yhkxx_r" style="cursor:default" href="javascript:void(0);">解绑中</a>
@@ -270,9 +270,9 @@
                 <h:panelGroup id="pass">
                     <p> 安全验证>输入登录密码</p>
                     <h:form>
-                        <h:inputText id="vaiPass"  label="登录密码"  value="#{bankCardHome.vaiPass}" required='true'>
+                        <h:inputSecret id="vaiPass"   label="登录密码"  value="#{bankCardHome.vaiPass}" required='true'>
                             <f:ajax event="blur"></f:ajax>
-                        </h:inputText>
+                        </h:inputSecret>
                         <p:commandButton
                                 action="#{bankCardHome.unbindingCardS2STrusteeship}"
                                 value="确认"></p:commandButton>

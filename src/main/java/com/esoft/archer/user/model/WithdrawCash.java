@@ -151,7 +151,7 @@ public class WithdrawCash implements java.io.Serializable {
 
 	@Column(name = "money", nullable = false, precision = 22, scale = 0)
 	public Double getMoney() {
-		return money;
+		return this.money;
 	}
 
 	public void setMoney(Double money) {

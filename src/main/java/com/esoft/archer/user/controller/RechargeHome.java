@@ -2,6 +2,7 @@ package com.esoft.archer.user.controller;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.user.service.UserBillService;
 import org.apache.commons.lang.StringUtils;
 import org.apache.commons.logging.Log;
 import org.springframework.context.annotation.Scope;
@@ -39,8 +40,12 @@ public class RechargeHome extends EntityHome<Recharge> {
 		recharge.setUser(new User(loginUserInfo.getLoginUserId()));
 		return recharge;
 	}
-
 	public void calculateFee() {
+		if(this.getInstance().getActualMoney()==null||this.getInstance().getActualMoney()<1){
+			this.getInstance().setActualMoney(0D);
+			FacesUtil.addInfoMessage("充值金额不能为空，且不能小于1");
+			return;
+		}
 		double fee = rechargeService.calculateFee(this.getInstance()
 				.getActualMoney());
 		this.getInstance().setFee(fee);

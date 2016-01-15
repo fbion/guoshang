@@ -189,9 +189,9 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 				// 更改投资状态
 				invest.setStatus(InvestConstants.InvestStatus.REPAYING);
 				ht.update(invest);
-				//云通讯发送投资成功信息给用户
-				User user=invest.getUser();
-				userService.sendSuccessCreateYtxSMS(user.getUsername(),loan.getName(),invest.getMoney(), user.getMobileNumber());
+				//todo 云通讯发送投资成功信息给用户
+//				User user=invest.getUser();
+//				userService.sendSuccessCreateYtxSMS(user.getUsername(),loan.getName(),invest.getMoney(), user.getMobileNumber());
 			}
 		}
 //		String isYeepay2 = "0";

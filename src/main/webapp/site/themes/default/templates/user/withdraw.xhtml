@@ -51,7 +51,17 @@
 										<ui:param name="bcnL" value="#{bc.cardNo.length()}"></ui:param>
 										<p>#{fn:substring(bc.cardNo ,0,4)} **** ****#{fn:substring(bc.cardNo ,bcnL-4,bcnL)}</p>
 									</p:commandLink><em></em></li>
-								</ui:fragment>	
+								</ui:fragment>
+								<ui:fragment rendered="#{bc.status eq'BINDING_WAIT'}">
+									<li
+											class="#{bc.id.equals(withdrawHome.instance.bankCard.id)?'zhtx_li':''}"><p:commandLink
+											update=":form:bankCards :form:withdrawBtn" process="@this"
+											actionListener="#{withdrawHome.instance.setBankCard(bc)}">
+										<img src="#{tplVars.themeImagePath}/yeepaybanklogo/#{bc.bankNo}.png" />
+										<ui:param name="bcnL" value="#{bc.cardNo.length()}"></ui:param>
+										<p>#{fn:substring(bc.cardNo ,0,4)} **** ****#{fn:substring(bc.cardNo ,bcnL-4,bcnL)}</p>
+									</p:commandLink><em></em></li>
+								</ui:fragment>
 							</ui:repeat>
 						</h:panelGroup>
 						<div class="clear"></div>

@@ -70,6 +70,14 @@ public class WithdrawHome extends EntityHome<WithdrawCash> {
      */
     public boolean calculateFee() {
         double fee = wcs.calculateFee(this.getInstance().getMoney());
+        if(this.getInstance().getMoney()-fee<0){
+            FacesUtil.addErrorMessage("提款金额不能少于手续费2元！");
+            FacesUtil.getCurrentInstance().validationFailed();
+            this.getInstance().setMoney(0D);
+            return false;
+        }
+
+        this.getInstance().setMoney(this.getInstance().getMoney()-fee);
         if (userBillService.getBalance(loginUserInfo.getLoginUserId()) < fee + this.getInstance().getMoney()) {
             FacesUtil.addErrorMessage("余额不足！");
             FacesUtil.getCurrentInstance().validationFailed();
