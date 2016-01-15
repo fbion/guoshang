@@ -492,7 +492,7 @@ body{
   width: 590px;
   height: 375px;
   float: left;
-  border-right: 1px solid #DCDCDC;
+  border-right: 0px solid #DCDCDC;
 }
 /*产品介绍tab下方具体内容表123*/
 .i_t_d_c1,.i_t_d_c2{

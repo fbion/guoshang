@@ -16,7 +16,7 @@
 					<a href="#{request.contextPath}/memberLogin" class="login">立即登录</a>
 				</ui:fragment>
 				<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
-					<a href="#{path}/user/center">您好, #{loginUserInfo.loginUserId}</a>
+					<a href="#{path}/user/center"><font color="#FF3030">您好,#{loginUserInfo.loginUserId}</font></a>
 					<a href="#{path}/user/logout" class="login">注销</a>
 					<span>|</span>
 					<a href="#{path}/term/BZZX">帮助中心</a>

@@ -73,7 +73,8 @@ public class YtxSmsServiceImpl extends YtxSmsService {
 		if("000000".equals(result.get("statusCode"))){
 		}else{
 			//异常返回输出错误码和错误信息
-			throw new MessageSendErrorException("短信发送失败!"+"错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
+			//throw new MessageSendErrorException("短信发送失败!"+"错误码=" + result.get("statusCode") +" 错误信息= "+result.get("statusMsg"));
+			throw new MessageSendErrorException("验证码操作过于频繁,请一分钟后再试!");
 		}
 	}
 }

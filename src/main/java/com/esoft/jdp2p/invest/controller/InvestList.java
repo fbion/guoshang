@@ -6,6 +6,7 @@ import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
+import com.esoft.jdp2p.invest.InvestConstants;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -49,7 +50,7 @@ public class InvestList extends EntityQuery<Invest> implements Serializable{
 		setHql(lazyModelHql);
 		final String[] RESTRICTIONS = {
 				"invest.id like #{investList.example.id}",
-				"invest.status like #{investList.example.status}",
+				"invest.status != #{investList.example.status}",
 				"invest.loan.user.id like #{investList.example.loan.user.id}",
 				"invest.loan.id like #{investList.example.loan.id}",
 				"invest.loan.name like #{investList.example.loan.name}",
@@ -58,7 +59,7 @@ public class InvestList extends EntityQuery<Invest> implements Serializable{
 				"invest.user.referrer = #{investList.example.user.referrer}",
 				"invest.user.username = #{investList.example.user.username}",
 				"invest.time >= #{investList.searchcommitMinTime}",
-				"invest.status like #{investList.example.status}",
+				//"invest.status like #{investList.example.status}",
 				"invest.time <= #{investList.searchcommitMaxTime}",
 				"invest.user.subst.userId like #{investList.example.user.subst.userId}",
 				"invest.transferApply.id = #{investList.example.transferApply.id}"};
@@ -77,6 +78,7 @@ public class InvestList extends EntityQuery<Invest> implements Serializable{
 		example.setUser(user2);
 		example.setLoan(loan);
 		example.setTransferApply(new TransferApply());
+		example.setStatus(InvestConstants.InvestStatus.CANCEL);
 		setExample(example);
 	}
 
