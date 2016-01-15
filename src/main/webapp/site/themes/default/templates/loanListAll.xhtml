@@ -29,19 +29,19 @@
 							<div class="zt01">
 								<h:commandLink styleClass="hover" title="全部" value="全部">
 									<f:ajax render="dataTable"
-											listener="#{loanList.example.setStatus('')}"></f:ajax>
+											listener="#{loanList.setLoanType('','')}"></f:ajax>
 								</h:commandLink>
 								<h:commandLink title="可投资" value="可投资">
 									<f:ajax render="dataTable"
-											listener="#{loanList.example.setStatus(LoanStatus.RAISING)}"></f:ajax>
+											listener="#{loanList.setLoanType(LoanStatus.RAISING,'')}"></f:ajax>
 								</h:commandLink>
 								<h:commandLink title="还款中" value="还款中">
 									<f:ajax render="dataTable"
-											listener="#{loanList.example.setStatus(LoanStatus.REPAYING)}"></f:ajax>
+											listener="#{loanList.setLoanType(LoanStatus.REPAYING,LoanStatus.REPAYING_BACK)}"></f:ajax>
 								</h:commandLink>
 								<h:commandLink title="已结清" value="已结清">
 									<f:ajax render="dataTable"
-											listener="#{loanList.example.setStatus(LoanStatus.COMPLETE)}"></f:ajax>
+											listener="#{loanList.setLoanType(LoanStatus.COMPLETE,'')}"></f:ajax>
 								</h:commandLink>
 							</div>
 							<div class="clear"></div>
