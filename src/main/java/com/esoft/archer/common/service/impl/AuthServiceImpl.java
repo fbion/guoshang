@@ -78,12 +78,18 @@ public class AuthServiceImpl implements AuthService {
 					+ authCode + " authType:" + authType);
 		}
 		AuthInfo ai = authInfoBO.get(source, target, authType);
+
+		System.out.println("DBcode:"+ai.getAuthCode());
+		System.out.println("authCode:"+authCode);
+
 		if (ai == null || !StringUtils.equals(ai.getAuthCode(), authCode)) {
 			// 没找到或认证码不正确，抛异常，目前已有异常不合适
 			throw new NoMatchingObjectsException(AuthInfo.class, "source:"
 					+ source + " target:" + target + " authCode:" + authCode
 					+ " authType:" + authType);
 		}
+
+		System.out.println("11111111111:");
 		if (!StringUtils.equals(ai.getStatus(),
 				CommonConstants.AuthInfoStatus.INACTIVE)) {
 			// FIXME:不是未激活状态，抛异常
@@ -91,11 +97,13 @@ public class AuthServiceImpl implements AuthService {
 					+ source + " target:" + target + " authCode:" + authCode
 					+ " authType:" + authType);
 		}
+		System.out.println("222222222222:");
 		if (ai.getDeadline() != null && ai.getDeadline().before(new Date())) {
 			// FIXME:已经过期，抛异常
 			throw new AuthInfoOutOfDateException("source:" + source
 					+ " target:" + target + " authCode:" + authCode
 					+ " authType:" + authType);
 		}
+		System.out.println("333333333333333333:");
 	}
 }

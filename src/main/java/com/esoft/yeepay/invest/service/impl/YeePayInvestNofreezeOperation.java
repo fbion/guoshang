@@ -298,7 +298,6 @@ public class YeePayInvestNofreezeOperation extends
 		String sign = request.getParameter("sign");// 签名
 		boolean flag = CFCASignUtil.isVerifySign(respXML, sign);
 		if (flag) {// 验签成功
-
 			Map<String, String> resultMap = Dom4jUtil.xmltoMap(respXML);
 			String requestNo = resultMap.get("requestNo").replaceFirst(YeePayConstants.RequestNoPre.INVEST, "");// 请求流水号
 			TrusteeshipOperation to = trusteeshipOperationBO.get(YeePayConstants.OperationType.INVEST, requestNo, "yeepay");
@@ -307,7 +306,6 @@ public class YeePayInvestNofreezeOperation extends
 			if (TrusteeshipConstants.Status.PASSED.equals(to.getStatus())) {// 状态是已发送，则不做后续处理
 				return;
 			}
-
 			String description = resultMap.get("description");
 			String code = resultMap.get("code");
 			Invest invest = ht.get(Invest.class, requestNo);
