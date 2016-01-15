@@ -36,6 +36,7 @@ public class HashCrypt {
 	}
 
 	public static void main(String[] args) {
-		System.out.println( getDigestHash("jhsx128710104") );
+
+		System.out.println( getDigestHash("123456") );
 	}
 }

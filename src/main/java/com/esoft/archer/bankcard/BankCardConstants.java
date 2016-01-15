@@ -14,7 +14,9 @@ public class BankCardConstants {
 	public static class BankCardStatus{
 		public static final String NEWADD = "新增";
 		public static final String BINDING = "绑定";
+		public static final String BINDING_WAIT = "BINDING_WAIT";
 		public static final String DELETED = "已删除";
+
 	}
 	
 }

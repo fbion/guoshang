@@ -53,23 +53,20 @@ public class YeePayBankCardList extends BankCardList {
 		if(bankCardListbyLoginUser != null && bankCardListbyLoginUser.size() > 0){
 			BankCard bc = null;
 			for(BankCard b: bankCardListbyLoginUser){
-				if("VERIFYING".equals(b.getStatus())){
+				if(BankCardConstants.BankCardStatus.BINDING_WAIT.equals(b.getStatus())){
 					bc = b;
 					break;
 				}
 			}
 //			BankCard bc = bankCardListbyLoginUser.get(0);
-			if(bc != null && "VERIFYING".equals(bc.getStatus())){
+			if(bc != null){
 				String status = queryCardStatus(loginUserInfo.getLoginUserId());
 				if("VERIFIED".equals(status)){
-					bc.setStatus(status);
-					getHt().update(bc);
 				}else if(status == null || "".equals(status)){
-					bc.setStatus("FAIL");
+					bc.setStatus(BankCardConstants.BankCardStatus.DELETED);
 					getHt().update(bc);
 				}
 			}
-			
 		}
 		return bankCardListbyLoginUser;
 	}

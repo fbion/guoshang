@@ -44,7 +44,6 @@ public class YeePayUnbindingBankCardOperation extends YeePayOperationServiceAbs<
 	@Transactional(rollbackFor = Exception.class)
 	public TrusteeshipOperation createOperation(BankCard bankCard,
 			FacesContext fc) throws IOException {
-
 		// String resquestNo = IdGenerator.randomUUID();
 		String userId = bankCard.getUser().getId();
 		String hql = "from BankCard bc where bc.user.id = ? and bc.status = ?";
@@ -56,7 +55,6 @@ public class YeePayUnbindingBankCardOperation extends YeePayOperationServiceAbs<
 			FacesUtil.addErrorMessage("未找到银行卡信息。");
 			return null;
 		}
-		
 		StringBuffer content = new StringBuffer();
 		content.append("<?xml version='1.0' encoding='utf-8'?>");
 		// 商户编号:商户在易宝唯一标识
@@ -67,16 +65,6 @@ public class YeePayUnbindingBankCardOperation extends YeePayOperationServiceAbs<
 				+ "</platformUserNo>");
 		// 请求流水号 银行卡的 id
 		content.append("<requestNo>"+ YeePayConstants.RequestNoPre.UNBINDING_YEEPAY_BANKCARD + bc.getId() + "</requestNo>");
-		// 页面回跳URL
-		content.append("<callbackUrl>"
-				+ YeePayConstants.ResponseWebUrl.PRE_RESPONSE_URL
-				+ YeePayConstants.OperationType.UNBINDING_YEEPAY_BANKCARD
-				+ "</callbackUrl>");
-		// 服务器通知 URL:服务器通知 URL
-		content.append("<notifyUrl>"
-				+ YeePayConstants.ResponseS2SUrl.PRE_RESPONSE_URL
-				+ YeePayConstants.OperationType.UNBINDING_YEEPAY_BANKCARD
-				+ "</notifyUrl>");
 		content.append("</request>");
 
 		// 包装参数
@@ -110,7 +98,6 @@ public class YeePayUnbindingBankCardOperation extends YeePayOperationServiceAbs<
 	@Transactional(rollbackFor = Exception.class)
 	public void receiveOperationPostCallback(ServletRequest request)
 			throws TrusteeshipReturnException {
-
 		try {
 			request.setCharacterEncoding("UTF-8");
 		} catch (UnsupportedEncodingException e) {

@@ -81,7 +81,6 @@ public class WithdrawCashServiceImpl implements WithdrawCashService {
 			wdc.setVerifyMessage(withdrawCash.getVerifyMessage());
 			wdc.setVerifyUser(withdrawCash.getVerifyUser());
 			ht.merge(wdc);
-
 			if (log.isInfoEnabled())
 				log.info("提现审核初审通过，提现编号：" + wdc.getId() + "，审核人："
 						+ withdrawCash.getVerifyUser().getId() + "，审核时间:"

@@ -8,6 +8,8 @@ import java.util.Map;
 import javax.annotation.Resource;
 import javax.faces.context.FacesContext;
 
+import com.esoft.core.util.HashCrypt;
+import com.esoft.yeepay.bankcard.service.impl.YeePayUnbindingBankCardS2SOperation;
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.HttpException;
 import org.apache.commons.httpclient.methods.PostMethod;
@@ -34,9 +36,22 @@ public class YeePayBankCardHome extends BankCardHome {
 	YeePayBindingBankCardOperation yeePayBindingBankCardOperation;
 	@Resource
 	YeePayUnbindingBankCardOperation yeePayUnbindingBankCardOperation;
+	@Resource
+	YeePayUnbindingBankCardS2SOperation yeePayUnbindingBankCardS2SOperation;
 
 	@Resource
 	private RechargeService rechargeService;
+
+
+	private String vaiPass;
+
+	public String getVaiPass() {
+		return vaiPass;
+	}
+
+	public void setVaiPass(String vaiPass) {
+		this.vaiPass = vaiPass;
+	}
 
 	/**
 	 * 绑定银行卡(资金托管)
@@ -102,7 +117,6 @@ public class YeePayBankCardHome extends BankCardHome {
 		} finally {
 			postMethod.releaseConnection();
 		}
-
 		// FIXME:是不是需要加判断
 		User loginUser = getBaseService().get(User.class,
 				loginUserInfo.getLoginUserId());
@@ -116,11 +130,37 @@ public class YeePayBankCardHome extends BankCardHome {
 		}
 	}
 
+
+	public void unbindingCardS2STrusteeship() {
+
+		// FIXME:是不是需要加判断
+		User loginUser = getBaseService().get(User.class,
+				loginUserInfo.getLoginUserId());
+
+		if(this.getVaiPass()!=null&&!"".equals(this.getVaiPass())){
+			if(!HashCrypt.getDigestHash(this.getVaiPass()).equals(loginUser.getPassword())){
+				FacesUtil.addErrorMessage("密码输入有误");
+				return;
+			}
+		}
+		getInstance().setUser(loginUser);
+		try {
+			yeePayUnbindingBankCardS2SOperation.createOperation(getInstance(),
+					FacesContext.getCurrentInstance());
+		} catch (IOException e) {
+			FacesUtil.addErrorMessage("解绑银行卡错误");
+			e.printStackTrace();
+		}
+	}
+
+
+
 	public void unbindingCardTrusteeship() {
 		// FIXME:是不是需要加判断
 		User loginUser = getBaseService().get(User.class,
 				loginUserInfo.getLoginUserId());
 		getInstance().setUser(loginUser);
+
 		try {
 			yeePayUnbindingBankCardOperation.createOperation(getInstance(),
 					FacesContext.getCurrentInstance());
