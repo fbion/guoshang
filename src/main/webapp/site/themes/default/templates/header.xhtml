@@ -53,11 +53,17 @@
 		</div>
 	</div>
 	<script>		
-		$(".header .nav a").each(function() {			
-			if($(this).attr("href")==location.pathname)
+		$(".header .nav a").each(function() {
+			var ptname = location.pathname;
+			if($(this).attr("href")==ptname)
 			{
 				$(this).parent().addClass("cur1");
 			}
-		}); 
+			if($(this).attr("href")=="/loan-list-all"){
+				if(ptname.indexOf("/loanDetail/")>=0){
+					$(this).parent().addClass("cur1");
+				}
+			}
+		});
 	</script>
 </ui:component>

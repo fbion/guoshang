@@ -20,6 +20,7 @@ import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.security.core.context.SecurityContextImpl;
 import org.springframework.stereotype.Component;
 
 import com.esoft.archer.common.controller.EntityQuery;
@@ -57,16 +58,16 @@ public class UserBillList extends EntityQuery<UserBill> {
 	}
 
 	public void setEndTime(Date endTime) {
+		Calendar c = Calendar.getInstance();
 		if (endTime != null) {
-			Calendar c = Calendar.getInstance();
 			c.setTime(endTime);
-			c.set(Calendar.HOUR_OF_DAY, 23);
-			c.set(Calendar.MINUTE, 59);
-			c.set(Calendar.SECOND, 59);
-			this.endTime = c.getTime();
 		} else {
-			this.endTime = null;
+			c.setTime(new Date());
 		}
+		c.set(Calendar.HOUR_OF_DAY, 23);
+		c.set(Calendar.MINUTE, 59);
+		c.set(Calendar.SECOND, 59);
+		this.endTime = c.getTime();
 	}
 
 	public UserBillList() {
@@ -78,13 +79,16 @@ public class UserBillList extends EntityQuery<UserBill> {
 				"time >= #{userBillList.startTime}",
 				"time <= #{userBillList.endTime}" };
 		setRestrictionExpressionStrings(Arrays.asList(RESTRICTIONS));
-		// addOrder("time", super.DIR_DESC);
 	}
 
 	@Override
 	protected void initExample() {
 		UserBill example = new UserBill();
 		User user = new User();
+		SecurityContextImpl securityContextImpl = (SecurityContextImpl) FacesUtil.getSessionAttribute("SPRING_SECURITY_CONTEXT");
+		if (securityContextImpl != null) {
+			user.setId(securityContextImpl.getAuthentication().getName());
+		}
 		Subst subst = new Subst();
 		user.setSubst(subst);
 		example.setUser(user);
