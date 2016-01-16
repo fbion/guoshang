@@ -40,7 +40,7 @@
 									<ul>
 										<ui:repeat var="m2" value="#{menu.children}" varStatus="status">
 											<ui:fragment rendered="#{m2.enable eq '1'}">
-												<li><a href="#{path}#{m2.url}">#{fn:substring(m2.label,0,6)}</a></li>
+												<li><a style="text-decoration: none;" href="#{path}#{m2.url}">#{fn:substring(m2.label,0,6)}</a></li>
 											</ui:fragment>
 										</ui:repeat>
 									</ul>

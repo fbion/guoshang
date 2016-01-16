@@ -690,6 +690,7 @@ public class RepayServiceImpl implements RepayService {
 						DateUtil.StringToDate(DateUtil.DateToString(
 								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 2);
 				if (repayDay.before(new Date())) {
+
 					lr.setStatus(LoanConstants.RepayStatus.OVERDUE);
 					// FIXME:冻结用户，只允许还钱，其他都不能干。
 					loan.setStatus(LoanConstants.LoanStatus.OVERDUE);
