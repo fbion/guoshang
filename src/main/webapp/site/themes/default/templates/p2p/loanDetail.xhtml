@@ -123,7 +123,6 @@
                                     <div class="d_r_title">
                                         <img src="#{tplVars.themeImagePath}/version_two/jineico.jpg" alt="" width="20"
                                              height="20"/>
-
 									<span class="d_r_titlez">
 										融资金额
 									</span>
@@ -157,12 +156,8 @@
                                         </div>
                                     </div>
                                 </li>
-
                                 <li>
-
                                 </li>
-
-
                                 <li>
                                     <ui:fragment rendered="#{loanCalculator.calculateLoanCould(loan.id)=='未开始'}">
                                         <div id="muji" class="point_r" >
@@ -267,45 +262,40 @@
                                 <span>项目发布</span>
                             </li>
                             <li>
-								<span style="color:#666666"><h:outputText value="#{loan.giveMoneyTime}">
-                                    <f:convertDateTime pattern="yyyy-MM-dd" locale="cn"
-                                                       timeZone="GMT+8"></f:convertDateTime>
-                                </h:outputText></span>
+                                <span style="color:#666666"></span>
                                 <span>投资满额</span>
                             </li>
                             <li>
-								<span style="color:#666666"><h:outputText value="#{loan.interestBeginTime}">
-                                    <f:convertDateTime pattern="yyyy-MM-dd" locale="cn"
-                                                       timeZone="GMT+8"></f:convertDateTime>
-                                </h:outputText></span>
+                                <span style="color:#666666"></span>
                                 <span>计息</span>
                             </li>
                             <li>
-								<span style="color:#666666"><h:outputText value="#{loan.cancelTime}">
-                                    <f:convertDateTime pattern="yyyy-MM-dd" locale="cn"
-                                                       timeZone="GMT+8"></f:convertDateTime>
-                                </h:outputText></span>
+                                <span style="color:#666666"></span>
                                 <span>还款完成</span>
                             </li>
                         </ul>
                         <!-- 隐藏域存放数据库值，显示进度 -->
 
                         <c:choose>
-                            <c:when test="#{loanCalculator.calculateMoneyNeedRaised(loan.id) eq 0}">
-                                <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
+                            <c:when test="#{loanCalculator.calculateMoneyNeedRaised(loan.id)} eq 0">
+                                <c:choose>
+                                    <c:when test="#{loan.status==LoanStatus.REPAYING}">
+                                        <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
+                                    </c:when>
+                                    <c:when test="#{loan.status==LoanStatus.REPAYING_BACK}">
+                                        <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
+                                    </c:when>
+                                    <c:when test="#{loan.status==LoanStatus.COMPLETE}">
+                                        <input id="jinduvalue" type="hidden" name="jindu" value="4"/>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <input id="jinduvalue" type="hidden" name="jindu" value="2"/>
+                                    </c:otherwise>
+                                </c:choose>
                             </c:when>
-                            <c:when test="#{loan.status==LoanStatus.RAISING}">
+                            <c:otherwise>
                                 <input id="jinduvalue" type="hidden" name="jindu" value="1"/>
-                            </c:when>
-                            <c:when test="#{loan.status==LoanStatus.REPAYING}">
-                                <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
-                            </c:when>
-                            <c:when test="#{loan.status==LoanStatus.REPAYING_BACK}">
-                                <input id="jinduvalue" type="hidden" name="jindu" value="3"/>
-                            </c:when>
-                            <c:when test="#{loan.status==LoanStatus.COMPLETE}">
-                                <input id="jinduvalue" type="hidden" name="jindu" value="4"/>
-                            </c:when>
+                            </c:otherwise>
                         </c:choose>
 
                         <!-- 隐藏域存放数据库值，显示进度 -->
@@ -322,22 +312,22 @@
                         <ul class="pro_line_down">
                             <li>
                                 <span>投资起点：</span>
-								<span style="color:#333333"><h:outputText value="#{loan.minInvestMoney}">
+								<span style="color:#333333"><h:outputText  id="minInvestNumber" value="#{loan.minInvestMoney}">
                                     <f:convertNumber type="number"/>
                                 </h:outputText>
 							元</span>
                             </li>
                             <li>
                                 <span>剩余可投：</span>
-								<span style="color:#333333"><h:outputText
-                                        value="#{loanCalculator.calculateMoneyNeedRaised(loan.id)}">
+								<span style="color:#333333"><h:outputText id="couldInvestNumber"
+                                                                          value="#{loanCalculator.calculateMoneyNeedRaised(loan.id)}">
                                     <f:convertNumber type="number"/>
                                 </h:outputText>
 							元</span>
                             </li>
                             <li>
                                 <span>递增金额：</span>
-								<span style="color:#333333"><h:outputText value="#{loan.cardinalNumber}">
+								<span style="color:#333333"><h:outputText id="cardinalNumber" value="#{loan.cardinalNumber}">
                                     <f:convertNumber type="number"/>
                                 </h:outputText>
 							元</span>
@@ -362,28 +352,35 @@
                     <div class="pro_up_r_down">
                         <h:form>
                             <div class="num_change">
-                                <a href="javascript:;" class="num" id="jian">
-                                    <img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt=""/>
-                                </a>
-                                <h:inputText label="投资金额" value="#{investHome.instance.money}"
+                                <h:outputLabel value="" style="width:30px;float:left;">
+                                    <img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt="" />
+                                    <f:ajax event="click" execute="@this" render="moneyInvest shouyi"
+                                            listener="#{investHome.calculateInvestMul(id)}"></f:ajax>
+                                    <!--   <img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt=""/> -->
+                                </h:outputLabel>
+                                <h:inputText id="moneyInvest" label="投资金额" value="#{investHome.instance.money}"
                                              styleClass="txtinput" required="true"
                                              requiredMessage="投资金额不能为空！">
-                                    <f:ajax event="blur" render="@this"></f:ajax>
+                                    <f:ajax event="blur" render="@this shouyi" listener="#{investHome.calculateInvest(id)}"></f:ajax>
                                     <o:validator validatorId="javax.faces.DoubleRange"
                                                  minimum="#{loan.minInvestMoney}"
                                                  maximum="#{loanCalculator.calculateMoneyMaxInvested(loan.id)}"></o:validator>
-                                    <o:validator
-                                            validatorId="com.esoft.core.validator.NumberValidator"
-                                            cardinalNumber="#{loan.cardinalNumber}"></o:validator>
                                 </h:inputText>
-                                <a href="javascript:;" class="num" id="jia">
-                                    <img src="#{tplVars.themeImagePath}/version_two/jia.jpg" alt=""/>
-                                </a>
+                                <h:outputLabel value="" style="width:30px;float:left;">
+                                    <img src="#{tplVars.themeImagePath}/version_two/jia.jpg" alt="" />
+                                    <f:ajax event="click" execute="@this" render="moneyInvest shouyi"
+                                            listener="#{investHome.calculateInvestPlus(id)}"></f:ajax>
+                                    <!--   <img src="#{tplVars.themeImagePath}/version_two/jian.jpg" alt=""/>  -->
+                                </h:outputLabel>
                             </div>
-
                             <div class="expect">
                                 <span>预期收益</span>
-                                <span>19.6</span>
+                                <span>
+                                    <h:outputLabel id="shouyi"
+                                                   value="#{investHome.shouYi}">
+
+                                        <f:convertNumber minFractionDigits="0" maxFractionDigits="2"/>
+                                    </h:outputLabel></span>
                                 <span>元</span>
                             </div>
                             <ui:fragment rendered="#{loan.status ==LoanStatus.RAISING}">
@@ -400,7 +397,6 @@
                                             <a class="investmentbtn" href="javascript:void(0)"
                                                onclick="getInvestorPer();">立即投资</a>
                                         </sec:ifNotGranted>
-
                                         <sec:ifAllGranted roles="INVESTOR">
                                             <h:commandLink styleClass="investmentbtn"
                                                            action="#{investHome.save}" value="立即投资"
@@ -415,8 +411,6 @@
                                 </p>
                             </ui:fragment>
                         </h:form>
-
-
                     </div>
                 </div>
                 <!-- 右 -->
@@ -581,48 +575,48 @@
                         </div>
                     </div>
                     <ui:fragment rendered="#{not empty loan.guaranteeInfoPics}">
-                    <div class="intro_tab_down_lunbo">
-                        <!-- 图片部分 -->
-                        <ui:repeat var="infoPic" varStatus="status" value="#{loan.guaranteeInfoPics}">
-                            <ui:fragment rendered="#{status.index==0}">
-                                <img class="lunbo_big_img" style="display:block;"
-                                     src="#{request.contextPath}#{infoPic.picture}" alt=""/>
-                            </ui:fragment>
+                        <div class="intro_tab_down_lunbo">
+                            <!-- 图片部分 -->
+                            <ui:repeat var="infoPic" varStatus="status" value="#{loan.guaranteeInfoPics}">
+                                <ui:fragment rendered="#{status.index==0}">
+                                    <img class="lunbo_big_img" style="display:block;"
+                                         src="#{request.contextPath}#{infoPic.picture}" alt=""/>
+                                </ui:fragment>
 
-                            <ui:fragment rendered="#{status.index!=0}">
-                                <img class="lunbo_big_img" src="#{request.contextPath}#{infoPic.picture}" alt=""/>
-                            </ui:fragment>
+                                <ui:fragment rendered="#{status.index!=0}">
+                                    <img class="lunbo_big_img" src="#{request.contextPath}#{infoPic.picture}" alt=""/>
+                                </ui:fragment>
 
-                        </ui:repeat>
-                        <!-- 列表区域 -->
-                        <div class="lunbok">
-                            <ul>
-                                <ui:repeat var="infoPic" value="#{loan.guaranteeInfoPics}" varStatus="status">
+                            </ui:repeat>
+                            <!-- 列表区域 -->
+                            <div class="lunbok">
+                                <ul>
+                                    <ui:repeat var="infoPic" value="#{loan.guaranteeInfoPics}" varStatus="status">
 
-                                    <ui:fragment rendered="#{status.index==0}">
-                                        <li style="border:3px solid #666666;">
-                                            <img src="#{request.contextPath}#{infoPic.picture}" alt=""/>
-                                        </li>
-                                    </ui:fragment>
+                                        <ui:fragment rendered="#{status.index==0}">
+                                            <li style="border:3px solid #666666;">
+                                                <img src="#{request.contextPath}#{infoPic.picture}" alt=""/>
+                                            </li>
+                                        </ui:fragment>
 
-                                    <ui:fragment rendered="#{status.index!=0}">
-                                        <li>
-                                            <img src="#{request.contextPath}#{infoPic.picture}" alt=""/>
-                                        </li>
-                                    </ui:fragment>
-                                </ui:repeat>
-                            </ul>
+                                        <ui:fragment rendered="#{status.index!=0}">
+                                            <li>
+                                                <img src="#{request.contextPath}#{infoPic.picture}" alt=""/>
+                                            </li>
+                                        </ui:fragment>
+                                    </ui:repeat>
+                                </ul>
+                            </div>
+                            <!-- 左右两侧 -->
+                            <a href="javascript:;" class="left" style="left:46px;">
+                                <div class="cover"></div>
+                                <div class="cont">&lt;</div>
+                            </a>
+                            <a href="javascript:;" class="right" style="right:46px;">
+                                <div class="cover"></div>
+                                <div class="cont">&gt;</div>
+                            </a>
                         </div>
-                        <!-- 左右两侧 -->
-                        <a href="javascript:;" class="left" style="left:46px;">
-                            <div class="cover"></div>
-                            <div class="cont">&lt;</div>
-                        </a>
-                        <a href="javascript:;" class="right" style="right:46px;">
-                            <div class="cover"></div>
-                            <div class="cont">&gt;</div>
-                        </a>
-                    </div>
                     </ui:fragment>
                 </div>
             </div>
@@ -646,3 +640,4 @@
 
     </ui:define>
 </ui:composition>
+

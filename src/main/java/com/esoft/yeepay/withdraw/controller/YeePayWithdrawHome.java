@@ -45,13 +45,14 @@ public class YeePayWithdrawHome extends WithdrawHome  {
 	 */
 	@Override
 	public String withdraw() {
-	 try {  
+	 try {
 		 	WithdrawCash wc = this.getInstance();
 		    String userId=loginUserInfo.getLoginUserId();
 		    wc.setUser(new User(userId));
 		    if("0".equals(configHome.getConfigValue("freeze_money"))){
 		    	double fee = wcs.calculateFee(wc.getMoney());
-		    	if(fee+wc.getMoney()>userBillBO.getBalance(wc.getUser().getId())){
+				wc.setMoney(wc.getMoney() - fee);
+				if (fee+wc.getMoney()>userBillBO.getBalance(wc.getUser().getId())){
 		    		throw new InsufficientBalance();
 		    	}
 		    	wc.setFee(fee);

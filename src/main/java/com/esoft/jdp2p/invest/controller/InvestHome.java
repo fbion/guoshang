@@ -4,7 +4,9 @@ import java.io.Serializable;
 
 import javax.annotation.Resource;
 
+import com.esoft.archer.common.exception.NoMatchingObjectsException;
 import com.esoft.archer.user.exception.UserNotFoundException;
+import com.esoft.jdp2p.loan.service.LoanCalculator;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -60,7 +62,18 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
     @Resource
     private UserService userService;
 
+    @Resource
+    private LoanCalculator loanCalculator;
 
+    private double shouYi;
+
+    public double getShouYi() {
+        return shouYi;
+    }
+
+    public void setShouYi(double shouYi) {
+        this.shouYi = shouYi;
+    }
 
     @Override
     protected Invest createInstance() {
@@ -96,6 +109,137 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
         }
         return null;
     }
+
+    public  boolean vaiMoney(double touzi,Loan loan) {
+        double money=touzi;
+        double couldMoney= 0;
+        try {
+            couldMoney = loanCalculator.calculateMoneyNeedRaised(loan.getId());
+        } catch (NoMatchingObjectsException e) {
+            FacesUtil.addErrorMessage("获取可投金额失败");
+            return false;
+        }
+        double minMoney=loan.getCardinalNumber();
+        double cardinalNumber=loan.getCardinalNumber();
+        //投资金额不能高于可投金额
+        if(money>couldMoney){
+            FacesUtil.addErrorMessage("投资金额不能高于可投金额");
+            return false;
+        }
+        if(couldMoney-money<minMoney){
+            if(couldMoney-money==0){
+                return true;
+            }
+            FacesUtil.addErrorMessage("您投资后，剩余金额不能少于起投金额");
+            return false;
+        }
+        if((couldMoney-money-minMoney)%cardinalNumber!=0){
+            FacesUtil.addErrorMessage("您投资后，剩余可投金额减去投资起点，还需要是递增金额的倍数");
+            return false;
+        }
+        return true;
+    }
+
+
+    /**
+     * 计算收益
+     */
+    public void calculateShouYi(double invesetMoney,Loan loan){
+        Integer deadline=loan.getDeadline();
+        String timeUnit=loan.getType().getRepayTimeUnit();
+        double fee=0D;
+        if(timeUnit.equals("day")){
+            fee=invesetMoney*loan.getRate()/360*deadline;
+        }else if(timeUnit.equals("month")){
+            fee=invesetMoney*loan.getRate()/12*deadline;
+        }
+        this.setShouYi(fee);
+    }
+
+    /**
+     * 投资减
+     */
+    public boolean calculateInvestMul(String loanId) {
+
+        System.out.println("投资减");
+
+        if(this.getInstance().getMoney()==null){
+            this.getInstance().setMoney(0D);
+        }
+        double money=this.getInstance().getMoney();
+        Loan loan=this.getBaseService().get(Loan.class, loanId);
+        double cardinalNumber=loan.getCardinalNumber();
+        double touzi=money-cardinalNumber;
+        if(touzi<=0){
+            this.setShouYi(0D);
+            FacesUtil.addErrorMessage("投资金额不能再少了");
+            return false;
+        }
+        boolean is=this.vaiMoney(touzi,loan);
+        if(is){
+            this.getInstance().setMoney(touzi);
+            calculateShouYi(this.getInstance().getMoney(),loan);
+            return true;
+        }else{
+            this.setShouYi(0D);
+            return false;
+        }
+    }
+
+
+
+
+
+
+    /**
+     * 投资增加
+     */
+    public boolean calculateInvestPlus(String loanId) {
+
+        System.out.println("投资加");
+        if(this.getInstance().getMoney()==null){
+            this.getInstance().setMoney(0D);
+        }
+        double money=this.getInstance().getMoney();
+        Loan loan=this.getBaseService().get(Loan.class, loanId);
+        double cardinalNumber=loan.getCardinalNumber();
+        double touzi=money+cardinalNumber;
+        if(touzi<=0){
+            FacesUtil.addErrorMessage("投资金额不能再少了");
+            this.setShouYi(0D);
+            return false;
+        }
+        boolean is=this.vaiMoney(touzi,loan);
+        if(is){
+            this.getInstance().setMoney(touzi);
+            calculateShouYi(this.getInstance().getMoney(), loan);
+            return true;
+        }else{
+            this.setShouYi(0D);
+            return false;
+        }
+
+    }
+
+    /**
+     * 投资校验
+     */
+    public boolean calculateInvest(String loanId) {
+        System.out.println("投资blue");
+        if(this.getInstance().getMoney()==null){
+            this.getInstance().setMoney(0D);
+        }
+        Loan loan=this.getBaseService().get(Loan.class, loanId);
+        boolean is=this.vaiMoney(this.getInstance().getMoney(),loan);
+        if(is){
+            calculateShouYi(this.getInstance().getMoney(), loan);
+            return true;
+        }else{
+            this.setShouYi(0D);
+            return false;
+        }
+    }
+
 
     /**
      * 投资

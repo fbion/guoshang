@@ -1,32 +1,65 @@
 //数量加减效果
-	$(function(){
-		//数量加减效果
-		$('#jian').click(function(){
-			var a=$('#numChange').val();
-			// alert(a);
-			a=parseInt(a);
-			if(a>100)
-			{
-				a=a-100;
-			}
-			else
-			{
-				a=a;
-			}
-			$('#numChange').val(a);
-		})
-		$('#jia').click(function(){
-			var a=$('#numChange').val();
-			// alert(a);
-			a=parseInt(a);
-			// alert(kucun);
-			
-			a=a+100;
-			
-			
-			$('#numChange').val(a);
-		})
-	})
+
+
+
+function funAdd(){
+	var a=$('.txtinput').val();
+	var cardinalNumber=$('#cardinalNumber').html();
+	cardinalNumber=parseInt(cardinalNumber);
+	if(a==''||a==null){
+		$('.txtinput').val(cardinalNumber);
+		return;
+	}
+	a=parseInt(a);
+	var couldInvestNumber=$('#couldInvestNumber').html();
+	couldInvestNumber=couldInvestNumber.replace(/,/g,'');
+	couldInvestNumber=parseInt(couldInvestNumber);
+	var minInvestNumber=$('#minInvestNumber').html();
+	minInvestNumber=minInvestNumber.replace(/,/g,'');
+	minInvestNumber=parseInt(minInvestNumber);
+	if(a+cardinalNumber>couldInvestNumber){
+		alert('投资金额不能高于可投金额！');
+		return;
+	}else if(couldInvestNumber-(a+cardinalNumber)<minInvestNumber){
+		alert('您投资后，剩余金额不能少于起投金额！');
+		return;
+	}else if((couldInvestNumber-(a+cardinalNumber)-minInvestNumber)%cardinalNumber!=0){
+		alert('您投资后，剩余可投金额减去投资起点，还需要是递增金额的倍数！');
+		return;
+	}else{
+		a=a+cardinalNumber;
+	    $('.txtinput').val(a);
+	}
+}
+function funMul(){
+	var a=$('.txtinput').val();
+	if(a==''||a==null){
+		$('.txtinput').val(0);
+		return;
+	}
+	a=parseInt(a);
+	var couldInvestNumber=$('#couldInvestNumber').html();
+	couldInvestNumber=couldInvestNumber.replace(/,/g,'');
+	couldInvestNumber=parseInt(couldInvestNumber);
+	var minInvestNumber=$('#minInvestNumber').html();
+	minInvestNumber=minInvestNumber.replace(/,/g,'');
+	minInvestNumber=parseInt(minInvestNumber);
+	
+	
+	if(a-cardinalNumber<0){
+		alert('投资金额不能再低啦！');
+		return;
+	}else if(couldInvestNumber-(a-cardinalNumber)<minInvestNumber){
+		alert('您投资后，剩余金额不能少于起投金额！');
+		return;
+	}else if((couldInvestNumber-(a-cardinalNumber)-minInvestNumber)%cardinalNumber!=0){
+		alert('您投资后，剩余可投金额减去投资起点，还需要是递增金额的倍数！');
+		return;
+	}else{
+	    a=a-cardinalNumber;
+	    $('.txtinput').val(a);
+	}
+}
 
 /*鼠标经过某一项投资记录，背景变化*/
 $(function(){
