@@ -203,6 +203,7 @@
 											listener="#{investList.addOrder('time','desc')}"></f:event>
 										<ui:repeat var="invest" value="#{investList.lazyModelData}"
 											varStatus="status">
+											<ui:fragment rendered="#{invest.status ne InvestConstants.InvestStatus.CANCEL}">
 											<tr class="#{status.index%2==0?'tab02':''} bg">
 												<td align="left" class="tab02 tab04"><a target="_blank"
 													href="#{path}/loanDetail/#{invest.loan.id}"
@@ -223,6 +224,7 @@
 															timeZone="GMT+8" locale="cn" />
 													</h:outputText></td>
 											</tr>
+											</ui:fragment>
 										</ui:repeat>
 									</table>
 

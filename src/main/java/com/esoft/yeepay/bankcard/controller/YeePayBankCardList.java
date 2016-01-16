@@ -70,6 +70,16 @@ public class YeePayBankCardList extends BankCardList {
 		}
 		return bankCardListbyLoginUser;
 	}
+
+
+
+	public int hasBankCard() {
+		User loginUser = getHt().get(User.class, loginUserInfo.getLoginUserId());
+		int sizeTemp = getHt().find(
+				"from BankCard where user.id = ? and status != ?", new String[]{loginUser.getId(), BankCardConstants.BankCardStatus.DELETED}).size();
+		return sizeTemp;
+	}
+
 	
 	private String queryCardStatus(String userId){
 		String status = "";

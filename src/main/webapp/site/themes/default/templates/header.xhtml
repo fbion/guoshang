@@ -35,12 +35,12 @@
 				<ul class="clearfix">
 					<ui:repeat var="menu" value="#{menuList.getMainMenus()}" varStatus="status">
 						<ui:fragment rendered="#{menu.enable eq '1'}">
-							<li><a href="#{path}#{menu.url}">#{menu.label}</a> 
+							<li><a style="text-decoration: none;" href="#{path}#{menu.url}">#{menu.label}</a>
 							<ui:fragment rendered="#{not empty menu.children}">
 									<ul>
 										<ui:repeat var="m2" value="#{menu.children}" varStatus="status">
 											<ui:fragment rendered="#{m2.enable eq '1'}">
-												<li><a style="text-decoration: none;" href="#{path}#{m2.url}">#{fn:substring(m2.label,0,6)}</a></li>
+												<li><a  href="#{path}#{m2.url}">#{fn:substring(m2.label,0,6)}</a></li>
 											</ui:fragment>
 										</ui:repeat>
 									</ul>

@@ -56,5 +56,7 @@ public class BankCardList extends EntityQuery<BankCard> {
 		}
 		return bankCardListbyLoginUser;
 	}
+
+
 	
 }

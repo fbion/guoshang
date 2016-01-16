@@ -74,14 +74,12 @@ public class YeePayInvestHome extends InvestHome {
 	}
 	@Override
 	public String transfer() {
-		
 		if (loginUserInfo.getLoginUserId().equals(
 				getInstance().getTransferApply().getInvest().getUser()
 						.getId())) {
 			FacesUtil.addErrorMessage("您不能购买自己的债权");
 			return null;
 		}
-		
 		Invest invest = this.getInstance();
 		invest.setUser(new User(loginUserInfo.getLoginUserId()));
 		try {

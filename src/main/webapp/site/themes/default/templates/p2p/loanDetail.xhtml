@@ -544,26 +544,28 @@
                                     <f:event type="preRenderComponent"
                                              listener="#{investList.setPageSize(10)}"></f:event>
                                     <ui:repeat var="invest" value="#{investList.lazyModelData}">
-                                        <tr>
-                                            <td width="25%" class="c3_td2">#{invest.user.username.substring(0,3)}***
-                                            </td>
-                                            <td width="25%" class="c3_td2">
-                                                <h:outputText
-                                                        value="#{invest.investMoney}">
-                                                    <f:convertNumber maxFractionDigits="2"/>
-                                                </h:outputText>
-                                                元
-                                            </td>
-                                            <td width="25%" class="c3_td2">
-                                                <h:outputText value="#{invest.time}">
-                                                    <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" locale="cn"
-                                                                       timeZone="GMT+8"></f:convertDateTime>
-                                                </h:outputText>
-                                            </td>
-                                            <td width="25%" class="c3_td2">#{dictUtil.getValue('invest_status',
+                                        <ui:fragment rendered="#{invest.status ne InvestConstants.InvestStatus.CANCEL}">
+                                            <tr>
+                                                <td width="25%" class="c3_td2">#{invest.user.username.substring(0,3)}***
+                                                </td>
+                                                <td width="25%" class="c3_td2">
+                                                    <h:outputText
+                                                            value="#{invest.investMoney}">
+                                                        <f:convertNumber maxFractionDigits="2"/>
+                                                    </h:outputText>
+                                                    元
+                                                </td>
+                                                <td width="25%" class="c3_td2">
+                                                    <h:outputText value="#{invest.time}">
+                                                        <f:convertDateTime pattern="yyyy-MM-dd HH:mm:ss" locale="cn"
+                                                                           timeZone="GMT+8"></f:convertDateTime>
+                                                    </h:outputText>
+                                                </td>
+                                                <td width="25%" class="c3_td2">#{dictUtil.getValue('invest_status',
 									invest.status)}
-                                            </td>
-                                        </tr>
+                                                </td>
+                                            </tr>
+                                        </ui:fragment>
                                     </ui:repeat>
                                 </table>
                                 <div class="pagebar">

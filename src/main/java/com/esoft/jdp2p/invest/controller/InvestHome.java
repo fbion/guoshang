@@ -161,8 +161,6 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
      */
     public boolean calculateInvestMul(String loanId) {
 
-        System.out.println("投资减");
-
         if(this.getInstance().getMoney()==null){
             this.getInstance().setMoney(0D);
         }
@@ -196,7 +194,6 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
      */
     public boolean calculateInvestPlus(String loanId) {
 
-        System.out.println("投资加");
         if(this.getInstance().getMoney()==null){
             this.getInstance().setMoney(0D);
         }
@@ -225,7 +222,6 @@ public class InvestHome extends EntityHome<Invest> implements Serializable {
      * 投资校验
      */
     public boolean calculateInvest(String loanId) {
-        System.out.println("投资blue");
         if(this.getInstance().getMoney()==null){
             this.getInstance().setMoney(0D);
         }

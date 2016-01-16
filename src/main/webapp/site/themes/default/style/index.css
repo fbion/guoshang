@@ -1,8 +1,8 @@
-body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"MicrosoftJhengHei",»ªÎÄÏ¸ºÚ,STHeiti,MingLiu  }
+body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ï¿½ï¿½ï¿½Åºï¿½,"MicrosoftJhengHei",ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ï¿½,STHeiti,MingLiu  }
 .main{width:1100px;margin:0 auto;background-color:#F6F6F6;}
 
 
-/*¹«¸æ¹ö¶¯Ìõ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .part1{width:100%;height:54px;border:solid 1px #D9D9D9;border-top:none;background-color:#fff;margin-top: 10px;}
 .part1-1{width:139px;height:53px;border:solid 1px #F5F5F5;border-top:none;text-align:center;line-height:53px; display: table-cell;vertical-align:middle;float:left;font-size:14px;color:#939393}
 .part1-1 img{vertical-align:middle;}
@@ -13,13 +13,13 @@ body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"Microsoft
 .part1-2 span{float:right;color:#939393}
 
 
-/*¹ö¶¯Ìõ¸ü¶à°´Å¥*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½à°´Å¥*/
 .notive-more {float: right;width:250px;height:53px;}
 .notive-more a { border: 1px solid #a7a7a7; border-radius: 3px;color: #666;display: block;font-size: 14px; height: 25px;line-height: 25px; text-align: center; width: 84px;margin:0 auto; text-decoration:none;margin-top:14px;}
 .notive-more a:hover{border: 1px solid #bc1125;color:#bc1125}
 
 
-/*·þÎñ±£ÕÏ*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .part2{width:100%;height:310px;border:solid 1px #F4F4F4;margin-top:10px;background-color:#fff;}
 .part2-1{width:100%;height:42px;border-bottom:solid 1px #f4f4f4}
 .part2-1-1{width:100px;border-bottom:solid 2px #BC1125;height:41px;text-align:center;font-weight:bold;line-height:41px;font-size:14px}
@@ -30,16 +30,16 @@ body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"Microsoft
 
 
 
-/*Í¶×ÊÏîÄ¿*/
+/*Í¶ï¿½ï¿½ï¿½ï¿½Ä¿*/
 .part3{width:100%;height:523px;border:solid 1px #F4F4F4;margin-top:10px;background-color:#fff;}
 .part3-2{width:100%;height:466px;margin-top:2px;}
-.part3-2-1{width:266px;height:466px;background-color:#FE6C6F;float:left;}
-.part3-2-2{width:265px;height:466px;background-color:#16C3EE;float:left;margin-left:13px;}
+.part3-2-1{width:266px;height:466px;background-color:#16C3EE;float:left;}
+.part3-2-2{width:265px;height:466px;background-color:#FE6C6F;float:left;margin-left:13px;}
 .part3-2-3{width:265px;height:466px;background-color:#FFB925;float:left;margin-left:13px;}
 .part3-2-4{width:265px;height:466px;background-image:url("../images/category4.png");float:left;margin-left:13px;}
 
 
-/*Í¶×ÊÏîÄ¿ÖÐÔ²ÐÎ½ø¶ÈÐ§¹ûÑùÊ½*/
+/*Í¶ï¿½ï¿½ï¿½ï¿½Ä¿ï¿½ï¿½Ô²ï¿½Î½ï¿½ï¿½ï¿½Ð§ï¿½ï¿½ï¿½ï¿½Ê½*/
 #canvas .circle {display: inline-block;}
 .circles-decimals {font-size: .6em;color:#FEFEFE;}
 .circles-integer{color:#FEFEFE;font-size:20px;}	
@@ -49,15 +49,15 @@ body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"Microsoft
 .categoryicon2{position:absolute;right:0;top:45px;}
 .categoryname{width:100%;height:40px;text-align:center;line-height:40px;font-size:24px;color:#fff;}
 .categorydetailpart{width:33.33%;height:80px;text-align:center;line-height:80px;float:left;padding-top:25px;}
-.catdetail1{width:100%;height:31px;text-align:center;line-height:31px;font-size:14px;color:#fff;}
-.catdetail1-1{width:100%;height:31px;text-align:center;line-height:31px;font-size:18px;color:#fff;font-weight:bold;}
+.catdetail1{width:100%;height:31px;text-align:center;line-height:31px;font-size:24px;color:#fff;}
+.catdetail1-1{width:100%;height:31px;text-align:center;line-height:31px;font-size:16px;color:#fff;font-weight:bold;}
 .categorydetailpart2{width:60%;height:80px;line-height:80px;float:left;}
 .catdetail2{width:100%;height:22px;line-height:22px;font-size:14px;color:#fff;padding-left:15px;}
 .part3btn{position:absolute;left:47px;bottom:25px;}
 
 
 
-/*ÐÐÒµ×ÊÑ¶¹ö¶¯*/
+/*ï¿½ï¿½Òµï¿½ï¿½Ñ¶ï¿½ï¿½ï¿½ï¿½*/
 .part4{width:100%;height:480px;border:solid 1px #F4F4F4;margin-top:10px;background-color:#fff;}
 .part4-2{height:425px;}
 .visual {height: 350px;min-width: 1000px;position: relative;width: 100% !important;}
@@ -92,7 +92,7 @@ body{background-color:#F6F6F6; font-family:"Microsoft YaHei",Î¢ÈíÑÅºÚ,"Microsoft
             width: 84px;}
 .tag_more:hover{border: 1px solid #bc1125;color:#bc1125}
 
-/*ºÏ×÷»ï°é*/
+/*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
 .main2-1{width:1100px;margin:0 auto;}
 .main2{height:180px;width:100%;background-color:#fff;margin-top:15px;}
 
