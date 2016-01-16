@@ -293,7 +293,7 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 	@Deprecated
 	public double getAllLoansMoney() {
 		String hql = "select sum(loan.money) from Loan loan "
-				+ "where loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ?";
+				+ "where loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ? or loan.status = ?";
 		List<Object> oos = getHt().find(
 				hql,
 				new String[] { LoanConstants.LoanStatus.RAISING,
