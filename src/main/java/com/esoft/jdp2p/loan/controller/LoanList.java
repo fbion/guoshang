@@ -76,11 +76,11 @@ public class LoanList extends EntityQuery<Loan> implements Serializable {
 		setHql(lazyModelHql);
 		final String[] RESTRICTIONS = { "loan.id like #{loanList.example.id}",
 				"loan.repayType like #{loanList.example.repayType}",
-//				"loan.status like #{loanList.example.status}",
+				"loan.status like #{loanList.example.status}",
 				"loan.name like #{loanList.example.name}",
 				"loan.jkRate >=#{loanList.minRate}",
 				"loan.jkRate <=#{loanList.maxRate}",
-//				"loan.status like #{loanList.example.status}",
+				"loan.status like #{loanList.example.status}",
 				"loan.riskLevel like #{loanList.example.riskLevel}",
 				"loan.type like #{loanList.example.type}",
 				"loan.user.id = #{loanList.example.user.id}",
