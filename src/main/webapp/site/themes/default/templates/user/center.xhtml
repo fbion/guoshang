@@ -118,7 +118,7 @@
 					<div class="center_zj">
 						<div class="center_zj_01">
 							<p>
-								<img title="累计投资额=回收本金+待收本金"
+								<img title="累计投资额=已收本金+待收本金"
 									src="#{tplVars.themeImagePath}/img20.png" /> 累计投资额： <span>
 									<h:outputText
 										value="#{investStatistics.getReceivedCorpus(loginUserInfo.loginUserId)+investStatistics.getReceivableCorpus(loginUserInfo.loginUserId)}">
@@ -127,7 +127,7 @@
 								</span>
 							</p>
 							<p>
-								<img title="预期总收益=回收利息+待收利息"
+								<img title="预期总收益=已收利息+待收利息"
 									src="#{tplVars.themeImagePath}/img20.png" /> 预期总收益： <span>
 									<h:outputText
 										value="#{investStatistics.getReceivedInterest(loginUserInfo.loginUserId)+investStatistics.getReceivableInterest(loginUserInfo.loginUserId)}">

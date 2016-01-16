@@ -645,14 +645,14 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void sendSuccessFeeYtxSMS(String username,String loanName ,double money, String mobileNumber) {
-        String[] content={username,loanName,String.valueOf(money)};
+        String[] content={username,loanName,String.valueOf(money)+"元"};
         messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.FEE_CREATE_SUCCESS, content, mobileNumber);
 
     }
 
     @Override
     public void sendSuccessFeeAndCorpusYtxSMS(String username,String loanName, double fee,double corpus, String mobileNumber) {
-        String[] content={username,loanName,String.valueOf(fee+corpus)};
+        String[] content={username,loanName,String.valueOf(fee+corpus)+'元'};
         messageBO.sendYtxSms(MessageConstants.YtxMessageTemplateId.CORPUS_CREATE_SUCCESS, content, mobileNumber);
     }
 
