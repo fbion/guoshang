@@ -185,6 +185,9 @@ public class YeePayRepayHome extends RepayHome {
         // 用户可用余额
         double balance = ubs.getBalance(loginUserInfo.getLoginUserId());
         LoanRepay repay = getBaseService().get(LoanRepay.class, repayId);
+        System.out.println("balance"+balance);
+        System.out.println("repay.getCorpus()"+repay.getCorpus());
+        System.out.println("repay.getInterest()"+repay.getInterest());
 
         if (balance < ArithUtil.add(repay.getCorpus(), repay.getInterest(),
                 repay.getFee(), repay.getDefaultInterest())) {

@@ -1174,6 +1174,8 @@ public class Loan implements java.io.Serializable, Cloneable {
 					unPaidInterest = ArithUtil.add(unPaidInterest,
 							ir.getInterest());
 					unPaidFee = ArithUtil.add(unPaidFee, ir.getFee());
+					System.out.println("unPaidFee"+unPaidFee);
+					System.out.println("ir.getFee()"+ir.getFee());
 					unPaidDefaultInterest = ArithUtil.add(
 							unPaidDefaultInterest, ir.getDefaultInterest());
 					if (i == 0
@@ -1204,6 +1206,7 @@ public class Loan implements java.io.Serializable, Cloneable {
 					nextRepayDefaultInterest, paidPeriod, getLoanRepays()
 							.size() - paidPeriod, true);
 		}
+		System.out.println("repayRoadmap"+repayRoadmap.getUnPaidFee());
 		return this.repayRoadmap;
 	}
 

@@ -48,7 +48,7 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 						rateIBOI, deadline, repayTimePeriod, interestBeginTime,
 						interestBeginPoint);
 			} else if (repayTimeUnit.equals(RepayUnit.MONTH)) {
-				// 按月s还款
+				// 按月s还款  1
 				return generateDayMonthRepays(investMoney, investTime, rate,
 						rateIBOI, deadline, repayTimePeriod, interestBeginTime,
 						interestBeginPoint);
@@ -153,6 +153,7 @@ public class NormalRepayRFCLCalculator implements NormalRepayCalculator {
 		}
 		return repays;
 	}
+
 
 	/**
 	 * 生成按天计息、按天s还款的投资还款数据

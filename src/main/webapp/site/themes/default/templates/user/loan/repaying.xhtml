@@ -127,10 +127,10 @@
 				<div id="con_four_1" class="slidnr">
 				<ui:param name="ar" value="#{repayCalculator.calculateAdvanceRepay(loanHome.instance.loanRepays[0].loan.id)}"></ui:param>
 					<!-- 					提前还款-->
-					<h:commandLink onclick="return confirm('你确定要提前还款吗？');" rendered="#{ar.corpus gt 0}"
-						style="float: right;" value="提前还款(本金:#{ar.corpus};手续费:#{ar.repayFee};罚息:#{arithUtil.round(ar.feeToSystem+ar.feeToInvestor,2)})"
-						action="#{repayHome.advanceRepay(loanHome.instance.loanRepays[0].loan.id)}">
-					</h:commandLink>
+					<!--<h:commandLink onclick="return confirm('你确定要提前还款吗？');" rendered="#{ar.corpus gt 0}"-->
+						<!--style="float: right;" value="提前还款(本金:#{ar.corpus};手续费:#{ar.repayFee};罚息:#{arithUtil.round(ar.feeToSystem+ar.feeToInvestor,2)})"-->
+						<!--action="#{repayHome.advanceRepay(loanHome.instance.loanRepays[0].loan.id)}">-->
+					<!--</h:commandLink>-->
 					<table width="786" border="0" cellspacing="0" cellpadding="0"
 						class="tab">
 						<tr>
@@ -189,7 +189,7 @@
 										<ui:fragment
 											rendered="#{repayService.isInRepayPeriod(ir.repayDay)}">
 											<h:commandLink onclick="return confirm('你确定要还款吗？');"
-												value="正常还款" action="#{repayHome.normalRepay(ir.id)}">
+												value="还款" action="#{repayHome.normalRepay(ir.id)}">
 											</h:commandLink>
 										</ui:fragment>
 									</ui:fragment> <!-- 					逾期还款 --> <ui:fragment

@@ -235,10 +235,6 @@ public class RepayServiceImpl implements RepayService {
 		ht.evict(loan);
 		loan = ht.get(Loan.class, loanId, LockMode.UPGRADE);
 		LoanType loanType = ht.get(LoanType.class, loan.getType().getId());
-		if (loan.getInterestBeginTime() == null) {
-			// 发起借款的时候，如果不制定计息开始时间，则默认为放款日
-			loan.setInterestBeginTime(new Date());
-		}
 		// 先付利息后还本金
 		if (loanType.getRepayType().equals(RepayType.RFCL)) {
 			gRepays(loan, normalRepayRFCLCalculator);
@@ -666,13 +662,13 @@ public class RepayServiceImpl implements RepayService {
 
 			//如果今天比还款期多1天
 				if (lr.getStatus().equals(LoanConstants.RepayStatus.REPAYING)) {
-					log.info("调度:查看在此还款期的借款期次是否还款过期，过期则更改状态：结算中：借款ID"+lr.getLoan().getId());
+					log.info("调度:查看在此还款期的借款期次是否还款过期，过期则更改状态为结算中：借款ID"+lr.getLoan().getId());
 					Date repayDay = DateUtil.addDay(
 							DateUtil.StringToDate(DateUtil.DateToString(
 									lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)), 1);
 					if (repayDay.before(new Date())) {
 						log.info("超过还款期："+DateUtil.DateToString(
-								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)+"更新结算中，借款ID"+lr.getLoan().getId());
+								lr.getRepayDay(), DateStyle.YYYY_MM_DD_CN)+"更新状态结算中，借款ID"+lr.getLoan().getId());
 						lr.setStatus(LoanConstants.RepayStatus.REPAYING_BACK);
 						loan.setStatus(LoanConstants.LoanStatus.REPAYING_BACK);
 						for (InvestRepay ir : irs) {
@@ -712,7 +708,7 @@ public class RepayServiceImpl implements RepayService {
 
 			if (lr.getStatus().equals(LoanConstants.RepayStatus.OVERDUE)) {
 				if (log.isDebugEnabled()) {
-					log.debug("checkLoanOverdue overdue repayId:" + lr.getId());
+					log.debug("checkLoanOverdue overdue repayId:" + lr.getId()+"lr.getDefaultInterest():"+lr.getDefaultInterest());
 				}
 				// 计算逾期罚息, 用户罚息+网站罚息
 				double defalutInterestAll = 0D;
@@ -733,11 +729,13 @@ public class RepayServiceImpl implements RepayService {
 				double overdueLRAllMoney = ArithUtil.mul(
 						ArithUtil.add(lr.getCorpus(), lr.getInterest()),
 						DateUtil.getIntervalDays(new Date(), lr.getRepayDay()));
+
 				// 用户罚息+网站罚息
 				lr.setDefaultInterest(ArithUtil
 						.add(defalutInterestAll, feeConfigBO.getFee(
 								FeePoint.OVERDUE_REPAY_SYSTEM, FeeType.PENALTY,
 								null, null, overdueLRAllMoney)));
+
 				if (DateUtil.addYear(lr.getRepayDay(), 1).before(new Date())) {
 					// 逾期一年以后，项目改为还账状态
 					if (log.isDebugEnabled()) {

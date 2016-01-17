@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import com.esoft.archer.user.model.User;
 import com.esoft.archer.user.service.UserService;
+import com.esoft.core.util.DateUtil;
+import com.esoft.core.util.Week;
 import org.apache.commons.logging.Log;
 import org.hibernate.LockMode;
 import org.springframework.orm.hibernate3.HibernateTemplate;
@@ -143,7 +145,14 @@ public class YeePayLoanServiceImpl extends LoanServiceImpl {
 		// 设置放款日期
 		loan.setGiveMoneyTime(dateNow);
 		if (loan.getInterestBeginTime() == null) {
-			loan.setInterestBeginTime(dateNow);
+			//如果周五则将计息日增加两天，如果是周六增加计息日增加一天
+			if(DateUtil.getWeek(new Date()).getNumber()== Week.FRIDAY.getNumber()){
+				loan.setInterestBeginTime(DateUtil.addDay(new Date(),2));
+			}else if(DateUtil.getWeek(new Date()).getNumber()== Week.SATURDAY.getNumber()){
+				loan.setInterestBeginTime(DateUtil.addDay(new Date(),1));
+			}else{
+				loan.setInterestBeginTime(dateNow);
+			}
 		}
 		// 实际到借款账户的金额
 		double actualMoney = 0D;
