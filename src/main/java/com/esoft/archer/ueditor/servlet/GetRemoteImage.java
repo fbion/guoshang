@@ -76,7 +76,8 @@ public class GetRemoteImage extends HttpServlet {
     		//保存文件路径
     		String str = application.getRealPath(request.getServletPath());
 			File f = new File(str);
-			String savePath = f.getParent() + "/"+filePath;
+			//更改路径
+			String savePath = "/data/www/upload";
     		//格式验证
     		String type = getFileType(arr[i]);
 			if(type.equals("")){

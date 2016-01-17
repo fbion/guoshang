@@ -58,7 +58,7 @@ public class FileUp extends HttpServlet {
 	    response.setCharacterEncoding("UTF-8");
 
 	    Uploader up = new Uploader(request);
-	    up.setSavePath("upload"); //保存路径
+	    up.setSavePath("/data/www/upload"); //保存路径
 	    String[] fileType = {".rar" , ".doc" , ".docx" , ".zip" , ".pdf" , ".txt" , ".swf", ".wmv"};  //允许的文件类型
 	    up.setAllowFiles(fileType);
 	    up.setMaxSize(10000);        //允许的文件最大尺寸，单位KB

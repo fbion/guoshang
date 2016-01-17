@@ -59,7 +59,7 @@ public class ScrawlUp extends HttpServlet {
 		
 		String param = request.getParameter("action");
 	    Uploader up = new Uploader(request);
-	    String path = "upload";
+	    String path = "/data/www/upload";
 	    up.setSavePath(path);
 	    String[] fileType = {".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp"};
 	    up.setAllowFiles(fileType);

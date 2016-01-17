@@ -68,12 +68,18 @@ public class ImageManager extends HttpServlet {
 	public void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String path = "upload";
+//		String path = "/data/www/upload";
+//		String imgStr = "";
+//		String realpath = getRealPath(request, path) + "/" + path;
+
+
 		String imgStr = "";
-		String realpath = getRealPath(request, path) + "/" + path;
+		String realpath = "/data/www/upload";
+
 		List<File> files = getFiles(realpath, new ArrayList());
 		for (File file : files) {
-			imgStr += file.getPath().replace(getRealPath(request, path), "")
+			//imgStr += file.getPath().replace(getRealPath(request, path), "")
+			imgStr += file.getPath().replace(getRealPath(request, realpath), "")
 					+ "ue_separate_ue";
 		}
 		if (imgStr != "") {

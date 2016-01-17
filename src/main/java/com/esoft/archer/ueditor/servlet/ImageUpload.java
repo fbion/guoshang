@@ -56,7 +56,7 @@ public class ImageUpload extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setCharacterEncoding("UTF-8");
 	    Uploader up = new Uploader(request);
-	    up.setSavePath("upload");
+	    up.setSavePath("/data/www/upload");
 	    String[] fileType = {".gif" , ".png" , ".jpg" , ".jpeg" , ".bmp"};
 	    up.setAllowFiles(fileType);
 	    up.setMaxSize(10000); //单位KB
