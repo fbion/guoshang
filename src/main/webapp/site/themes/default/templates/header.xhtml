@@ -18,8 +18,8 @@
 				<ui:fragment rendered="#{not empty loginUserInfo.loginUserId}">
 					<a href="#{path}/user/center"><font color="#FF3030">您好,#{loginUserInfo.loginUserId}</font></a>
 					<a href="#{path}/user/logout" class="login">注销</a>
-					<span>|</span>
-					<a href="#{path}/guide">帮助中心</a>
+					<!--<span>|</span>
+					<a href="#{path}/guide">帮助中心</a>-->
 				</ui:fragment>
 
 			</div>
@@ -28,9 +28,7 @@
 	<!--top end-->
 	<div class="header">
 		<div class="main-w clearfix">
-			<h1 class="logo fl">
-				<a href="#{path}/"><img src="#{tplVars.themeImagePath}/index/logo.png" /></a>
-			</h1>
+			<div class="logo fl"><a href="#{path}/"><img src="#{tplVars.themeImagePath}/index/logo.png" /></a></div>
 			<div class="nav fr">
 				<ul class="clearfix">
 					<ui:repeat var="menu" value="#{menuList.getMainMenus()}" varStatus="status">
